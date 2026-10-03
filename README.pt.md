@@ -11,3 +11,7 @@ O Aster é um espaço de estudo local para estudantes do ensino secundário, Cam
 **Privacidade:** Não envie chaves de API, senhas, links privados de feeds escolares nem dados do banco de dados para este repositório. A IA na nuvem é opcional e vem desativada. Esta é uma versão local de desenvolvimento; pagamentos e verificação por e-mail ou SMS são demonstrações.
 
 A documentação técnica completa está disponível em [inglês](README.md).
+
+## Arquitetura técnica
+
+![Aster — Arquitetura técnica](docs/images/aster-architecture.png)

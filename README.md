@@ -11,6 +11,7 @@ The project is organized into **`front-end`**, **`back-end`**, and **`database`*
 ## Quick links
 
 - [Getting started](#getting-started-windows)
+- [Technical architecture](#technical-architecture)
 - [Project structure](#project-structure)
 - [Features](#features)
 - [Development commands](#development-commands)
@@ -22,6 +23,10 @@ The project is organized into **`front-end`**, **`back-end`**, and **`database`*
 - [Database setup and backup guide](database/README.md)
 - [Frontend guide](front-end/README.md)
 - [Asset and book credits](front-end/ASSETS.md)
+
+## Technical architecture
+
+![Aster — Technical architecture](docs/images/aster-architecture.png)
 
 ## Technology
 

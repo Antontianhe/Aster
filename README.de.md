@@ -11,3 +11,7 @@ Aster ist ein lokaler Lernbereich für Schülerinnen und Schüler der Sekundarst
 **Datenschutz:** API-Schlüssel, Passwörter, private Schul-Feeds und Datenbankinhalte gehören nicht in dieses Repository. Cloud-KI ist optional und standardmäßig deaktiviert. Dies ist eine lokale Entwicklungsversion; Zahlungen und E-Mail-/SMS-Verifizierung sind Vorschauen.
 
 Die vollständige technische Dokumentation ist auf [Englisch](README.md) verfügbar.
+
+## Technische Architektur
+
+![Aster — Technische Architektur](docs/images/aster-architecture.png)
