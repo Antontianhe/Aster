@@ -1,0 +1,22 @@
+{
+  "name": "@aster/front-end",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --configLoader native",
+    "build": "vite build --configLoader native",
+    "preview": "vite preview --host 127.0.0.1 --configLoader native",
+    "test": "node --test src/*.test.js"
+  },
+  "dependencies": {
+    "docx": "9.5.1",
+    "lucide-react": "^0.468.0",
+    "pptxgenjs": "4.0.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
