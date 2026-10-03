@@ -1,5 +1,116 @@
 # Aster
 
+## README languages · Sprachen · 语言
+
+**English · Deutsch · 简体中文 · Español · Français · Português · Italiano · 日本語 · 한국어 · العربية**
+
+Choose a language below for an introduction and setup notes. The detailed technical guide that follows is in English. These README translations do not add interface languages: the app currently offers English, German, and Simplified Chinese.
+
+<details>
+<summary><strong>Deutsch — Einführung und Einrichtung</strong></summary>
+
+Aster ist ein lokaler Lernbereich für Schülerinnen und Schüler der Sekundarstufe sowie für Cambridge IGCSE und IB. Er verbindet Lernplanung, Wiederholung, Lesen, Schreiben und einen optionalen KI-Lernbegleiter.
+
+**Start unter Windows:** Befolge die [Installationsanleitung](#getting-started-windows), um die Abhängigkeiten, Java/Maven und MySQL einzurichten. Erstelle anschließend das Backend und starte `Start-Aster.cmd`. Die Oberfläche unterstützt Englisch, Deutsch und vereinfachtes Chinesisch.
+
+**Datenschutz:** API-Schlüssel, Passwörter, private Schul-Feeds und Datenbankinhalte gehören nicht in dieses Repository. Cloud-KI ist optional und standardmäßig deaktiviert. Dies ist eine lokale Entwicklungsversion; Zahlungen und E-Mail-/SMS-Verifizierung sind Vorschauen.
+
+</details>
+
+<details>
+<summary><strong>简体中文 — 项目介绍与安装</strong></summary>
+
+Aster 是面向中学生、剑桥 IGCSE 和 IB 学生的本地学习工作台，整合了学习计划、复习、阅读、写作，以及可选的 AI 学习助手。
+
+**在 Windows 上启动：** 请按照[安装指南](#getting-started-windows)配置项目依赖、Java/Maven 和 MySQL，然后构建后端并运行 `Start-Aster.cmd`。应用界面目前支持英语、德语和简体中文。
+
+**隐私说明：** 请勿将 API 密钥、密码、私人学校订阅链接或数据库内容上传到本仓库。云端 AI 为可选功能，默认关闭。本项目是本地开发预览版；付款和电子邮件／短信验证功能仅用于预览。
+
+</details>
+
+<details>
+<summary><strong>Español — Presentación e instalación</strong></summary>
+
+Aster es un espacio de estudio local para estudiantes de secundaria, Cambridge IGCSE e IB. Reúne planificación, repaso, lectura, escritura y un asistente de estudio con IA opcional.
+
+**Inicio en Windows:** Sigue la [guía de instalación](#getting-started-windows) para configurar las dependencias, Java/Maven y MySQL. Después, compila el backend y ejecuta `Start-Aster.cmd`. La interfaz está disponible en inglés, alemán y chino simplificado.
+
+**Privacidad:** No subas claves de API, contraseñas, enlaces privados de noticias escolares ni datos de la base de datos a este repositorio. La IA en la nube es opcional y está desactivada por defecto. Esta es una versión local de desarrollo; los pagos y la verificación por correo o SMS son demostraciones.
+
+</details>
+
+<details>
+<summary><strong>Français — Présentation et installation</strong></summary>
+
+Aster est un espace d'étude local pour les élèves du secondaire, de Cambridge IGCSE et de l'IB. Il rassemble la planification, les révisions, la lecture, l'écriture et un assistant d'apprentissage par IA facultatif.
+
+**Démarrage sous Windows :** Suivez le [guide d'installation](#getting-started-windows) pour configurer les dépendances, Java/Maven et MySQL. Compilez ensuite le backend et lancez `Start-Aster.cmd`. L'interface est disponible en anglais, en allemand et en chinois simplifié.
+
+**Confidentialité :** Ne publiez pas de clés API, de mots de passe, de liens privés vers les flux scolaires ni de données de la base dans ce dépôt. L'IA dans le cloud est facultative et désactivée par défaut. Il s'agit d'une version locale de développement ; les paiements et la vérification par e-mail ou SMS sont des démonstrations.
+
+</details>
+
+<details>
+<summary><strong>Português — Apresentação e instalação</strong></summary>
+
+O Aster é um espaço de estudo local para estudantes do ensino secundário, Cambridge IGCSE e IB. Reúne planejamento, revisão, leitura, escrita e um assistente de estudo com IA opcional.
+
+**Iniciar no Windows:** Siga o [guia de instalação](#getting-started-windows) para configurar as dependências, Java/Maven e MySQL. Depois, compile o backend e execute `Start-Aster.cmd`. A interface está disponível em inglês, alemão e chinês simplificado.
+
+**Privacidade:** Não envie chaves de API, senhas, links privados de feeds escolares nem dados do banco de dados para este repositório. A IA na nuvem é opcional e vem desativada. Esta é uma versão local de desenvolvimento; pagamentos e verificação por e-mail ou SMS são demonstrações.
+
+</details>
+
+<details>
+<summary><strong>Italiano — Presentazione e installazione</strong></summary>
+
+Aster è uno spazio di studio locale per studenti della scuola secondaria, Cambridge IGCSE e IB. Riunisce pianificazione, ripasso, lettura, scrittura e un assistente di studio con IA facoltativo.
+
+**Avvio su Windows:** Segui la [guida all'installazione](#getting-started-windows) per configurare le dipendenze, Java/Maven e MySQL. Poi compila il backend e avvia `Start-Aster.cmd`. L'interfaccia è disponibile in inglese, tedesco e cinese semplificato.
+
+**Privacy:** Non pubblicare chiavi API, password, collegamenti privati ai feed scolastici o dati del database in questo repository. L'IA nel cloud è facoltativa e disattivata per impostazione predefinita. Questa è una versione locale di sviluppo; pagamenti e verifica tramite e-mail o SMS sono dimostrazioni.
+
+</details>
+
+<details>
+<summary><strong>日本語 — 概要とセットアップ</strong></summary>
+
+Aster は、中高生、Cambridge IGCSE、IB の学習者向けのローカル学習ワークスペースです。学習計画、復習、読書、文章作成に加え、任意で利用できる AI 学習アシスタントを備えています。
+
+**Windows での起動：** [セットアップガイド](#getting-started-windows)に従って依存関係、Java/Maven、MySQL を設定し、バックエンドをビルドして `Start-Aster.cmd` を実行してください。アプリの表示言語は英語、ドイツ語、簡体字中国語です。
+
+**プライバシー：** API キー、パスワード、学校の非公開フィードの URL、データベースの内容をこのリポジトリに公開しないでください。クラウド AI は任意の機能で、初期状態では無効です。本プロジェクトはローカル開発用のプレビュー版であり、決済とメール・SMS 認証はデモ機能です。
+
+</details>
+
+<details>
+<summary><strong>한국어 — 소개 및 설치</strong></summary>
+
+Aster는 중·고등학생, Cambridge IGCSE 및 IB 학습자를 위한 로컬 학습 공간입니다. 학습 계획, 복습, 독서, 글쓰기와 선택적으로 사용할 수 있는 AI 학습 도우미를 제공합니다.
+
+**Windows에서 시작하기:** [설치 안내](#getting-started-windows)에 따라 의존성, Java/Maven, MySQL을 설정한 뒤 백엔드를 빌드하고 `Start-Aster.cmd`를 실행하세요. 앱 화면은 영어, 독일어, 중국어 간체를 지원합니다.
+
+**개인정보 보호:** API 키, 비밀번호, 비공개 학교 피드 링크 및 데이터베이스 내용을 이 저장소에 올리지 마세요. 클라우드 AI는 선택 기능이며 기본적으로 비활성화되어 있습니다. 이 프로젝트는 로컬 개발 미리보기 버전으로, 결제와 이메일·SMS 인증은 데모 기능입니다.
+
+</details>
+
+<details>
+<summary><strong>العربية — مقدمة وإعداد المشروع</strong></summary>
+
+<div dir="rtl">
+
+Aster مساحة دراسة محلية لطلاب المرحلة الثانوية وبرامج Cambridge IGCSE وIB. يجمع التخطيط والمراجعة والقراءة والكتابة، مع مساعد دراسة اختياري يعمل بالذكاء الاصطناعي.
+
+**التشغيل على Windows:** اتبع [دليل الإعداد](#getting-started-windows) لتثبيت الاعتماديات وإعداد Java/Maven وMySQL، ثم ابنِ الخادم الخلفي وشغّل `Start-Aster.cmd`. تدعم واجهة التطبيق الإنجليزية والألمانية والصينية المبسطة.
+
+**الخصوصية:** لا ترفع مفاتيح API أو كلمات المرور أو روابط خلاصات المدرسة الخاصة أو محتويات قاعدة البيانات إلى هذا المستودع. الذكاء الاصطناعي السحابي اختياري ومعطّل افتراضيًا. المشروع نسخة تطوير محلية؛ الدفع والتحقق بالبريد الإلكتروني أو الرسائل النصية ميزات تجريبية للعرض فقط.
+
+</div>
+
+</details>
+
+## English — Full project guide
+
 Aster is a local learning workspace for secondary-school, Cambridge IGCSE, and IB students. It brings revision, planning, reading, writing, school information, and an optional AI study companion into one interface.
 
 The project is organized into **`front-end`**, **`back-end`**, and **`database`**. The frontend remains React + JavaScript + HTML + CSS. The API is implemented in **Java + Spring Boot + Maven + MyBatis Plus**, backed by **MySQL**.
