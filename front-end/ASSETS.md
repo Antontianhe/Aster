@@ -25,12 +25,12 @@ The full original Project Gutenberg text files, including their credits and lice
 - `frankenstein.txt`: Mary Wollstonecraft Shelley, *Frankenstein*, Project Gutenberg #84, https://www.gutenberg.org/ebooks/84 (text source https://www.gutenberg.org/ebooks/84.txt.utf-8).
 - `the-time-machine.txt`: H. G. Wells, *The Time Machine*, Project Gutenberg #35, https://www.gutenberg.org/ebooks/35 (text source https://www.gutenberg.org/ebooks/35.txt.utf-8).
 
-These underlying works are public domain in Germany and the United States; Project Gutenberg notices remain in the distributed source files. Other books link to authorized publishers/open editions and are not copied into this repository. Open textbooks retain their own source-specific licenses, shown on their source pages. The library’s typographic covers, Aster star mark, population chart, and quadratic graph are original interface artwork, not publisher cover reproductions.
+These underlying works are public domain in Germany and the United States; Project Gutenberg notices remain in the distributed source files. The visible library contains only complete local text editions. Publisher-only and external-only catalogue records are retained as legacy metadata for saved-note compatibility but are not displayed as readable books. The library’s typographic covers, Aster star mark, population chart, and quadratic graph are original interface artwork, not publisher cover reproductions.
 
 
-## Complete reader catalogue (20 September 2026)
+## Initial reader catalogue (20 September 2026)
 
-All 22 local editions are listed below. Original source headers and licences are preserved in each file.
+The initial 22 local editions are listed below. The current expanded catalogue is recorded in [src/localLibrary.json](src/localLibrary.json), including edition source URLs, contributor credits, verification dates, and SHA-256 checksums. All visible library entries have a complete text file in public/books/; original source headers and licences are preserved.
 
 - Alice’s Adventures in Wonderland — Lewis Carroll. File: public/books/11.txt. Source: https://www.gutenberg.org/ebooks/11
 - Anne of Green Gables — L. M. Montgomery. File: public/books/45.txt. Source: https://www.gutenberg.org/ebooks/45
@@ -57,4 +57,9 @@ All 22 local editions are listed below. Original source headers and licences are
 
 The ten customizable buddies in src/components/buddy are original SVG artwork, animated with CSS. Library cover designs and arcade canvas artwork are original code-generated graphics.
 
-Modern book metadata links to Bloomsbury (Harry Potter), Rick Riordan (Percy Jackson), Scholastic (The Hunger Games), and Penguin Random House (Wonder, The Book Thief, Holes). These copyrighted texts and publisher covers are not distributed. Aster supplies original reading prompts and cover designs.
+Legacy modern-book metadata references Bloomsbury, Rick Riordan, Scholastic, and Penguin Random House. Those unavailable titles are hidden from the reading library. Their copyrighted texts and publisher covers are not distributed.
+
+
+## Complete-edition import (3 October 2026)
+
+The collection was expanded from Project Gutenberg’s [officially listed mirror](https://www.gutenberg.org/MIRRORS.ALL), using its machine-readable edition metadata and complete UTF-8 files. The manual importer rejects missing edition boundaries, unavailable files, and records whose contributor dates or reuse status could not be verified. Texts retain their original licences and credits. Book files load only when their reader opens.
