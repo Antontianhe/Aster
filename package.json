@@ -1,0 +1,24 @@
+{
+  "name": "aster-study",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/frontend.mjs dev",
+    "build": "node scripts/frontend.mjs build",
+    "preview": "node scripts/frontend.mjs preview",
+    "test": "node --test front-end/src/*.test.js",
+    "server": "node scripts/backend.mjs run",
+    "build:backend": "node scripts/backend.mjs build",
+    "test:backend": "node scripts/backend.mjs test",
+    "catalogue:export": "node scripts/export-backend-catalogue.mjs"
+  },
+  "devDependencies": {
+    "@babel/generator": "^7.29.8",
+    "@babel/parser": "^7.29.9",
+    "@babel/traverse": "^7.29.8"
+  },
+  "workspaces": [
+    "front-end"
+  ]
+}

@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+# Keep sourced book editions byte-for-byte, including their original formatting.
+front-end/public/books/*.txt -text whitespace=-blank-at-eol,-blank-at-eof
