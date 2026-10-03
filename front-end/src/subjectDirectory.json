@@ -1,0 +1,733 @@
+{
+  "igcse": [
+    {
+      "id": "ig-0452",
+      "name": "Accounting - 0452",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-accounting-0452/",
+      "programme": "IGCSE",
+      "code": "0452"
+    },
+    {
+      "id": "ig-0985",
+      "name": "Accounting (9-1) - 0985",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-accounting-9-1-0985/",
+      "programme": "IGCSE",
+      "code": "0985"
+    },
+    {
+      "id": "ig-0548",
+      "name": "Afrikaans - Second Language - 0548",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-afrikaans-second-language-0548/",
+      "programme": "IGCSE",
+      "code": "0548"
+    },
+    {
+      "id": "ig-0600",
+      "name": "Agriculture - 0600",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-agriculture-0600/",
+      "programme": "IGCSE",
+      "code": "0600"
+    },
+    {
+      "id": "ig-0508",
+      "name": "Arabic - First Language - 0508",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-arabic-first-language-0508/",
+      "programme": "IGCSE",
+      "code": "0508"
+    },
+    {
+      "id": "ig-7184",
+      "name": "Arabic - First Language (9-1) - 7184",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-arabic-9-1-first-language-7184/",
+      "programme": "IGCSE",
+      "code": "7184"
+    },
+    {
+      "id": "ig-0544",
+      "name": "Arabic - Foreign Language - 0544",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-arabic-foreign-language-0544/",
+      "programme": "IGCSE",
+      "code": "0544"
+    },
+    {
+      "id": "ig-7180",
+      "name": "Arabic (9-1) - 7180 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-arabic-9-1-7180/",
+      "programme": "IGCSE",
+      "code": "7180"
+    },
+    {
+      "id": "ig-0400",
+      "name": "Art & Design - 0400",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-art-and-design-0400/",
+      "programme": "IGCSE",
+      "code": "0400"
+    },
+    {
+      "id": "ig-0989",
+      "name": "Art & Design (9-1) 0989",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-art-and-design-9-1-0989/",
+      "programme": "IGCSE",
+      "code": "0989"
+    },
+    {
+      "id": "ig-0538",
+      "name": "Bahasa Indonesia - 0538",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-bahasa-indonesia-0538/",
+      "programme": "IGCSE",
+      "code": "0538"
+    },
+    {
+      "id": "ig-0610",
+      "name": "Biology - 0610",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-biology-0610/",
+      "programme": "IGCSE",
+      "code": "0610"
+    },
+    {
+      "id": "ig-0970",
+      "name": "Biology (9-1) - 0970",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-biology-9-1-0970/",
+      "programme": "IGCSE",
+      "code": "0970"
+    },
+    {
+      "id": "ig-0264",
+      "name": "Business - 0264",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-business-0264/",
+      "programme": "IGCSE",
+      "code": "0264"
+    },
+    {
+      "id": "ig-0774",
+      "name": "Business (9-1) - 0774",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-business-9-1-0774/",
+      "programme": "IGCSE",
+      "code": "0774"
+    },
+    {
+      "id": "ig-0450",
+      "name": "Business Studies - 0450",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-business-studies-0450/",
+      "programme": "IGCSE",
+      "code": "0450"
+    },
+    {
+      "id": "ig-0986",
+      "name": "Business Studies (9-1) - 0986",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-business-studies-9-1-0986/",
+      "programme": "IGCSE",
+      "code": "0986"
+    },
+    {
+      "id": "ig-0620",
+      "name": "Chemistry - 0620",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-chemistry-0620/",
+      "programme": "IGCSE",
+      "code": "0620"
+    },
+    {
+      "id": "ig-0971",
+      "name": "Chemistry (9-1) - 0971",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-chemistry-9-1-0971/",
+      "programme": "IGCSE",
+      "code": "0971"
+    },
+    {
+      "id": "ig-0509",
+      "name": "Chinese - First Language - 0509",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-chinese-first-language-0509/",
+      "programme": "IGCSE",
+      "code": "0509"
+    },
+    {
+      "id": "ig-0523",
+      "name": "Chinese - Second Language - 0523",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-chinese-second-language-0523/",
+      "programme": "IGCSE",
+      "code": "0523"
+    },
+    {
+      "id": "ig-0547",
+      "name": "Chinese (Mandarin) - Foreign Language (0547)",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-chinese-mandarin-foreign-language-0547/",
+      "programme": "IGCSE",
+      "code": "0547"
+    },
+    {
+      "id": "ig-0715",
+      "name": "Commerce - 0715 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-commerce-0715/",
+      "programme": "IGCSE",
+      "code": "0715"
+    },
+    {
+      "id": "ig-0265",
+      "name": "Computer Science - 0265 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-computer-science-0265/",
+      "programme": "IGCSE",
+      "code": "0265"
+    },
+    {
+      "id": "ig-0478",
+      "name": "Computer Science - 0478",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-computer-science-0478/",
+      "programme": "IGCSE",
+      "code": "0478"
+    },
+    {
+      "id": "ig-0984",
+      "name": "Computer Science (9-1) - 0984",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-9-1-computer-science-0984/",
+      "programme": "IGCSE",
+      "code": "0984"
+    },
+    {
+      "id": "ig-0445",
+      "name": "Design & Technology - 0445",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-design-and-technology-0445/",
+      "programme": "IGCSE",
+      "code": "0445"
+    },
+    {
+      "id": "ig-0979",
+      "name": "Design & Technology (9-1) - 0979",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-design-and-technology-9-1-0979/",
+      "programme": "IGCSE",
+      "code": "0979"
+    },
+    {
+      "id": "ig-0411",
+      "name": "Drama - 0411",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-drama-0411/",
+      "programme": "IGCSE",
+      "code": "0411"
+    },
+    {
+      "id": "ig-0994",
+      "name": "Drama (9-1) - 0994",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-drama-9-1-0994/",
+      "programme": "IGCSE",
+      "code": "0994"
+    },
+    {
+      "id": "ig-0455",
+      "name": "Economics - 0455",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-economics-0455/",
+      "programme": "IGCSE",
+      "code": "0455"
+    },
+    {
+      "id": "ig-0987",
+      "name": "Economics (9-1) - 0987",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-economics-9-1-0987/",
+      "programme": "IGCSE",
+      "code": "0987"
+    },
+    {
+      "id": "ig-0500",
+      "name": "English - First Language - 0500",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-first-language-0500/",
+      "programme": "IGCSE",
+      "code": "0500"
+    },
+    {
+      "id": "ig-0990",
+      "name": "English - First Language (9-1) - 0990",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-9-1-first-language-english-0990/",
+      "programme": "IGCSE",
+      "code": "0990"
+    },
+    {
+      "id": "ig-0524",
+      "name": "English - First Language (US) - 0524",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-first-language-us-0524/",
+      "programme": "IGCSE",
+      "code": "0524"
+    },
+    {
+      "id": "ig-0992",
+      "name": "English – Literature in English (9-1) – 0992",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-literature-0992/",
+      "programme": "IGCSE",
+      "code": "0992"
+    },
+    {
+      "id": "ig-0472",
+      "name": "English (as an Additional Language) - 0472 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-as-an-additional-language-0472/",
+      "programme": "IGCSE",
+      "code": "0472"
+    },
+    {
+      "id": "ig-0772",
+      "name": "English (as an Additional Language) (9-1) - 0772 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-as-an-additional-language-9-1-0772/",
+      "programme": "IGCSE",
+      "code": "0772"
+    },
+    {
+      "id": "ig-0465",
+      "name": "English (Core) as a Second Language (Egypt) - 0465",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-core-english-as-second-language-0465/",
+      "programme": "IGCSE",
+      "code": "0465"
+    },
+    {
+      "id": "ig-0511",
+      "name": "English as a Second Language (Count-in speaking) (0511)",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-second-language-count-in-oral-0511/",
+      "programme": "IGCSE",
+      "code": "0511"
+    },
+    {
+      "id": "ig-0991",
+      "name": "English as a Second Language (Count-in Speaking) (9-1) (0991)",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-second-language-9-1-count-in-speaking/",
+      "programme": "IGCSE",
+      "code": "0991"
+    },
+    {
+      "id": "ig-0510",
+      "name": "English as a Second Language (Speaking endorsement) - 0510",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-second-language-oral-endorsement-0510/",
+      "programme": "IGCSE",
+      "code": "0510"
+    },
+    {
+      "id": "ig-0993",
+      "name": "English as a Second Language (Speaking Endorsement) (9-1) - 0993",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-english-second-language-speaking-endorsement-9-1-0993/",
+      "programme": "IGCSE",
+      "code": "0993"
+    },
+    {
+      "id": "ig-0454",
+      "name": "Enterprise - 0454",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-enterprise-0454/",
+      "programme": "IGCSE",
+      "code": "0454"
+    },
+    {
+      "id": "ig-0680",
+      "name": "Environmental Management - 0680",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-environmental-management-0680/",
+      "programme": "IGCSE",
+      "code": "0680"
+    },
+    {
+      "id": "ig-0648",
+      "name": "Food & Nutrition - 0648",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-food-and-nutrition-0648/",
+      "programme": "IGCSE",
+      "code": "0648"
+    },
+    {
+      "id": "ig-0501",
+      "name": "French - First Language - 0501",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-french-first-language-0501/",
+      "programme": "IGCSE",
+      "code": "0501"
+    },
+    {
+      "id": "ig-0520",
+      "name": "French - Foreign Language - 0520",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-french-foreign-language-0520/",
+      "programme": "IGCSE",
+      "code": "0520"
+    },
+    {
+      "id": "ig-7156",
+      "name": "French (9-1) - 7156",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-french-9-1-7156/",
+      "programme": "IGCSE",
+      "code": "7156"
+    },
+    {
+      "id": "ig-0460",
+      "name": "Geography - 0460",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-geography-0460/",
+      "programme": "IGCSE",
+      "code": "0460"
+    },
+    {
+      "id": "ig-0976",
+      "name": "Geography (9-1) - 0976",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-geography-9-1-0976/",
+      "programme": "IGCSE",
+      "code": "0976"
+    },
+    {
+      "id": "ig-0505",
+      "name": "German - First Language - 0505",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-german-first-language-0505/",
+      "programme": "IGCSE",
+      "code": "0505"
+    },
+    {
+      "id": "ig-0525",
+      "name": "German - Foreign Language - 0525",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-german-foreign-language-0525/",
+      "programme": "IGCSE",
+      "code": "0525"
+    },
+    {
+      "id": "ig-7159",
+      "name": "German (9-1) - 7159",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-german-9-1-7159/",
+      "programme": "IGCSE",
+      "code": "7159"
+    },
+    {
+      "id": "ig-0457",
+      "name": "Global Perspectives - 0457",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-global-perspectives-0457/",
+      "programme": "IGCSE",
+      "code": "0457"
+    },
+    {
+      "id": "ig-0549",
+      "name": "Hindi as a Second Language - 0549",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-hindi-as-a-second-language-0549/",
+      "programme": "IGCSE",
+      "code": "0549"
+    },
+    {
+      "id": "ig-0470",
+      "name": "History - 0470",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-history-0470/",
+      "programme": "IGCSE",
+      "code": "0470"
+    },
+    {
+      "id": "ig-0409",
+      "name": "History - American (US) - 0409",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-history-american-us-0409/",
+      "programme": "IGCSE",
+      "code": "0409"
+    },
+    {
+      "id": "ig-0977",
+      "name": "History (9-1) - 0977",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-history-9-1-0977/",
+      "programme": "IGCSE",
+      "code": "0977"
+    },
+    {
+      "id": "ig-0417",
+      "name": "Information and Communication Technology - 0417",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-information-and-communication-technology-0417/",
+      "programme": "IGCSE",
+      "code": "0417"
+    },
+    {
+      "id": "ig-0983",
+      "name": "Information and Communication Technology (9-1) - 0983",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-information-and-communication-technology-9-1-0983/",
+      "programme": "IGCSE",
+      "code": "0983"
+    },
+    {
+      "id": "ig-0531",
+      "name": "IsiZulu as a Second Language - 0531",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-isizulu-as-a-second-language-0531/",
+      "programme": "IGCSE",
+      "code": "0531"
+    },
+    {
+      "id": "ig-0493",
+      "name": "Islamiyat - 0493",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-islamiyat-0493/",
+      "programme": "IGCSE",
+      "code": "0493"
+    },
+    {
+      "id": "ig-0535",
+      "name": "Italian - Foreign Language - 0535",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-italian-foreign-language-0535/",
+      "programme": "IGCSE",
+      "code": "0535"
+    },
+    {
+      "id": "ig-7164",
+      "name": "Italian (9-1) - 7164",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-italian-9-1-7164/",
+      "programme": "IGCSE",
+      "code": "7164"
+    },
+    {
+      "id": "ig-0716",
+      "name": "Japanese - Foreign Language - 0716 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-japanese-0716/",
+      "programme": "IGCSE",
+      "code": "0716"
+    },
+    {
+      "id": "ig-0480",
+      "name": "Latin - 0480",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-latin-0480/",
+      "programme": "IGCSE",
+      "code": "0480"
+    },
+    {
+      "id": "ig-0696",
+      "name": "Malay - First Language - 0696",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-malay-0696/",
+      "programme": "IGCSE",
+      "code": "0696"
+    },
+    {
+      "id": "ig-0546",
+      "name": "Malay - Foreign Language - 0546",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-malay-foreign-language-0546/",
+      "programme": "IGCSE",
+      "code": "0546"
+    },
+    {
+      "id": "ig-0697",
+      "name": "Marine Science - 0697 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-marine-science-0697/",
+      "programme": "IGCSE",
+      "code": "0697"
+    },
+    {
+      "id": "ig-0580",
+      "name": "Mathematics - 0580",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/",
+      "programme": "IGCSE",
+      "code": "0580"
+    },
+    {
+      "id": "ig-0606",
+      "name": "Mathematics - Additional - 0606",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-additional-0606/",
+      "programme": "IGCSE",
+      "code": "0606"
+    },
+    {
+      "id": "ig-0607",
+      "name": "Mathematics - International - 0607",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-international-mathematics-0607/",
+      "programme": "IGCSE",
+      "code": "0607"
+    },
+    {
+      "id": "ig-0980",
+      "name": "Mathematics (9-1) - 0980",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-9-1-0980/",
+      "programme": "IGCSE",
+      "code": "0980"
+    },
+    {
+      "id": "ig-0444",
+      "name": "Mathematics (US) - 0444",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-us-0444/",
+      "programme": "IGCSE",
+      "code": "0444"
+    },
+    {
+      "id": "ig-0410",
+      "name": "Music - 0410",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-music-0410/",
+      "programme": "IGCSE",
+      "code": "0410"
+    },
+    {
+      "id": "ig-0978",
+      "name": "Music (9-1) - 0978",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-music-9-1-0978/",
+      "programme": "IGCSE",
+      "code": "0978"
+    },
+    {
+      "id": "ig-0448",
+      "name": "Pakistan Studies - 0448",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-pakistan-studies-0448/",
+      "programme": "IGCSE",
+      "code": "0448"
+    },
+    {
+      "id": "ig-0413",
+      "name": "Physical Education - 0413",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-physical-education-0413/",
+      "programme": "IGCSE",
+      "code": "0413"
+    },
+    {
+      "id": "ig-0995",
+      "name": "Physical Education (9-1) - 0995",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-physical-education-0995/",
+      "programme": "IGCSE",
+      "code": "0995"
+    },
+    {
+      "id": "ig-0652",
+      "name": "Physical Science - 0652",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-physical-science-0652/",
+      "programme": "IGCSE",
+      "code": "0652"
+    },
+    {
+      "id": "ig-0625",
+      "name": "Physics - 0625",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-physics-0625/",
+      "programme": "IGCSE",
+      "code": "0625"
+    },
+    {
+      "id": "ig-0972",
+      "name": "Physics (9-1) - 0972",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-physics-9-1-0972/",
+      "programme": "IGCSE",
+      "code": "0972"
+    },
+    {
+      "id": "ig-0504",
+      "name": "Portuguese - First Language - 0504",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-portuguese-first-language-0504/",
+      "programme": "IGCSE",
+      "code": "0504"
+    },
+    {
+      "id": "ig-0266",
+      "name": "Psychology - 0266 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-psychology-0266/",
+      "programme": "IGCSE",
+      "code": "0266"
+    },
+    {
+      "id": "ig-0490",
+      "name": "Religious Studies - 0490",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-religious-studies-0490/",
+      "programme": "IGCSE",
+      "code": "0490"
+    },
+    {
+      "id": "ig-0499",
+      "name": "Sanskrit - 0499",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-sanskrit-0499/",
+      "programme": "IGCSE",
+      "code": "0499"
+    },
+    {
+      "id": "ig-0653",
+      "name": "Science - Combined - 0653",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-science-combined-0653/",
+      "programme": "IGCSE",
+      "code": "0653"
+    },
+    {
+      "id": "ig-0973",
+      "name": "Sciences - Co-ordinated (9-1) - 0973",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-sciences-9-1-only-0973/",
+      "programme": "IGCSE",
+      "code": "0973"
+    },
+    {
+      "id": "ig-0654",
+      "name": "Sciences - Co-ordinated (Double) - 0654",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-sciences-co-ordinated-double-0654/",
+      "programme": "IGCSE",
+      "code": "0654"
+    },
+    {
+      "id": "ig-0698",
+      "name": "Setswana - First Language - 0698",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-setswana-0698/",
+      "programme": "IGCSE",
+      "code": "0698"
+    },
+    {
+      "id": "ig-0495",
+      "name": "Sociology - 0495",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-sociology-0495/",
+      "programme": "IGCSE",
+      "code": "0495"
+    },
+    {
+      "id": "ig-0502",
+      "name": "Spanish - First Language - 0502",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-spanish-first-language-0502/",
+      "programme": "IGCSE",
+      "code": "0502"
+    },
+    {
+      "id": "ig-0530",
+      "name": "Spanish - Foreign Language - 0530",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-spanish-foreign-language-0530/",
+      "programme": "IGCSE",
+      "code": "0530"
+    },
+    {
+      "id": "ig-0474",
+      "name": "Spanish - Literature in Spanish - 0474",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-literature-in-spanish-0474/",
+      "programme": "IGCSE",
+      "code": "0474"
+    },
+    {
+      "id": "ig-7160",
+      "name": "Spanish (9-1) - 7160",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-spanish-9-1-7160/",
+      "programme": "IGCSE",
+      "code": "7160"
+    },
+    {
+      "id": "ig-0479",
+      "name": "Statistics - 0479 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-statistics-0479/",
+      "programme": "IGCSE",
+      "code": "0479"
+    },
+    {
+      "id": "ig-0262",
+      "name": "Swahili - 0262",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-swahili-0262/",
+      "programme": "IGCSE",
+      "code": "0262"
+    },
+    {
+      "id": "ig-0518",
+      "name": "Thai - First Language - 0518",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-thai-first-language-0518/",
+      "programme": "IGCSE",
+      "code": "0518"
+    },
+    {
+      "id": "ig-0471",
+      "name": "Travel & Tourism - 0471",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-travel-and-tourism-0471/",
+      "programme": "IGCSE",
+      "code": "0471"
+    },
+    {
+      "id": "ig-0513",
+      "name": "Turkish - First Language - 0513",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-turkish-first-language-0513/",
+      "programme": "IGCSE",
+      "code": "0513"
+    },
+    {
+      "id": "ig-0539",
+      "name": "Urdu as a Second Language - 0539",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-urdu-as-a-second-language-0539/",
+      "programme": "IGCSE",
+      "code": "0539"
+    },
+    {
+      "id": "ig-0695",
+      "name": "Vietnamese - First Language - 0695 New",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-vietnamese-0695/",
+      "programme": "IGCSE",
+      "code": "0695"
+    },
+    {
+      "id": "ig-0408",
+      "name": "World Literature - 0408",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-world-literature-0408/",
+      "programme": "IGCSE",
+      "code": "0408"
+    }
+  ],
+  "ib": []
+}

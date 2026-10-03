@@ -1,0 +1,27 @@
+import {COURSES} from './study.js';
+export const LEARNING_KEY='aster-learning-signals-v1';
+export const CONFIDENCE=[{value:1,label:'Unsure'},{value:2,label:'Fairly sure'},{value:3,label:'Very confident'}];
+export const DIAGNOSES=[
+ {id:'question',label:'Reading the question',prompt:'Restate exactly what this question asks. Name the detail you overlooked.',check:'Compare your restatement with the original question. Have you kept its key terms and conditions?'},
+ {id:'method',label:'Choosing a method',prompt:'Explain which rule or method applies, then describe your first step.',check:'Compare your method with the answer explanation. Explain why that method fits this question.'},
+ {id:'calculation',label:'Calculation or execution',prompt:'Redo the step where your answer went off track. Include the intermediate working or evidence.',check:'Check the sequence, signs, units, or supporting evidence. Identify the exact change you made.'},
+ {id:'recall',label:'Remembering the concept',prompt:'Without copying, explain the correct answer in two sentences and give an example.',check:'Look back at the explanation. Check that your example follows the same principle.'},
+ {id:'unsure',label:'Still figuring it out',prompt:'Write one question you would ask your teacher about this idea.',check:'Identify the first missing piece you need to understand before trying again.'}
+];
+export function normalizeLearning(value){
+ const attempts=Array.isArray(value?.attempts)?value.attempts.filter(v=>v&&typeof v.id==='string'&&COURSES[v.subject]&&typeof v.question==='string'&&Number.isFinite(Date.parse(v.at))).slice(-500).map(v=>({id:v.id,subject:v.subject,questionId:typeof v.questionId==='string'?v.questionId.slice(0,160):'',question:v.question.slice(0,400),selected:typeof v.selected==='string'?v.selected.slice(0,500):'',expected:typeof v.expected==='string'?v.expected.slice(0,500):'',why:typeof v.why==='string'?v.why.slice(0,1000):'',correct:v.correct===true,confidence:[1,2,3].includes(v.confidence)?v.confidence:1,reasoning:typeof v.reasoning==='string'?v.reasoning.slice(0,1600):'',hintUsed:v.hintUsed===true,diagnosis:DIAGNOSES.some(d=>d.id===v.diagnosis)?v.diagnosis:'',reflection:typeof v.reflection==='string'?v.reflection.slice(0,1600):'',canExplain:v.canExplain===true,at:v.at})):[];
+ const str=(v,max=2600)=>typeof v==='string'?v.slice(0,max):'';
+ const criteria=v=>Array.isArray(v)?[...new Set(v.filter(n=>Number.isInteger(n)&&n>=0&&n<20))]:[];
+ const sessions=Array.isArray(value?.sessions)?value.sessions.filter(v=>v&&typeof v.id==='string'&&['teach','repair','boss','plan','cooperative','playground'].includes(v.kind)&&typeof v.title==='string'&&Number.isFinite(Date.parse(v.at))).slice(-200).map(v=>({...v,title:str(v.title,200),subject:COURSES[v.subject]?v.subject:'',answer:str(v.answer),writing:str(v.writing),reflection:str(v.reflection),reason:str(v.reason),criteria:criteria(v.criteria),availableCriteria:Number.isInteger(v.availableCriteria)?Math.max(0,Math.min(20,v.availableCriteria)):0,score:Number.isFinite(v.score)?v.score:undefined,total:Number.isFinite(v.total)?v.total:undefined,minutes:Number.isFinite(v.minutes)?Math.max(0,Math.min(60,v.minutes)):undefined,energy:['low','steady','high'].includes(v.energy)?v.energy:'steady',choice:typeof v.choice==='string'?str(v.choice,30):Number.isInteger(v.choice)?v.choice:null,responses:Array.isArray(v.responses)?v.responses.filter(r=>r&&typeof r.answer==='string').slice(0,20).map(r=>({prompt:str(r.prompt,500),answer:str(r.answer),criteria:criteria(r.criteria),availableCriteria:Number.isInteger(r.availableCriteria)?r.availableCriteria:0})):[]})):[];
+ return {attempts,sessions};
+}
+export function confidenceSummary(attempts){return attempts.reduce((sum,a)=>{if(a.correct&&a.confidence===1)sum.unsureCorrect++;if(!a.correct&&a.confidence===3)sum.confidentWrong++;if(a.correct)sum.correct++;sum.total++;return sum;},{total:0,correct:0,unsureCorrect:0,confidentWrong:0});}
+export function previousAttempt(attempts,current){return attempts.filter(a=>a.id!==current.id&&a.subject===current.subject&&a.question===current.question&&a.at<=current.at).at(-1)||null;}
+export function createStudyPlan(minutes,energy,subject){
+ const budget=Math.max(5,Math.min(60,Math.round(Number(minutes)||12)));const first=Math.max(1,Math.floor(budget*.2)),last=Math.max(1,Math.floor(budget*.3)),middle=budget-first-last;
+ return {minutes:budget,energy,subject,steps:energy==='low'?[{label:'Review a few flashcards',minutes:first,action:'cards'},{label:'Read one concept carefully',minutes:middle,action:'notes'},{label:'Explain what you remember',minutes:last,action:'reflect'}]:[{label:'Explain one idea from memory',minutes:first,action:'reflect'},{label:energy==='high'?'Challenge your understanding':'Answer a short review',minutes:middle,action:'quiz'},{label:'Revisit a previous mistake',minutes:last,action:'mistakes'}]};
+}
+export function quadraticValue(a,b,c,x){return a*x*x+b*x+c;}
+export function quadraticFeatures(a,b,c){if(a===0)return {type:b===0?'constant':'linear',vertex:null,roots:b===0?[]:[-c/b]};const x=-b/(2*a),discriminant=b*b-4*a*c;return {type:'quadratic',vertex:[x,quadraticValue(a,b,c,x)],roots:discriminant<0?[]:discriminant===0?[x]:[(-b-Math.sqrt(discriminant))/(2*a),(-b+Math.sqrt(discriminant))/(2*a)].sort((x,y)=>x-y)};}
+
+export function bossScore(boss,answers){return boss.questions.reduce((sum,q,i)=>sum+Number(q.choices?answers[i]===q.answer:String(answers[i]??'').trim()!==''&&Number(String(answers[i]).replace(/,/g,''))===q.answer),0);}
