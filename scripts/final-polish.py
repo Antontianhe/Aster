@@ -1,0 +1,17 @@
+from pathlib import Path
+r=Path(__file__).resolve().parents[1]
+p=r/'front-end/src/AppShell.jsx';s=p.read_text(encoding='utf-8');s=s.replace("const Community=lazy", "const MockExams=lazy(()=>import('./components/curriculum/MockExams.jsx'));\nconst Community=lazy")
+s=s.replace("['curriculum','IGCSE & IB',GraduationCap],","['curriculum','IGCSE & IB',GraduationCap],['exams','Mock exams',FileText],")
+s=s.replace("route.path==='community'?<Community/>","route.path==='exams'?<MockExams/>:route.path==='community'?<Community/>")
+s=s.replace('reading: readStored(\'aster-reading-v1\', {})',"reading: readStored('aster-reading-v1', {}),\n      curriculum: readStored('aster-curriculum-v1', {}),\n      gradebook: readStored('aster-gradebook-v1', []),\n      mockExams: readStored('aster-mock-exams-v1', [])")
+p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/curriculum.js';s=p.read_text(encoding='utf-8').replace("[/art|design/,'art']","[/design.*technology/,'design'],[/art|design/,'art']").replace("[/english.*first/,'english']","[/first language/,'english']");p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/components/curriculum/Curriculum.jsx';s=p.read_text(encoding='utf-8');s=s.replace("<div className={s.sourceCard}><MessagesIcon/>","<div className={s.sourceCard}><Clock3 size={23}/><h3>{tr('Turn your study list into a mock')}</h3><p>{tr('Schedule a practice paper for the day before your exam.')}</p><button onClick={()=>navigate('exams')}>{tr('Plan a mock exam')}<ArrowRight size={15}/></button></div><div className={s.sourceCard}><MessagesIcon/>")
+p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/components/curriculum/MockExams.jsx';s=p.read_text(encoding='utf-8');s=s.replace("const submitted=useRef(false);","const submitted=useRef(false),automaticTried=useRef(false);")
+s=s.replace("if(running&&seconds===0&&!submitted.current)submit();","if(running&&seconds===0&&!submitted.current&&!automaticTried.current){automaticTried.current=true;submit();}")
+s=s.replace("if(first&&result.correct)recordReview('maths',result.correct,result.objective,exam.minutes,'mock-exam');","if(first&&result.correct){const c=CURRICULUM.find(x=>x.id===exam.course);const subject=c?.group==='Mathematics'?'maths':c?.group==='Sciences'?'science':c?.group==='Technology'?'computing':c?.group==='Languages & literature'?'english':'social';recordReview(subject,result.correct,result.objective,exam.minutes,'mock-exam');}")
+p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/buddies.js';s=p.read_text(encoding='utf-8');a=s.index('export function normalizeBuddy');b=s.index('\nexport function buyForBuddy',a)
+s=s[:a]+'''export function normalizeBuddy(value={}){value=value&&typeof value==='object'?value:{};const chosen=BUDDIES.find(b=>b.id===value.id)||BUDDIES[0],owned=Array.isArray(value.owned)?[...new Set(value.owned.filter(id=>SHOP.some(i=>i.id===id&&i.type!=='food')))]:[];const count=v=>Number.isFinite(Number(v))?Math.max(0,Math.min(1e9,Math.floor(Number(v)))):0;return{id:chosen.id,name:typeof value.name==='string'&&value.name.trim()?value.name.slice(0,24):chosen.name,color:/^#[0-9a-f]{6}$/i.test(value.color)?value.color:chosen.color,spent:count(value.spent),fed:count(value.fed),owned,clothes:owned.includes(value.clothes)&&SHOP.some(i=>i.id===value.clothes&&i.type==='clothes')?value.clothes:'',accessory:owned.includes(value.accessory)&&SHOP.some(i=>i.id===value.accessory&&i.type==='accessories')?value.accessory:''};}'''+s[b:]
+p.write_text(s,encoding='utf-8')

@@ -1,0 +1,20 @@
+from pathlib import Path
+r=Path(__file__).resolve().parents[1]
+p=r/'front-end/src/AppShell.jsx';s=p.read_text(encoding='utf-8')
+s=s.replace('{AppearanceSettings}', '{AppearanceSettings,ExperienceSwitch,ExperienceSettings}')
+s=s.replace('LibraryBig, FlaskConical }', 'LibraryBig, FlaskConical, MessagesSquare, GraduationCap }')
+start=s.index('const nav = ');end=s.index('\nfunction getRoute',start)
+s=s[:start]+"const Community=lazy(()=>import('./components/community/Community.jsx'));\nconst Curriculum=lazy(()=>import('./components/curriculum/Curriculum.jsx'));\nconst nav = [['overview','Overview',Home],['subjects','My subjects',LayoutGrid],['curriculum','IGCSE & IB',GraduationCap],['homework','Homework',CalendarDays],['planner','My planner',CalendarDays],['school','School hub',School],['practice','Quick review',Layers3],['lab','Study lab',FlaskConical],['helper','Ask your buddy',Sparkles],['community','Student lounge',MessagesSquare],['competitions','Competitions',Target],['resources','Resource shelf',BookOpen],['books','Book library',LibraryBig],['roadmap','Road to IGCSE & IB',Route],['buddy','Buddy garden',Heart],['headlines','Headlines & weather',Globe2],['arcade','Study arcade',Gamepad2]];"+s[end:]
+s=s.replace('[prefs, setPrefs] = useState(safePrefs)',"[prefs, setPrefs] = useState(()=>{const p=safePrefs();return user&&!readStored(PREFS_KEY,null)?{...p,name:user.name}:p;})")
+s=s.replace("  useEffect(()=>{if(user)setPrefs(p=>({...p,name:user.name}));},[user?.id]);",'')
+s=s.replace("document.documentElement.dataset.visual = 'aurora';","document.documentElement.dataset.visual = 'aurora';\n    document.documentElement.dataset.experience = prefs.experience==='studio'?'studio':'aurora';")
+s=s.replace('prefs.accent,prefs.density]);','prefs.accent,prefs.density,prefs.experience]);')
+s=s.replace('<LanguageSelector/><button','<ExperienceSwitch/><LanguageSelector/><button')
+s=s.replace('<AppearanceSettings/>','<ExperienceSettings/><AppearanceSettings/>')
+s=s.replace("route.path==='school'?<SchoolHub/>","route.path==='community'?<Community/>:route.path==='curriculum'?<Curriculum/>:route.path==='school'?<SchoolHub/>")
+s=s.replace('data-mobile="More"','data-mobile={tr("More")}')
+p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/main.jsx';s=p.read_text(encoding='utf-8').replace("import './appearance.css';","import './appearance.css';\nimport './studio.css';");p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/components/neon/StatTracker.jsx';s=p.read_text(encoding='utf-8');s="import {useApp} from '../../context.jsx';\nimport {normalizeBuddy} from '../../buddies.js';\n"+s;s=s.replace('  const tr = useT();','  const tr = useT();\n  const {prefs}=useApp();\n  const coins=Math.max(0,progress.gems-normalizeBuddy(prefs.buddy).spent);',1).replace('key={progress.gems}','key={coins}').replace('{tr(progress.gems)}','{tr(coins)}').replace('tr("gems")','tr("Coins")');p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/components/neon/NeonOverview.jsx';s=p.read_text(encoding='utf-8');s="import {normalizeBuddy} from '../../buddies.js';\n"+s;s=s.replace('{tr(" BLUE · STUDY COMPANION")}','{normalizeBuddy(prefs.buddy).name.toUpperCase()} · {tr("STUDY COMPANION")}');p.write_text(s,encoding='utf-8')
+p=r/'front-end/src/components/neon/Aurora.module.css';s=p.read_text(encoding='utf-8');s+='\n:global(html[data-theme=light]) .heroText h2 em{background:none;color:var(--personal-accent);-webkit-text-fill-color:var(--personal-accent)}\n';p.write_text(s,encoding='utf-8')
