@@ -1,127 +1,132 @@
-import TodayEssentials from '../essentials/TodayEssentials.jsx';
-import RevisionHomeCard from '../revision/RevisionHomeCard.jsx';
-import React, { useEffect, useState } from 'react';
-import { ArrowUpRight, ArrowRight, Play, Pause, Square, Clock3, CalendarDays, Coins, Rss, CheckCircle2, BookOpen, Sparkles, GraduationCap } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ArrowUpRight, ArrowRight, BookOpen, CalendarDays, CheckCircle2, Clock3, Coins, Compass, GraduationCap, Layers3, Orbit, Rss, Sparkles, Target } from 'lucide-react';
 import { useApp } from '../../context.jsx';
 import { useAuth, api } from '../../auth.jsx';
 import { useT } from '../../i18n.jsx';
-import { StudyRhythm } from './StudyRhythm.jsx';
 import { COURSES, dayKey } from '../../study.js';
 import { sortHomework, dueLabel, dueTimestamp } from '../../homework.js';
+import { revisionQueue } from '../../revision.js';
 import { SCHOOL_NEWS } from '../../schoolExtras.js';
 import { SCHOOL_EVENTS } from '../../schoolCalendar.js';
 import { normalizeBuddy } from '../../buddies.js';
 import { BuddyAvatar } from '../buddy/BuddyAvatar.jsx';
-import { Button, External } from '../UI.jsx';
-import s from './Home.module.css';
+import { External } from '../UI.jsx';
+import { StudyRhythm } from './StudyRhythm.jsx';
+import TodayEssentials from '../essentials/TodayEssentials.jsx';
+import DailySpark from './DailySpark.jsx';
+import base from './Home.module.css';
+import s from './Today.module.css';
+
+const INTENTS = [['plan', 'Make a plan', CalendarDays], ['review', 'Reconnect', Layers3], ['explore', 'Get curious', Compass]];
+
+function NextMove({ pending, due, buddy }) {
+  const tr = useT();
+  const { navigate, setDialog } = useApp();
+  const [intent, setIntent] = useState('plan');
+  const first = pending[0];
+  const moves = {
+    plan: { kicker: 'A LITTLE DIRECTION', title: first ? 'Big things start with one small step.' : 'A clear day. An open possibility.', detail: first ? 'Start with the next thing on your radar. The rest can wait a moment.' : 'Choose a subject, follow an idea, and see where it takes you.', action: first ? 'Open this task' : 'Explore your subjects', run: () => first ? setDialog({ type: 'task-detail', id: first.id }) : navigate('subjects') },
+    review: { kicker: 'CONNECT THE DOTS', title: 'Some ideas deserve a second hello.', detail: due ? 'Your review queue is ready. Revisit an idea and make it stick.' : 'A little retrieval goes a long way. See what you remember from your subjects.', action: due ? 'Open review queue' : 'Try a quick review', run: () => navigate(due ? 'revision?tab=review' : 'practice') },
+    explore: { kicker: 'TAKE THE SCENIC ROUTE', title: 'Your next favourite idea is out there.', detail: 'Step outside the syllabus for a moment. Find a story, a new perspective, or a question worth chasing.', action: 'Find your next read', run: () => navigate('books') },
+  };
+  const move = moves[intent];
+  return <section className={s.spotlight} data-intent={intent} aria-labelledby="next-move-heading">
+    <div className={s.intentPicker} role="group" aria-label={tr('Choose your direction')}>
+      {INTENTS.map(([id, label, Icon]) => <button key={id} aria-pressed={intent === id} onClick={() => setIntent(id)}><Icon size={14}/>{tr(label)}</button>)}
+    </div>
+    <div className={s.spotlightBody}>
+      <div className={s.spotlightCopy} key={intent}>
+        <span className={s.heroKicker}>{tr(move.kicker)}</span>
+        <h2 id="next-move-heading">{tr(move.title)}</h2>
+        <p>{tr(move.detail)}</p>
+        {intent === 'plan' && first && <div className={s.nextTask}><span>{tr(COURSES[first.course]?.name || 'Personal task')}</span><strong>{first.title}</strong></div>}
+        {intent === 'review' && <div className={s.nextTask}><span>{tr('Ready to revisit')}</span><strong>{due} {tr('questions in your queue')}</strong></div>}
+        {intent === 'explore' && <div className={s.nextTask}><span>{tr('A DIFFERENT KIND OF ADVENTURE')}</span><strong>{tr('One page can change your perspective.')}</strong></div>}
+        <button className={s.heroAction} onClick={move.run}>{tr(move.action)}<ArrowUpRight size={18}/></button>
+      </div>
+      <div className={s.heroArt}>
+        <div className={s.orbitRing} aria-hidden="true"/><div className={s.orbitRingInner} aria-hidden="true"/>
+        <span className={s.starOne} aria-hidden="true">✦</span><span className={s.starTwo} aria-hidden="true">✧</span>
+        <span className={s.artLabel}>{tr('A WORLD OF POSSIBILITIES')}</span>
+        <button className={s.buddyPlanet} onClick={() => navigate('buddy')} aria-label={tr('Visit your buddy')}><BuddyAvatar {...buddy}/></button>
+        <span className={s.orbitNote}><Sparkles size={13}/>{tr('Stay curious.')}</span>
+        <span className={s.orbitSymbol} aria-hidden="true">a² + b²</span>
+        <span className={s.orbitBook} aria-hidden="true"><BookOpen size={23}/></span>
+      </div>
+    </div>
+    <div className={s.spotlightFoot}><span><Orbit size={14}/>{tr('Your pace. Your next chapter.')}</span><a href="#/focus">{tr('Focus room')}<ArrowUpRight size={13}/></a></div>
+  </section>;
+}
+
 export default function Dashboard() {
-  const tr = useT(),
-    {
-      user
-    } = useAuth();
-  const {
-    prefs,
-    setPrefs,
-    homework,
-    navigate,
-    setDialog,
-    coins,
-    progress,
-    recordFocus
-  } = useApp();
-  const [tick, setTick] = useState(Date.now()),
-    [feed, setFeed] = useState(null),
-    [feedError, setFeedError] = useState(false);
-  const watch = prefs.stopwatch || {
-      elapsed: 0,
-      startedAt: null,
-      task: ''
-    },
-    running = Number.isFinite(watch.startedAt),
-    elapsed = Math.max(0, Number(watch.elapsed) || 0) + (running ? Math.max(0, tick - watch.startedAt) : 0);
-  useEffect(() => {
-    const t = setInterval(() => setTick(Date.now()), running ? 1000 : 30000);
-    return () => clearInterval(t);
-  }, [running]);
+  const tr = useT(), { user } = useAuth();
+  const { prefs, homework, navigate, setDialog, coins, revisionSchedule, now, progress } = useApp();
+  const [feed, setFeed] = useState(null), [feedError, setFeedError] = useState(false);
+  const today = dayKey(new Date(now));
+  const pending = useMemo(() => sortHomework(homework.filter(task => !task.done)), [homework]);
+  const due = useMemo(() => revisionQueue(revisionSchedule, { now }).length, [revisionSchedule, now]);
+  const buddy = normalizeBuddy(prefs.buddy);
+  const events = SCHOOL_EVENTS.filter(event => event.date >= today).slice(0, 2);
+  const news = feed?.connected ? feed.items.slice(0, 3) : [...SCHOOL_NEWS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+  const feedHealthy = Boolean(feed?.connected && !feedError && !feed?.error);
+
   useEffect(() => {
     if (!user) return;
     let live = true;
     const controller = new AbortController();
-    const load = () => api('/school-news', 'GET', undefined, controller.signal).then(v => {
-      if (live) {
-        setFeed(v);
-        setFeedError(false);
-      }
-    }).catch(() => {
-      if (live) setFeedError(true);
-    });
+    const load = () => api('/school-news', 'GET', undefined, controller.signal)
+      .then(value => { if (live) { setFeed(value); setFeedError(false); } })
+      .catch(() => { if (live) setFeedError(true); });
     load();
-    const t = setInterval(() => {
-      if (document.visibilityState === 'visible') load();
-    }, 15000);
-    return () => {
-      live = false;
-      controller.abort();
-      clearInterval(t);
-    };
+    const timer = setInterval(() => { if (document.visibilityState === 'visible') load(); }, 15000);
+    return () => { live = false; controller.abort(); clearInterval(timer); };
   }, [user]);
-  const seconds = Math.floor(elapsed / 1000),
-    pending = sortHomework(homework.filter(t => !t.done)),
-    buddy = normalizeBuddy(prefs.buddy),
-    events = SCHOOL_EVENTS.filter(e => e.date >= dayKey()).slice(0, 2);
-  const news = feed?.connected ? feed.items.slice(0, 3) : [...SCHOOL_NEWS].sort((a, b) => b.date.localeCompare(a.date));
-  function toggle() {
-    setTick(Date.now());
-    setPrefs(p => {
-      const w = p.stopwatch || {
-        elapsed: 0,
-        startedAt: null,
-        task: ''
-      };
-      return {
-        ...p,
-        stopwatch: {
-          ...w,
-          elapsed: Math.max(0, Number(w.elapsed) || 0) + (Number.isFinite(w.startedAt) ? Math.max(0, Date.now() - w.startedAt) : 0),
-          startedAt: Number.isFinite(w.startedAt) ? null : Date.now()
-        }
-      };
-    });
-  }
-  function finish() {
-    if (elapsed < 1000) return;
-    recordFocus(elapsed, watch.task);
-    setPrefs(p => ({
-      ...p,
-      stopwatch: {
-        elapsed: 0,
-        startedAt: null,
-        task: p.stopwatch?.task || ''
-      }
-    }));
-  }
-  return <div className={s.dashboard}><header className={s.welcome}><div><span className={s.dateStamp}><CalendarDays size={14} aria-hidden="true" />{new Date(tick).toLocaleDateString(tr.locale, {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long'
-          })}</span><h1>{tr('A little focus.')}{' '}<span>{tr('A lot of possibility.')}</span></h1><p>{tr('Welcome back')}, {user?.name || prefs.name}. {tr('Here is your day, all in one place.')}</p></div><button className={s.wallet} onClick={() => navigate('buddy')}><span className={s.walletIcon}><Coins size={22} aria-hidden="true" /></span><span><strong>{coins.toLocaleString(tr.locale)}</strong><small>{tr('Learning coins')}</small></span><ArrowUpRight size={17} /></button></header>
- <div className={s.topGrid}><section className={s.timerCard} data-running={running} aria-labelledby="today-focus-heading"><div className={s.cardHeading}><h2 id="today-focus-heading"><span className={s.liveDot} />{tr(running ? 'IN THE FLOW' : 'YOUR FOCUS SPACE')}</h2><span><Clock3 size={15} /> {tr('Open stopwatch')}</span></div><label className={s.taskLabel} htmlFor="today-focus">{tr('One thing to work on')}</label><input id="today-focus" className={s.taskInput} value={watch.task || ''} maxLength={150} onChange={e => setPrefs(p => ({
-          ...p,
-          stopwatch: {
-            ...p.stopwatch,
-            task: e.target.value
-          }
-        }))} placeholder={tr('What would you like to make progress on?')} /><div className={s.digits} data-hours={seconds >= 3600} role="timer" aria-label={Math.floor(seconds / 60) + ' minutes ' + seconds % 60 + ' seconds'}>{seconds >= 3600 && <>{String(Math.floor(seconds / 3600)).padStart(2, '0')}<span>:</span></>}{String(Math.floor(seconds / 60) % 60).padStart(2, '0')}<span>:</span>{String(seconds % 60).padStart(2, '0')}</div><p className={s.timerCaption}>{tr('No countdown. No rush. Just you and your next idea.')}</p><div className={s.timerActions}><button onClick={toggle}>{running ? <Pause size={18} /> : <Play size={18} />} {tr(running ? 'Pause' : elapsed ? 'Resume' : 'Start focusing')}</button><button className={s.finish} disabled={elapsed < 1000} onClick={finish}><Square size={16} /> {tr('Finish & save')}</button></div><div className={s.timerBottom}><span>{tr('Continues across pages and refreshes')}</span><button onClick={() => navigate('focus')}>{tr('Prefer a countdown?')} <ArrowUpRight size={13} /></button></div></section>
- <section className={s.deadlines}><div className={s.sectionHead}><h2><span className={s.headingIcon} data-tone="amber"><CalendarDays size={18} /></span>{tr('Next up')}<span className={s.count}>{pending.length}</span></h2><button onClick={() => navigate('planner')} aria-label={tr('Open planner')}><ArrowUpRight size={20} /></button></div><p className={s.subtle}>{pending.length} {tr('open tasks. One step at a time.')}</p><div className={s.deadlineList}>{pending.slice(0, 3).map((t, i) => <button key={t.id} onClick={() => setDialog({
-            type: 'task-detail',
-            id: t.id
-          })}><span className={s.taskNumber}>{String(i + 1).padStart(2, '0')}</span><span><small>{tr(COURSES[t.course]?.name || 'Personal task')}</small><strong>{t.title}</strong><em data-overdue={dueTimestamp(t) < tick}><Clock3 size={11} aria-hidden="true" />{dueTimestamp(t) < tick && <>{tr('Overdue')} · </>}{t.due ? dueLabel(t.due, new Date(tick), t.allDay) : tr('No date set')}</em></span><ArrowUpRight size={15} /></button>)}{!pending.length && <p className={s.empty}><CheckCircle2 size={26} />{tr('You are all caught up.')}</p>}</div><Button variant="secondary" onClick={() => navigate('homework')}>{tr('All homework')}<ArrowRight size={16} /></Button></section></div>
 
- <div className={s.bottomGrid}><section className={s.news}><div className={s.sectionHead}><div><span className={s.eyebrow}>{tr('THE DAILY BRIEFING')}</span><h2>{tr('Around your school')}</h2></div><button onClick={() => navigate('school?tab=news')}>{tr('All updates')} <ArrowUpRight size={15} /></button></div><p className={s.sourceStatus}><span data-live={Boolean(feed?.connected && !feedError && !feed?.error)} />{tr(feed?.connected ? 'Schoolbox feed · checked every minute' : 'Schoolbox snapshot · 19 September 2026')}{feedError && ' · ' + tr('Live connection unavailable')}{feed?.error && ' · ' + tr('Feed needs attention')}</p>{news.map((n, i) => <article key={n.id} className={s.newsItem}><span className={s.newsIcon} data-tone={['blue', 'violet', 'green'][i % 3]}>{i === 0 ? <Rss size={21} /> : i === 1 ? <BookOpen size={21} /> : <Sparkles size={21} />}</span><div><small>{n.tag || 'ISR Schoolbox'} · {(n.date || n.publishedAt || '').slice(0, 10)}</small><h3><External href={n.url}>{n.title}</External></h3><p>{n.excerpt || n.description}</p></div></article>)}{!news.length && <p>{tr('No posts in your connected feed yet.')}</p>}<div className={s.newsFoot}><span>{tr(feed?.connected ? 'Your private school feed' : 'Connect your private feed for new posts automatically.')}</span><button onClick={() => navigate('headlines')}>{tr('World news')} <ArrowRight size={14} /></button></div></section>
- <div className={s.rightStack}><section className={s.schedule}><div className={s.sectionHead}><h2><span className={s.headingIcon} data-tone="green"><CalendarDays size={18} /></span>{tr('Your school day')}</h2></div><p>{tr('Check today’s lessons and rooms in Veracross. A timetable feed is not connected yet.')}</p><External href={'https://portals.veracross.com/isrschool/student/student/daily-schedule?date=' + dayKey()}>{tr('Open today’s schedule')}</External>{events.map(e => <div className={s.event} key={e.id}><time dateTime={e.date}>{e.date.slice(8)}<small>{new Date(e.date + 'T12:00:00').toLocaleDateString(tr.locale, {
-                  month: 'short'
-                })}</small></time><span><strong>{tr(e.title)}</strong><small>{tr(e.time)}</small></span></div>)}<small className={s.subtle}>{tr('Calendar snapshot · checked 20 September 2026')}</small></section>
- <button className={s.buddyCard} onClick={() => navigate('buddy')}><div><span className={s.eyebrow}>{tr('YOUR STUDY COMPANION')}</span><h2>{buddy.adopted ? buddy.name : tr('Meet your buddy.')}</h2><p>{tr(buddy.adopted ? 'A little reward for your hard work.' : 'Ten personalities. One companion for your journey.')}</p><span>{tr(buddy.adopted ? 'Visit & customise' : 'Choose your companion')} <ArrowRight size={15} /></span></div><BuddyAvatar {...buddy} /></button></div></div>
- <nav className={s.quickLinks} aria-label={tr("Learn")}>{[['subjects', 'Pick up where you left off', 'Your subjects', BookOpen], ['curriculum', 'Build a deeper understanding', 'IGCSE & IB', GraduationCap], ['exams', 'Turn preparation into confidence', 'Mock exams', Sparkles]].map(([path, caption, title, Icon]) => <button key={path} onClick={() => navigate(path)}><span className={s.shortcutIcon} data-tone={path === 'subjects' ? 'blue' : path === 'curriculum' ? 'violet' : 'green'}><Icon size={22} /></span><span><strong>{tr(title)}</strong><small>{tr(caption)}</small></span><ArrowUpRight size={18} /></button>)}</nav>
- <TodayEssentials /><RevisionHomeCard className={s.revisionPanel} /><StudyRhythm /><div className={s.progressStrip}><span><strong>{progress.sessions}</strong>{tr('Reviews completed')}</span><span><strong>{progress.focusMinutes}</strong>{tr('Focus minutes')}</span><span><strong>+2</strong>{tr('Coins per correct answer')}</span><span><strong>+50</strong>{tr('Coins per exam above 90%')}</span></div></div>;
+  return <div className={`${base.dashboard} ${s.page}`}>
+    <header className={s.masthead}>
+      <div className={s.edition}><span><span aria-hidden="true">✳</span>{tr('THE DAILY EDIT')}</span><time dateTime={today}>{new Date(now).toLocaleDateString(tr.locale, { timeZone: 'Europe/Berlin', weekday: 'long', day: 'numeric', month: 'long' })}</time></div>
+      <div className={s.greeting}><div><h1>{tr('A good day to')} <em>{tr('get curious.')}</em></h1><p>{tr('Welcome back')}, {user?.name || prefs.name}. {tr('A little direction. A little discovery. All yours.')}</p></div><button className={s.coinPill} onClick={() => navigate('buddy')}><Coins size={19}/><strong>{coins.toLocaleString(tr.locale)}</strong><span>{tr('Learning coins')}</span><ArrowUpRight size={14}/></button></div>
+    </header>
+
+    <div className={s.leadGrid}><NextMove pending={pending} due={due} buddy={buddy}/><DailySpark day={today}/></div>
+
+    <nav className={s.pulse} aria-label={tr('Your day at a glance')}>
+      <span className={s.pulseLabel}><span/>{tr('YOUR DAY, AT A GLANCE')}</span>
+      <button onClick={() => document.getElementById('today-radar')?.scrollIntoView({ behavior: prefs.reduceMotion || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' })}><CalendarDays size={16}/><strong>{pending.length}</strong>{tr('open tasks')}<ArrowRight size={13}/></button>
+      <button onClick={() => navigate('revision?tab=review')}><Layers3 size={16}/><strong>{due}</strong>{tr('ready to revisit')}<ArrowRight size={13}/></button>
+      <button onClick={() => navigate('revision?tab=insights')}><CheckCircle2 size={16}/><strong>{progress.sessions}</strong>{tr('Reviews completed')}<ArrowRight size={13}/></button>
+    </nav>
+
+    <div className={s.briefingGrid}>
+      <section className={s.briefing} aria-labelledby="school-briefing-title">
+        <header className={s.sectionTitle}><div><span className={s.kicker}>{tr('BEYOND YOUR DESK')}</span><h2 id="school-briefing-title">{tr('The school edit.')}</h2></div><button onClick={() => navigate('school?tab=news')}>{tr('All updates')}<ArrowUpRight size={16}/></button></header>
+        <p className={s.feedStatus}><span data-live={feedHealthy}/>{tr(feed?.connected ? 'Schoolbox feed · checked every minute' : 'Schoolbox snapshot · 19 September 2026')}{feedError && ' · ' + tr('Live connection unavailable')}{feed?.error && ' · ' + tr('Feed needs attention')}</p>
+        <div className={s.stories}>{news.map((item, index) => <article className={s.story} key={item.id}>
+          <span className={s.storyNumber} aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <div><div className={s.storyMeta}><span>{item.tag || 'ISR Schoolbox'}</span><time>{(item.date || item.publishedAt || '').slice(0, 10)}</time></div><h3><External href={item.url}>{item.title}</External></h3><p>{item.excerpt || item.description}</p></div>
+        </article>)}</div>
+        {!news.length && <p className={base.empty}>{tr('No posts in your connected feed yet.')}</p>}
+        <div className={s.briefingFoot}><Rss size={15}/><span>{tr(feed?.connected ? 'Your private school feed' : 'Connect your private feed for new posts automatically.')}</span><button onClick={() => navigate('headlines')}>{tr('World news')}<ArrowRight size={14}/></button></div>
+      </section>
+
+      <div className={s.agendaStack}>
+        <section id="today-radar" className={`${base.deadlines} ${s.radar}`} aria-labelledby="today-radar-title">
+          <div className={base.sectionHead}><h2 id="today-radar-title"><Target size={19}/>{tr('On your radar')}<span className={base.count}>{pending.length}</span></h2><button onClick={() => navigate('planner')} aria-label={tr('Open planner')}><ArrowUpRight size={18}/></button></div>
+          <div className={base.deadlineList}>{pending.slice(0, 3).map((task, index) => <button key={task.id} onClick={() => setDialog({ type: 'task-detail', id: task.id })}>
+            <span className={s.radarMark} data-overdue={dueTimestamp(task) < now}>{String(index + 1).padStart(2, '0')}</span><span><small>{tr(COURSES[task.course]?.name || 'Personal task')}</small><strong>{task.title}</strong><em data-overdue={dueTimestamp(task) < now}><Clock3 size={11}/>{dueTimestamp(task) < now && <>{tr('Overdue')} · </>}{task.due ? dueLabel(task.due, new Date(now), task.allDay) : tr('No date set')}</em></span><ArrowUpRight size={15}/>
+          </button>)}{!pending.length && <p className={base.empty}><CheckCircle2 size={28}/>{tr('You are all caught up.')}</p>}</div>
+          <button className={s.textAction} onClick={() => navigate('homework')}>{tr('All homework')}<ArrowRight size={15}/></button>
+        </section>
+        <section className={`${base.schedule} ${s.schedule}`} aria-labelledby="today-school-day"><div className={base.sectionHead}><h2 id="today-school-day"><CalendarDays size={19}/>{tr('Your school day')}</h2></div><p>{tr('Check today’s lessons and rooms in Veracross. A timetable feed is not connected yet.')}</p><External href={'https://portals.veracross.com/isrschool/student/student/daily-schedule?date=' + today}>{tr('Open today’s schedule')}</External>
+          {events.map(event => <div className={base.event} key={event.id}><time dateTime={event.date}>{event.date.slice(8)}<small>{new Date(event.date + 'T12:00:00').toLocaleDateString(tr.locale, { month: 'short' })}</small></time><span><strong>{tr(event.title)}</strong><small>{tr(event.time)}</small></span></div>)}<small className={base.subtle}>{tr('Calendar snapshot · checked 20 September 2026')}</small>
+        </section>
+      </div>
+    </div>
+
+    <section className={s.discover} aria-labelledby="today-discover-title"><header><div><span className={s.kicker}>{tr('FOLLOW A DIFFERENT THREAD')}</span><h2 id="today-discover-title">{tr('There’s more out there.')}</h2></div><span>{tr('Choose your own adventure.')}</span></header><div className={s.discoveryCards}>
+      {[[BookOpen, 'subjects', '01', 'Make it click.', 'Your subjects', 'Pick up where you left off', 'blue'], [GraduationCap, 'curriculum', '02', 'See the bigger picture.', 'IGCSE & IB', 'Build a deeper understanding', 'violet'], [Sparkles, 'exams', '03', 'Meet your next challenge.', 'Mock exams', 'Turn preparation into confidence', 'green']].map(([Icon, path, number, headline, title, detail, tone]) => <button key={path} data-tone={tone} onClick={() => navigate(path)}><div><span>{number} / {tr(title)}</span><Icon size={24}/></div><h3>{tr(headline)}</h3><p>{tr(detail)}</p><span className={s.discoveryArrow}><ArrowUpRight size={20}/></span></button>)}
+    </div></section>
+    <TodayEssentials/><StudyRhythm/>
+    <div className={s.signoff}><span aria-hidden="true">✦</span>{tr('A little curiosity looks good on you.')}<button onClick={() => navigate('buddy')}>{tr('Visit your buddy')}<ArrowUpRight size={14}/></button></div>
+  </div>;
 }
