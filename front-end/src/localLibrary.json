@@ -1,0 +1,519 @@
+[
+  {
+    "id": "pg-11",
+    "title": "Alice’s Adventures in Wonderland",
+    "author": "Lewis Carroll",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Enter an imagined world and explore how setting, language, and curiosity shape a story.",
+    "topics": [
+      "Fantasy",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/11",
+    "source": "https://www.gutenberg.org/ebooks/11",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "Alice's Adventures in Wonderland by Lewis Carroll",
+    "local": "/books/11.txt"
+  },
+  {
+    "id": "pg-45",
+    "title": "Anne of Green Gables",
+    "author": "L. M. Montgomery",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Follow changing relationships and reflect on character, belonging, and personal growth.",
+    "topics": [
+      "Growing up",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/45",
+    "source": "https://www.gutenberg.org/ebooks/45",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "Anne of Green Gables by L. M. Montgomery",
+    "local": "/books/45.txt"
+  },
+  {
+    "id": "pg-113",
+    "title": "The Secret Garden",
+    "author": "Frances Hodgson Burnett",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Follow changing relationships and reflect on character, belonging, and personal growth.",
+    "topics": [
+      "Growing up",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/113",
+    "source": "https://www.gutenberg.org/ebooks/113",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Secret Garden by Frances Hodgson Burnett",
+    "local": "/books/113.txt"
+  },
+  {
+    "id": "pg-120",
+    "title": "Treasure Island",
+    "author": "Robert Louis Stevenson",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Follow a journey, track turning points, and consider whose perspective shapes the adventure.",
+    "topics": [
+      "Adventure",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/120",
+    "source": "https://www.gutenberg.org/ebooks/120",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "Treasure Island by Robert Louis Stevenson",
+    "local": "/books/120.txt"
+  },
+  {
+    "id": "pg-55",
+    "title": "The Wonderful Wizard of Oz",
+    "author": "L. Frank Baum",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Enter an imagined world and explore how setting, language, and curiosity shape a story.",
+    "topics": [
+      "Fantasy",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/55",
+    "source": "https://www.gutenberg.org/ebooks/55",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Wonderful Wizard of Oz by L. Frank Baum",
+    "local": "/books/55.txt"
+  },
+  {
+    "id": "pg-1661",
+    "title": "The Adventures of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Follow clues, compare explanations, and distinguish an inference from evidence.",
+    "topics": [
+      "Mystery",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/1661",
+    "source": "https://www.gutenberg.org/ebooks/1661",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Adventures of Sherlock Holmes by Arthur Conan Doyle",
+    "local": "/books/1661.txt"
+  },
+  {
+    "id": "pg-more-47",
+    "title": "Anne of Avonlea",
+    "author": "L. M. (Lucy Maud) Montgomery",
+    "subject": "english",
+    "stages": [
+      "IB"
+    ],
+    "description": "Follow changing relationships and reflect on character, belonging, and personal growth.",
+    "topics": [
+      "Growing up",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/47",
+    "source": "https://www.gutenberg.org/ebooks/47",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "Anne of Avonlea by L. M. Montgomery",
+    "local": "/books/47.txt"
+  },
+  {
+    "id": "pg-more-51",
+    "title": "Anne of the Island",
+    "author": "L. M. (Lucy Maud) Montgomery",
+    "subject": "english",
+    "stages": [
+      "IB"
+    ],
+    "description": "Follow changing relationships and reflect on character, belonging, and personal growth.",
+    "topics": [
+      "Growing up",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/51",
+    "source": "https://www.gutenberg.org/ebooks/51",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "Anne of the Island by L. M. Montgomery",
+    "local": "/books/51.txt"
+  },
+  {
+    "id": "pg-more-1837",
+    "title": "The Prince and the Pauper",
+    "author": "Mark Twain",
+    "subject": "english",
+    "stages": [
+      "IB"
+    ],
+    "description": "Explore social expectations, power, and the relationship between individuals and their communities.",
+    "topics": [
+      "Society",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/1837",
+    "source": "https://www.gutenberg.org/ebooks/1837",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Prince and the Pauper by Mark Twain",
+    "local": "/books/1837.txt"
+  },
+  {
+    "id": "pg-more-23661",
+    "title": "The Book of Dragons",
+    "author": "E. (Edith) Nesbit",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Follow changing relationships and reflect on character, belonging, and personal growth.",
+    "topics": [
+      "Growing up",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/23661",
+    "source": "https://www.gutenberg.org/ebooks/23661",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Book of Dragons by E. Nesbit",
+    "local": "/books/23661.txt"
+  },
+  {
+    "id": "pg-more-836",
+    "title": "The Phoenix and the Carpet",
+    "author": "E. (Edith) Nesbit",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Follow changing relationships and reflect on character, belonging, and personal growth.",
+    "topics": [
+      "Growing up",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/836",
+    "source": "https://www.gutenberg.org/ebooks/836",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Phoenix and the Carpet by E. Nesbit",
+    "local": "/books/836.txt"
+  },
+  {
+    "id": "pg-more-837",
+    "title": "The Story of the Amulet",
+    "author": "E. (Edith) Nesbit",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Follow changing relationships and reflect on character, belonging, and personal growth.",
+    "topics": [
+      "Growing up",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/837",
+    "source": "https://www.gutenberg.org/ebooks/837",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Story of the Amulet by E. Nesbit",
+    "local": "/books/837.txt"
+  },
+  {
+    "id": "pg-more-244",
+    "title": "A Study in Scarlet",
+    "author": "Arthur Conan Doyle",
+    "subject": "english",
+    "stages": [
+      "IGCSE",
+      "IB"
+    ],
+    "description": "Follow clues, compare explanations, and distinguish an inference from evidence.",
+    "topics": [
+      "Mystery",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/244",
+    "source": "https://www.gutenberg.org/ebooks/244",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "A Study in Scarlet by Arthur Conan Doyle",
+    "local": "/books/244.txt"
+  },
+  {
+    "id": "pg-more-2097",
+    "title": "The Sign of the Four",
+    "author": "Arthur Conan Doyle",
+    "subject": "english",
+    "stages": [
+      "IGCSE",
+      "IB"
+    ],
+    "description": "Follow clues, compare explanations, and distinguish an inference from evidence.",
+    "topics": [
+      "Mystery",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/2097",
+    "source": "https://www.gutenberg.org/ebooks/2097",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Sign of the Four by Arthur Conan Doyle",
+    "local": "/books/2097.txt"
+  },
+  {
+    "id": "pg-more-902",
+    "title": "The Happy Prince, and Other Tales",
+    "author": "Oscar Wilde",
+    "subject": "drama",
+    "stages": [
+      "IB"
+    ],
+    "description": "Look closely at misunderstanding, irony, social conventions, and performance.",
+    "topics": [
+      "Comedy",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/902",
+    "source": "https://www.gutenberg.org/ebooks/902",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Happy Prince, and Other Tales by Oscar Wilde",
+    "local": "/books/902.txt"
+  },
+  {
+    "id": "pg-more-14522",
+    "title": "The Canterville Ghost",
+    "author": "Oscar Wilde",
+    "subject": "drama",
+    "stages": [
+      "IB"
+    ],
+    "description": "Look closely at misunderstanding, irony, social conventions, and performance.",
+    "topics": [
+      "Comedy",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/14522",
+    "source": "https://www.gutenberg.org/ebooks/14522",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "The Canterville Ghost by Oscar Wilde",
+    "local": "/books/14522.txt"
+  },
+  {
+    "id": "pg-more-121",
+    "title": "Northanger Abbey",
+    "author": "Jane Austen",
+    "subject": "english",
+    "stages": [
+      "IB"
+    ],
+    "description": "Explore social expectations, power, and the relationship between individuals and their communities.",
+    "topics": [
+      "Society",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/121",
+    "source": "https://www.gutenberg.org/ebooks/121",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "Northanger Abbey by Jane Austen",
+    "local": "/books/121.txt"
+  },
+  {
+    "id": "pg-more-141",
+    "title": "Mansfield Park",
+    "author": "Jane Austen",
+    "subject": "english",
+    "stages": [
+      "IB"
+    ],
+    "description": "Explore social expectations, power, and the relationship between individuals and their communities.",
+    "topics": [
+      "Society",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/141",
+    "source": "https://www.gutenberg.org/ebooks/141",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "Mansfield Park by Jane Austen",
+    "local": "/books/141.txt"
+  },
+  {
+    "id": "pg-more-1523",
+    "title": "As You Like It",
+    "author": "William Shakespeare",
+    "subject": "drama",
+    "stages": [
+      "IB"
+    ],
+    "description": "Explore dialogue, dramatic tension, and how meaning changes in performance.",
+    "topics": [
+      "Drama",
+      "Literature",
+      "Close reading"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/1523",
+    "source": "https://www.gutenberg.org/ebooks/1523",
+    "connection": "Optional wider reading",
+    "rights": "Project Gutenberg lists this edition as public domain in the USA. Check local copyright rules and the edition’s credits. Historical attitudes, violence, or other mature themes may need discussion; stage labels are reading suggestions, not school endorsements.",
+    "language": "English",
+    "verifiedTitle": "As You Like It by William Shakespeare",
+    "local": "/books/1523.txt"
+  },
+  {
+    "id": "carol",
+    "title": "A Christmas Carol",
+    "author": "Charles Dickens",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Explore transformation, social responsibility, and Dickens’s use of narrative voice. Optional reading; not confirmed as your ISR set text.",
+    "topics": [
+      "Character",
+      "Theme",
+      "Victorian fiction"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/46",
+    "source": "https://www.gutenberg.org/ebooks/46",
+    "connection": "Optional wider reading",
+    "rights": "Public-domain original text. This Project Gutenberg edition includes its licence and source credits. Modern translations, adaptations, or annotated editions may have separate copyrights.",
+    "language": "English",
+    "local": "/books/a-christmas-carol.txt"
+  },
+  {
+    "id": "frankenstein",
+    "title": "Frankenstein",
+    "author": "Mary Wollstonecraft Shelley",
+    "subject": "english",
+    "stages": [
+      "IGCSE",
+      "IB"
+    ],
+    "description": "Consider responsibility, belonging, and narrative perspective in this influential novel.",
+    "topics": [
+      "Gothic fiction",
+      "Narrative",
+      "Ethics"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/84",
+    "source": "https://www.gutenberg.org/ebooks/84",
+    "connection": "Optional wider reading",
+    "rights": "Public-domain original text. This Project Gutenberg edition includes its licence and source credits. Modern translations, adaptations, or annotated editions may have separate copyrights.",
+    "language": "English",
+    "local": "/books/frankenstein.txt"
+  },
+  {
+    "id": "time-machine",
+    "title": "The Time Machine",
+    "author": "H. G. Wells",
+    "subject": "english",
+    "stages": [
+      "Grade 8",
+      "IGCSE"
+    ],
+    "description": "Explore speculative fiction and the way imagined futures reflect questions about society.",
+    "topics": [
+      "Science fiction",
+      "Society",
+      "Narrative"
+    ],
+    "access": "public-domain",
+    "url": "https://www.gutenberg.org/ebooks/35",
+    "source": "https://www.gutenberg.org/ebooks/35",
+    "connection": "Optional wider reading",
+    "rights": "Public-domain original text. This Project Gutenberg edition includes its licence and source credits. Modern translations, adaptations, or annotated editions may have separate copyrights.",
+    "language": "English",
+    "local": "/books/the-time-machine.txt"
+  }
+]

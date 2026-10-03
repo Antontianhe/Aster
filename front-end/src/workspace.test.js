@@ -39,8 +39,8 @@ test('weather verifies current data, required forecast fields and local time off
  const now=Date.parse('2026-09-20T12:00:00Z');const data={utc_offset_seconds:7200,timezone:'Europe/Berlin',current:{time:'2026-09-20T14:00',temperature_2m:19,apparent_temperature:18,weather_code:2,wind_speed_10m:12},daily:{time:['2026-09-20','2026-09-21','2026-09-22','2026-09-23','2026-09-24'],weather_code:[2,2,3,3,0],temperature_2m_max:[20,21,19,20,22],temperature_2m_min:[12,12,11,11,12],precipitation_probability_max:[20,10,30,10,0]}};
  assert.equal(parseWeather(data,now).measured,now);assert.throws(()=>parseWeather(data,now+86400000*3),/current forecast/);assert.throws(()=>parseWeather({...data,daily:{time:['2026-09-20']}},now),/current forecast/);
 });
-test('all catalog links are HTTPS and local readers use verified public-domain files',()=>{
- assert.ok(BOOKS.length>=200);assert.equal(new Set(BOOKS.map(b=>b.id)).size,BOOKS.length);assert.equal(BOOKS.filter(b=>b.school).length,2);
+test('every visible library title is a complete local edition with HTTPS source credits',()=>{
+ assert.ok(BOOKS.length>=200);assert.equal(new Set(BOOKS.map(b=>b.id)).size,BOOKS.length);assert.ok(BOOKS.every(b=>b.local && b.access!=='publisher'));assert.equal(BOOKS.some(b=>b.id==='herz-boxers'||b.id==='dorfteich'),false);
  for(const book of BOOKS){assert.ok(book.source.startsWith('https://'));assert.ok(book.url.startsWith('https://'));if(book.local){assert.equal(book.access,'public-domain');const raw=readFileSync(new URL('../public'+book.local,import.meta.url),'utf8');const pages=paginateBook(raw);assert.ok(pages.length>0);assert.ok(pages.every(p=>p.length));const start=raw.indexOf('*** START OF THE PROJECT GUTENBERG EBOOK'),end=raw.indexOf('*** END OF THE PROJECT GUTENBERG EBOOK');const body=raw.slice(raw.indexOf('\n',start)+1,end).replace(/\s+/g,' ').trim();assert.equal(pages.flat().join(' ').replace(/\s+/g,' ').trim(),body);}}
  assert.throws(()=>paginateBook('not a verified book'),/verified/);
 });

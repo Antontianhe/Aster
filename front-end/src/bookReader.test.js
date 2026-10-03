@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { BOOKS } from './books.js';
+import { createHash } from 'node:crypto';
+import { BOOKS, normalizeReading } from './books.js';
 import { createReaderDocument, markedPassage, normalizeReaderPreferences, normalizeReaderState } from './bookReader.js';
 
 const edition = body => `*** START OF THE PROJECT GUTENBERG EBOOK TEST ***\n${body}\n*** END OF THE PROJECT GUTENBERG EBOOK TEST ***`;
@@ -9,13 +10,20 @@ const document = createReaderDocument(edition('CHAPTER I\n\nA little curiosity o
 const annotation = { id: 'first', page: 0, color: 'mint', note: 'An idea worth keeping', segments: [{ paragraph: 1, start: 2, end: 18, quote: 'little curiosity' }] };
 
 test('all books advertised for in-site reading have complete parseable local editions', () => {
-  for (const book of BOOKS.filter(book => book.local)) {
+  for (const book of BOOKS) {
+    assert.ok(book.local, `${book.title} must be readable in the website`);
     const text = readFileSync(new URL(`../public${book.local}`, import.meta.url), 'utf8');
     const result = createReaderDocument(text);
     assert.ok(result.pages.length > 1, book.title);
     assert.ok(result.paragraphs.at(-1).text.length > 0, book.title);
     assert.equal(result.paragraphs.length, new Set(result.paragraphs.map(p => p.id)).size);
+    if (book.sha256) assert.equal(createHash('sha256').update(text).digest('hex'), book.sha256, `${book.title}: complete downloaded edition has not changed`);
   }
+});
+
+test('unavailable titles disappear without deleting previously saved reading notes', () => {
+  assert.equal(BOOKS.some(book => book.id === 'herz-boxers'), false);
+  assert.equal(normalizeReading({ 'herz-boxers': { notes: 'My existing course note', saved: true } })['herz-boxers'].notes, 'My existing course note');
 });
 
 test('rejects missing end markers and empty books', () => {

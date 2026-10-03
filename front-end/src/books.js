@@ -1,10 +1,11 @@
 import {EXTRA_BOOKS} from './bookExpansion.js';
 import {MODERN_BOOKS} from './modernBooks.js';
 import moreBooks from './libraryExpansion.json' with {type:'json'};
+import localLibrary from './localLibrary.json' with {type:'json'};
 export const BOOKS_KEY='aster-reading-v1';
 const open=(id,title,subject,stages,description,topics)=>({id,title,subject,stages,description,topics,author:'OpenStax · Rice University',access:'open',url:`https://openstax.org/details/books/${id}`,source:`https://openstax.org/details/books/${id}`,connection:'Optional preparation',rights:'Read the full book free on the publisher’s site. OpenStax provides an authorized web edition and PDF; see the book’s current licence and attribution terms.',language:'English'});
 const classic=(id,title,author,number,subject,stages,description,topics,local)=>({id,title,author,subject,stages,description,topics,access:'public-domain',url:`https://www.gutenberg.org/ebooks/${number}`,source:`https://www.gutenberg.org/ebooks/${number}`,connection:'Optional wider reading',rights:'Public-domain original text. This Project Gutenberg edition includes its licence and source credits. Modern translations, adaptations, or annotated editions may have separate copyrights.',language:'English',local});
-export const BOOKS=[
+export const BOOK_CATALOGUE=[
  ...MODERN_BOOKS,
  ...EXTRA_BOOKS,
  ...moreBooks,
@@ -33,8 +34,12 @@ export const BOOKS=[
  classic('midsummer','A Midsummer Night’s Dream','William Shakespeare',1514,'drama',['Grade 8','IGCSE'],'Explore performance, mistaken identity, and the interplay of different theatrical worlds.',['Comedy','Performance','Language']),
  classic('romeo','Romeo and Juliet','William Shakespeare',1513,'drama',['IGCSE','IB'],'Read or perform scenes to investigate dramatic structure, conflict, and imagery.',['Tragedy','Conflict','Imagery'])
 ];
+// Only complete, downloaded editions are offered in the reader library.
+export const BOOKS=localLibrary.filter(book=>/^\/books\/[a-zA-Z0-9-]+\.txt$/.test(book.local||''));
+const KNOWN_BOOK_IDS=new Set([...BOOK_CATALOGUE,...BOOKS].map(book=>book.id));
 export const ACCESS_LABELS={open:'Open full text','public-domain':'Public-domain full text',publisher:'Publisher / library copy'};
-export function normalizeReading(input){if(!input||typeof input!=='object')return {};return Object.fromEntries(Object.entries(input).filter(([id,v])=>BOOKS.some(b=>b.id===id)&&v&&typeof v==='object').map(([id,v])=>[id,{saved:v.saved===true,status:['not-started','reading','finished'].includes(v.status)?v.status:'not-started',progress:Number.isFinite(v.progress)?Math.min(100,Math.max(0,Math.round(v.progress))):0,page:Number.isInteger(v.page)&&v.page>=0?Math.min(v.page,1000):0,notes:typeof v.notes==='string'?v.notes.slice(0,2000):''}]));}
+// Keep saved notes for formerly listed books, without displaying unavailable titles.
+export function normalizeReading(input){if(!input||typeof input!=='object')return {};return Object.fromEntries(Object.entries(input).filter(([id,v])=>KNOWN_BOOK_IDS.has(id)&&v&&typeof v==='object').map(([id,v])=>[id,{saved:v.saved===true,status:['not-started','reading','finished'].includes(v.status)?v.status:'not-started',progress:Number.isFinite(v.progress)?Math.min(100,Math.max(0,Math.round(v.progress))):0,page:Number.isInteger(v.page)&&v.page>=0?Math.min(v.page,10000):0,notes:typeof v.notes==='string'?v.notes.slice(0,2000):''}]));}
 export function paginateBook(raw,target=4200){
  const start=raw.indexOf('*** START OF THE PROJECT GUTENBERG EBOOK'),end=raw.indexOf('*** END OF THE PROJECT GUTENBERG EBOOK');
  if(start<0||end<start)throw new Error('The book text could not be verified. Open its original source instead.');
