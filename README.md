@@ -328,7 +328,7 @@ These resources are not a claim of complete coverage of every syllabus, examinat
 
 ### Reading, writing, and creativity
 
-- Searchable book catalogue, saved books, locally readable public-domain editions, and separately labelled external editions.
+- Searchable library containing only complete books readable inside Aster, with saved shelves, font and spacing controls, passage highlights, annotations, and bookmarks.
 - Reading position and notes are saved; edition credits are retained in local files and [ASSETS.md](front-end/ASSETS.md).
 - Original secondary/IGCSE-style English reading-comprehension activities.
 - Essay and presentation workspace with editable DOCX/PPTX exports.
