@@ -61,6 +61,7 @@ class MySqlIntegrationTest {
                 "Transactional test",
                 "contact",
                 username + "@example.invalid",
+                "dateOfBirth", "2010-06-15", "fullName", "Test Student",
                 "acceptTerms",
                 true));
     var v = obj(challenge.get("verification"));
@@ -92,7 +93,8 @@ class MySqlIntegrationTest {
             "Transactional test",
             "contact",
             username + "@example.invalid",
-            "acceptTerms",
+            "dateOfBirth", "2010-06-15", "fullName", "Test Student",
+                "acceptTerms",
             true);
     assertEquals(
         401,
@@ -173,10 +175,11 @@ class MySqlIntegrationTest {
     auth.session(other, response);
     Cookie otherCookie =
         new Cookie("aster_session", response.getHeader("Set-Cookie").split("[=;]")[1]);
-    assertEquals(
-        map(),
-        result(mvc.perform(request("GET", "/workspace", null, otherCookie)).andReturn())
-            .get("data"));
+    var initial = obj(result(mvc.perform(request("GET", "/workspace", null, otherCookie)).andReturn()).get("data"));
+    assertFalse(initial.containsKey("aster-integration"));
+    var initialPrefs = obj(parse(str(initial.get("dinostudy-preferences-v3"))));
+    assertEquals("2010-06-15", obj(initialPrefs.get("profile")).get("dateOfBirth"));
+    assertEquals("06-15", initialPrefs.get("birthday"));
     assertEquals(
         400,
         mvc.perform(request("PUT", "/workspace", map("data", map("password", "oops")), cookie))
@@ -271,6 +274,7 @@ class MySqlIntegrationTest {
                 "migration-test-password",
                 "contact",
                 "test@example.invalid",
+                "dateOfBirth", "2010-06-15", "fullName", "Test Student",
                 "acceptTerms",
                 true));
     var v = obj(challenge.get("verification"));
