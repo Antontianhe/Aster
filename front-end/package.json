@@ -12,6 +12,7 @@
   "dependencies": {
     "docx": "9.5.1",
     "lucide-react": "^0.468.0",
+    "motion": "^13.5.1",
     "pptxgenjs": "4.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
