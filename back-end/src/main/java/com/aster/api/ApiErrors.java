@@ -13,6 +13,14 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 public class ApiErrors {
   private static final Logger LOG = LoggerFactory.getLogger(ApiErrors.class);
 
+  @ExceptionHandler(LoginLockedException.class)
+  public ResponseEntity<?> loginLocked(LoginLockedException ex) {
+    return ResponseEntity.status(429)
+        .header("Retry-After", String.valueOf(ex.retryAfterSeconds))
+        .body(Map.of("error", ex.getMessage(), "code", "LOGIN_LOCKED",
+            "retryAfterSeconds", ex.retryAfterSeconds));
+  }
+
   @ExceptionHandler(ApiException.class)
   public ResponseEntity<?> known(ApiException ex) {
     return ResponseEntity.status(ex.status).body(Map.of("error", ex.getMessage()));

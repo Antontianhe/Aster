@@ -48,6 +48,8 @@ public class AccountController {
   @PostMapping("/auth/login")
   public Map<String, Object> login(
       @RequestBody Map<String, Object> b, HttpServletRequest r, HttpServletResponse s) {
+    // Return the account's existing countdown without consuming general request limits.
+    auth.checkLoginLock(b);
     limit(r, b);
     return auth.login(b, s);
   }
