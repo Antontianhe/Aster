@@ -1,5 +1,6 @@
 // Read captures made through the signed-in school browser. Private inputs and output stay in .work.
 import fs from 'node:fs/promises';
+import {scienceResourceBranch} from '../front-end/src/scienceResources.js';
 import {createHash} from 'node:crypto';
 import {parseSchoolCalendar,subjectFromTitle,safeSchoolUrl,matchAssessmentGuide,mergeSchoolEvents} from '../front-end/src/schoolSync.js';
 import {berlinDateTimeToISO,addDateDays} from '../front-end/src/homework.js';
@@ -24,7 +25,7 @@ for(const page of pages){
   const id='resource-'+createHash('sha256').update(url).digest('hex').slice(0,14),document=documents.find(d=>d.source===url);
   const redirected=new URL(url).searchParams.get('url');let destination='';if(redirected){try{destination=Buffer.from(redirected,'base64').toString('utf8');}catch{}}
   const kind=/\.ppt|powerpoint|presentation/i.test(title+' '+decodeURIComponent(url)+' '+destination)?'Slides':document?.file.endsWith('.pdf')?'PDF':/vocab|worksheet|revision|exercises/i.test(title)?'Worksheet':'Resource';
-  const record={id,title,url,subject,unit,branch,grade,kind,source:'Schoolbox',sourceUrl:page.url.split('#')[0],checkedAt,...(document?{documentId:document.id,documentType:document.file.split('.').pop()}:{} )};
+  const record={id,title,url,subject,unit,branch:subject==='science'?scienceResourceBranch({branch,unit,title}):branch,grade,kind,source:'Schoolbox',sourceUrl:page.url.split('#')[0],checkedAt,...(document?{documentId:document.id,documentType:document.file.split('.').pop()}:{} )};
   if(!resources.has(url)||/View Files|^Files$/.test(resources.get(url).unit))resources.set(url,record);
   items.push(id);
  }
