@@ -1,0 +1,23 @@
+import React,{useState} from 'react';
+import {Network} from 'lucide-react';
+import {useSchool} from '../../schoolContext.jsx';
+import {COURSES} from '../../study.js';
+import s from './ConnectedSchool.module.css';
+const GEOMETRY=[
+ ['Angles & lines',['Angles on a straight line total 180°; around a point, 360°','Vertically opposite angles are equal','Parallel lines: corresponding, alternate and co-interior angles','Explain each step using an angle rule']],
+ ['Triangles & polygons',['Triangle angle sum: 180°','Classify equilateral, isosceles, scalene and right triangles','Interior-angle sum of an n-sided simple polygon: (n − 2) × 180°','Exterior angles of a convex polygon total 360°']],
+ ['Length, area & volume',['Perimeter measures the boundary; area measures the surface','Triangle area = ½ × base × perpendicular height','Circle circumference = 2πr; area = πr²','Prism volume = cross-sectional area × length','Keep length, area and volume units distinct']],
+ ['Right triangles',['Pythagoras: a² + b² = c², where c is the hypotenuse','Identify the right angle before applying the theorem','Find a missing side by rearranging and taking a square root','Check whether the answer is reasonable']],
+ ['Transformations & symmetry',['Translate using a vector','Reflect in a specified mirror line','Rotate about a centre with an angle and direction','Enlarge from a centre using a scale factor','Line and rotational symmetry']],
+ ['Congruence & similarity',['Congruent figures have the same shape and size','Similar figures have equal corresponding angles','Length scale factor k gives area factor k² and volume factor k³','Match corresponding vertices before comparing ratios']],
+ ['Coordinates & constructions',['Plot ordered pairs and read scales correctly','Find horizontal and vertical distances','Use compass and straightedge for bisectors and perpendiculars','Describe loci as sets of points satisfying a condition']]
+];
+export default function FullTopicMap({subject}){
+ const {units,resources,assessments}=useSchool(),course=COURSES[subject];const [topic,setTopic]=useState(subject==='science'?'Biology':subject==='maths'?'Geometry':'Course topics');
+ const options=subject==='science'?['Biology','Chemistry','Physics','All science']:subject==='maths'?['Geometry','Course topics','Assessment topics']:['Course topics','Assessment topics'];
+ const isGeometry=subject==='maths'&&topic==='Geometry',selectedUnits=units.filter(u=>u.subject===subject&&u.grade===8&&(subject!=='science'||topic==='All science'||u.branch===topic));
+ let branches=isGeometry?GEOMETRY.map(([title,items])=>({title,items,source:''})):topic==='Assessment topics'?assessments.filter(a=>a.subject===subject&&a.topics.length).map(a=>({title:a.title+' · '+a.date,items:a.topics,source:a.topicSource})):selectedUnits.map(u=>({title:u.title,items:u.resourceIds.map(id=>resources.find(r=>r.id===id)?.title).filter(Boolean),source:u.source}));
+ if(!branches.length&&!isGeometry&&topic!=='Assessment topics'){branches=course.notes.map(([title,text])=>({title,items:text.split(/(?<=[.!?])\s+(?=[A-Z])/),source:course.unitSource||course.source}));}
+ const title=isGeometry?'Geometry':subject==='science'?topic:course.name+' · '+topic;
+ return <section className={s.page}><header className={s.heading}><div><span className={s.eyebrow}>THE WHOLE TOPIC</span><h2>Topic mind maps</h2><p>{isGeometry?'A general geometry reference map. Check your assessment guide for the chapters on your next exam.':'Explore topics, their units and the resources inside each branch. The connecting lines mean “includes”.'}</p></div><select aria-label="Mind map topic" value={topic} onChange={e=>setTopic(e.target.value)}>{options.map(v=><option key={v}>{v}</option>)}</select></header>{branches.length?<><div className={s.topicMap}><div className={s.mapRoot}><Network size={25}/><h3>{title}</h3><p>{branches.length} branches · {branches.reduce((n,b)=>n+b.items.length,0)} concepts / resources</p></div><div className={s.mapBranches}>{branches.map((b,i)=><details open className={s.mapBranch} key={b.title}><summary>{String(i+1).padStart(2,'0')} · {b.title}</summary><ul>{b.items.map((t,n)=><li key={n}>{t}</li>)}</ul>{b.source&&<a href={b.source} target="_blank" rel="noreferrer">View source unit ↗</a>}</details>)}</div></div><details className={s.outline}><summary>Read the complete text outline</summary><h3>{title}</h3><ol>{branches.map(b=><li key={b.title}><strong>{b.title}</strong><ul>{b.items.map((t,i)=><li key={i}>{t}</li>)}</ul></li>)}</ol></details></>:<p className={s.empty}>No published topic outline is available in this import yet. Check the subject’s Resources tab.</p>}</section>;
+}
