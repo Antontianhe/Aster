@@ -3,6 +3,7 @@ package com.aster.service;
 import static com.aster.util.Json.*;
 
 import com.aster.api.ApiException;
+import com.aster.api.LoginLockedException;
 import com.aster.persistence.*;
 import com.aster.security.Passwords;
 import jakarta.servlet.http.*;
@@ -119,12 +120,46 @@ public class AuthService {
     }
   }
 
+  private String loginUsername(Map<String, Object> b) {
+    String username = str(b.get("username")).trim().toLowerCase(Locale.ROOT);
+    if (!username.matches("[a-z0-9_.-]{3,30}"))
+      throw ApiException.bad("Enter a valid username.");
+    // Registration's minimum length must not exclude short, incorrect login attempts.
+    String password = str(b.get("password"));
+    if (password.isEmpty() || password.length() > 128)
+      throw ApiException.bad("Enter a password with 1–128 characters.");
+    return username;
+  }
+
+  public void checkLoginLock(Map<String, Object> b) {
+    var attempts = db.loginAttempts(loginUsername(b));
+    if (attempts != null && number(attempts.get("retryAfterSeconds")) > 0)
+      throw new LoginLockedException(number(attempts.get("retryAfterSeconds")));
+  }
+
+  private record LoginResult(Map<String, Object> user, long retryAfterSeconds) {}
+
   public Map<String, Object> login(Map<String, Object> b, HttpServletResponse response) {
-    validateCredentials(b);
-    var user = db.login(str(b.get("username")).trim().toLowerCase(Locale.ROOT));
-    if (!Passwords.verify(
-        str(b.get("password")), user == null ? null : str(user.get("passwordHash"))))
-      throw new ApiException(401, "Username or password is incorrect.");
+    String username = loginUsername(b);
+    LoginResult result = tx.execute(status -> {
+      db.ensureLoginAttempts(username);
+      var attempts = db.loginAttemptsForUpdate(username);
+      long remaining = number(attempts.get("retryAfterSeconds"));
+      if (remaining > 0) return new LoginResult(null, remaining);
+      var user = db.login(username);
+      if (!Passwords.verify(
+          str(b.get("password")), user == null ? null : str(user.get("passwordHash")))) {
+        int failures = bool(attempts.get("hadLock")) ? 1 : (int) number(attempts.get("failures")) + 1;
+        db.updateLoginAttempts(username, failures);
+        return new LoginResult(null, failures >= 5 ? 300 : 0);
+      }
+      db.updateLoginAttempts(username, 0);
+      return new LoginResult(user, 0);
+    });
+    // Errors are thrown after committing the failed-attempt counter and lock deadline.
+    if (result.retryAfterSeconds() > 0) throw new LoginLockedException(result.retryAfterSeconds());
+    var user = result.user();
+    if (user == null) throw new ApiException(401, "Username or password is incorrect.");
     user.remove("passwordHash");
     var preferences = db.preferencesFor(str(user.get("id")));
     if (preferences != null && preferences.get("verified") == null) return challenge(user);
