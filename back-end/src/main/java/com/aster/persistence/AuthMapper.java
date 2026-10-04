@@ -22,6 +22,29 @@ public interface AuthMapper extends BaseMapper<UserEntity> {
           + " credentials c JOIN users u ON u.id=c.user_id WHERE c.username=#{username}")
   Map<String, Object> login(String username);
 
+  // The upsert and locking read run in one transaction, serializing concurrent attempts.
+  @Insert("INSERT INTO auth_login_attempts(username) VALUES(#{username})"
+      + " ON DUPLICATE KEY UPDATE username=username")
+  void ensureLoginAttempts(String username);
+
+  String LOGIN_ATTEMPTS = "SELECT failed_attempts AS failures,"
+      + " (locked_until IS NOT NULL) AS hadLock,"
+      + " GREATEST(0,COALESCE(CEIL(TIMESTAMPDIFF(MICROSECOND,UTC_TIMESTAMP(6),"
+      + " locked_until)/1000000),0)) AS retryAfterSeconds"
+      + " FROM auth_login_attempts WHERE username=#{username}";
+
+  @Select(LOGIN_ATTEMPTS)
+  Map<String, Object> loginAttempts(String username);
+
+  @Select(LOGIN_ATTEMPTS + " FOR UPDATE")
+  Map<String, Object> loginAttemptsForUpdate(String username);
+
+  @Update("UPDATE auth_login_attempts SET failed_attempts=#{failures},"
+      + " locked_until=CASE WHEN #{failures}>=5 THEN"
+      + " DATE_ADD(UTC_TIMESTAMP(6),INTERVAL 5 MINUTE) ELSE NULL END"
+      + " WHERE username=#{username}")
+  void updateLoginAttempts(@Param("username") String username, @Param("failures") int failures);
+
   @Insert(
       "INSERT INTO credentials(user_id,username,password_hash) VALUES(#{id},#{username},#{hash})")
   void credentials(
