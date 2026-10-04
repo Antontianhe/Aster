@@ -66,8 +66,9 @@ py -3 database/migrate.py
 | `005_community.sql` | Discussion messages and reports |
 | `006_mock_exams.sql` | Exam plans, generated papers and first saved results |
 | `007_onboarding.sql` | Contact/consent preferences, preview verification challenges, explicit owner roles |
+| `008_login_lockout.sql` | Consecutive password failures and persistent five-minute sign-in lockouts |
 
-Together these migrations define **26 tables**. The existing frontend continues to synchronize account-scoped workspace JSON; not every learning feature writes directly to a dedicated relational table. The schema includes tables reserved for more granular persistence.
+Together these migrations define **27 tables**. The existing frontend continues to synchronize account-scoped workspace JSON; not every learning feature writes directly to a dedicated relational table. The schema includes tables reserved for more granular persistence.
 
 ## Daily management
 
