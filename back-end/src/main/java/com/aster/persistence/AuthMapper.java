@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface AuthMapper extends BaseMapper<UserEntity> {
+  @Insert("INSERT INTO workspace_state(user_id,content) VALUES(#{id},#{content})")
+  void initialWorkspace(@Param("id") String id, @Param("content") String content);
   @Select("SELECT 1")
   int ping();
 
