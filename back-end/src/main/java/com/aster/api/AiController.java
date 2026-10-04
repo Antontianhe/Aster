@@ -13,13 +13,15 @@ public class AiController {
   private final AiProvider ai;
   private final TutorService tutor;
   private final ExamCoachService coach;
+  private final ConversationService conversations;
   private final RateLimiter rate;
   private final AtomicBoolean busy = new AtomicBoolean();
 
-  public AiController(AiProvider ai, TutorService tutor, ExamCoachService coach, RateLimiter rate) {
+  public AiController(AiProvider ai, TutorService tutor, ExamCoachService coach, ConversationService conversations, RateLimiter rate) {
     this.ai = ai;
     this.tutor = tutor;
     this.coach = coach;
+    this.conversations = conversations;
     this.rate = rate;
   }
 
@@ -54,5 +56,12 @@ public class AiController {
   private void lock() {
     if (!busy.compareAndSet(false, true))
       throw new ApiException(429, "Your buddy is finishing another reply. Try again in a moment.");
+  }
+
+  @PostMapping("/conversation/{phase}")
+  public Map<String,Object> conversation(@PathVariable String phase,@RequestBody Map<String,Object> b,HttpServletRequest r) {
+    rate.check("conversation:"+r.getRemoteAddr(),12);
+    lock();
+    try {return conversations.respond(b,phase);} finally {busy.set(false);}
   }
 }
