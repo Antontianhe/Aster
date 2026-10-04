@@ -38,6 +38,7 @@ let completed = 0, downloaded = 0;
 
 async function fetchFile(url, file) {
   if (await exists(file)) return readFile(file, 'utf8');
+  if (process.argv.includes('--cached-only')) throw new Error('Edition not available in the verified download cache');
   let last;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
@@ -97,7 +98,11 @@ async function importBook(book) {
       const languages = { en: 'English', de: 'German', es: 'Spanish', zh: 'Chinese' };
       if (!languages[meta.language]) throw new Error('Edition language outside this library');
       if (['german', 'spanish'].includes(book.subject) && meta.language !== (book.subject === 'german' ? 'de' : 'es')) throw new Error('Not the requested language edition');
-      book = { ...book, title: meta.title, author: meta.people.filter(p => p.role === 'aut').map(p => { const parts = p.name.split(', '); return parts.length === 2 ? `${parts[1]} ${parts[0]}` : p.name; }).join('; '), language: languages[meta.language], stages: ['IGCSE', 'IB'], topics: book.subject === 'science' ? ['Science history', 'Discovery'] : book.subject === 'maths' ? ['Mathematics', 'Reasoning'] : book.subject === 'social' ? ['History', 'Ideas'] : ['Literature', 'Close reading'], description: ['science', 'maths', 'social'].includes(book.subject) ? 'A complete historical work for exploring ideas and their context. Read critically alongside current course materials.' : 'Read the complete original edition and explore its language, characters, and ideas.', connection: 'Optional wider reading' };
+      const subjects = meta.subjects.join(' ');
+      const languageSubject = { de: 'german', es: 'spanish' }[meta.language];
+      const subject = languageSubject || (/Mathematics|Calculus|Geometry|Fourth dimension/i.test(subjects) ? 'maths' : /Evolution \(Biology\)|Natural history|Physics|Chemistry|Microscopy|Optics|Natural sciences/i.test(subjects) && !/Science fiction/i.test(subjects) ? 'science' : /History|Philosophy|Ethics|Politics|Political science|Government|Economics|Religion|Bible|Constitution|Communism/i.test(subjects) && !/Fiction/i.test(subjects) ? 'social' : /Drama/i.test(subjects) ? 'drama' : 'english');
+      if (/\b(?:Volume|Vol\.|Band|tomo)\s*(?:\d+|[IVX]+)\b/i.test(meta.title)) throw new Error('Separate volume of a multi-volume work');
+      book = { ...book, subject, title: meta.title.replace(/\s*\$[a-z]\s*/gi, ' '), author: meta.people.filter(p => p.role === 'aut').map(p => { const parts = p.name.split(', '); return parts.length === 2 ? `${parts[1]} ${parts[0]}` : p.name; }).join('; '), language: languages[meta.language], catalogueSubjects: meta.subjects, stages: ['IGCSE', 'IB'], topics: subject === 'science' ? ['Science history', 'Discovery'] : subject === 'maths' ? ['Mathematics', 'Reasoning'] : subject === 'social' ? ['History', 'Ideas'] : ['Literature', 'Close reading'], description: ['science', 'maths', 'social'].includes(subject) ? 'A complete historical work for exploring ideas and their context. Read critically alongside current course materials.' : 'Read the complete original edition and explore its language, characters, and ideas.', connection: 'Optional wider reading' };
     }
     if (!book.title || book.title.length > 240 || /index of|linked index|biographical notes|^if$|^jabberwocky$|complete project gutenberg/i.test(book.title)) throw new Error('Not a standalone reading edition');
     const local = book.local || `/books/pg-${number}.txt`;
