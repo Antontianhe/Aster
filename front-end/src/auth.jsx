@@ -4,7 +4,7 @@ import {setStorageOwner,restoreStorage,snapshotStorage} from './storage.js';
 import {useT,LanguageSelector} from './i18n.jsx';
 import {Blue} from './components/UI.jsx';
 import s from './components/account/Account.module.css';
-export async function api(path,method='GET',data,signal){const response=await fetch('/api'+path,{method,credentials:'same-origin',headers:{'Content-Type':'application/json','X-Aster-Client':'workspace'},body:data?JSON.stringify(data):undefined,signal});let value;try{value=await response.json()}catch{throw new Error('Start the local Aster service to use accounts and AI.')}if(!response.ok)throw new Error(value.error||'Something went wrong. Try again.');return value;}
+export async function api(path,method='GET',data,signal){const response=await fetch('/api'+path,{method,credentials:'same-origin',headers:{'Content-Type':'application/json','X-Aster-Client':'workspace'},body:data?JSON.stringify(data):undefined,signal});let value;try{value=await response.json()}catch{throw new Error('Start the local Learnify service to use accounts and AI.')}if(!response.ok){const error=new Error(value.error||'Something went wrong. Try again.');error.status=response.status;error.code=value.code;error.retryAfterSeconds=Number(value.retryAfterSeconds||response.headers.get('Retry-After'))||0;throw error;}return value;}
 const AuthContext=createContext(null);
 export function useAuth(){return useContext(AuthContext);}
 export function AuthProvider({children}){

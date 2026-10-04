@@ -49,9 +49,9 @@ export function normalizeImportItem(section, item) {
   throw new Error('Unsupported section');
 }
 export function parseBackup(raw) {
-  if (typeof raw !== 'string' || new TextEncoder().encode(raw).length > 5000000) throw new Error('Choose an Aster backup smaller than 5 MB.');
-  let value; try { value = JSON.parse(raw); } catch { throw new Error('This file is not valid JSON. Choose an Aster backup.'); }
-  if (!value || value.app !== 'Aster' || ![4, 5].includes(value.version)) throw new Error('Choose a supported Aster workspace backup (version 4 or 5).');
+  if (typeof raw !== 'string' || new TextEncoder().encode(raw).length > 5000000) throw new Error('Choose an Learnify backup smaller than 5 MB.');
+  let value; try { value = JSON.parse(raw); } catch { throw new Error('This file is not valid JSON. Choose an Learnify backup.'); }
+  if (!value || !['Learnify','Aster'].includes(value.app) || ![4, 5].includes(value.version)) throw new Error('Choose a supported Learnify workspace backup (version 4 or 5).');
   const sections = {}, skipped = {};
   for (const section of BACKUP_SECTIONS) {
     const rows = value[section.id];

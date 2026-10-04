@@ -51,7 +51,7 @@ export function buildCalendar(items,now=new Date()){
     `SUMMARY:${escapeCalendar(`${COURSES[item.course].name}: ${item.title}`)}`,`DESCRIPTION:${escapeCalendar(`${item.details||''}${item.source?'\nSchoolbox: '+item.source:''}`)}`,
     ...(item.source?[`URL:${item.source}`]:[]),...(item.remindHours!==null&&Number.isFinite(reminderTimestamp(item))?['BEGIN:VALARM','ACTION:DISPLAY',`DESCRIPTION:${escapeCalendar(item.title)}`,item.allDay?`TRIGGER;VALUE=DATE-TIME:${utcStamp(reminderTimestamp(item))}`:`TRIGGER:${item.remindHours===0?'PT0S':`-PT${item.remindHours}H`}`,'END:VALARM']:[]),'END:VEVENT'
   ]);
-  return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Aster//Homework//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH',...events.flat(),'END:VCALENDAR'].map(foldLine).join('\r\n')+'\r\n';
+  return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Learnify//Homework//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH',...events.flat(),'END:VCALENDAR'].map(foldLine).join('\r\n')+'\r\n';
 }
 export function downloadCalendar(items){const blob=new Blob([buildCalendar(items)],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='aster-homework.ics';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 export function localInputDate(value){return berlinInput(value);}

@@ -1,4 +1,4 @@
-// Original Aster practice. These are general subject skills, not official exam items.
+// Original Learnify practice. These are general subject skills, not official exam items.
 // topic | concept | definition; paired recall prompts are kept apart in a session.
 export const CONCEPTS = {
 science: `Investigation|Independent variable|The factor deliberately changed in an investigation

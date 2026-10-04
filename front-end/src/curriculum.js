@@ -1,7 +1,7 @@
 import directory from './subjectDirectory.json' with {type:'json'};
 export const CURRICULUM_KEY='aster-curriculum-v1';
 export const OFFICIAL={IGCSE:'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-upper-secondary/cambridge-igcse/subjects/',IB:'https://ibo.org/programmes/diploma-programme/curriculum/'};
-// Original Aster learning guides. Topic groupings are study pathways, not copied syllabuses.
+// Original Learnify learning guides. Topic groupings are study pathways, not copied syllabuses.
 const units={};
 function unit(id,title,concept,example,q,options,a,why,level='All'){units[id]={id,title,concept,example,q,options,a,why,level};return id;}
 unit('number','Number, percentages & proportionality','A percentage expresses a quantity per hundred. A percentage change uses the original quantity as its denominator. Ratio compares quantities using a shared scale; direct proportion means one quantity is a constant multiple of the other.','A price of €80 rises by 15%: 80 × 1.15 = €92. A later 15% decrease gives 92 × 0.85 = €78.20, so equal percentage increases and decreases do not cancel.','A €60 item is reduced by 20%. What is the new price?',['€48','€40','€52','€72'],0,'Twenty percent of 60 is 12. Subtract 12 from the original 60.');

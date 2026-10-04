@@ -30,7 +30,7 @@ Choose your session length|Länge der Einheit wählen|选择练习长度
 Show more questions|Weitere Fragen anzeigen|显示更多题目
 Application|Anwendung|应用
 Recall|Wiederholung|回忆
-Original Aster practice|Aster-Originalübungen|Aster 原创练习
+Original Learnify practice|Learnify-Originalübungen|Learnify 原创练习
 Classroom review|Unterrichtswiederholung|课堂复习
 AI estimate:|KI-Einschätzung:|AI 估计：
 Reading your exam…|Deine Prüfung wird gelesen…|正在读取试卷…
@@ -40,7 +40,7 @@ Writing studio|Schreibstudio|写作工作室
 English reading room|Englischer Leseraum|英语阅读室
 English practice|Englisch üben|英语练习
 Exam Coach|Prüfungscoach|试卷分析
-About Aster|Über Aster|关于 Aster
+About Learnify|Über Learnify|关于 Learnify
 Features|Funktionen|功能
 Contact|Kontakt|联系我们
 A new essay|Ein neuer Aufsatz|新建作文
@@ -84,7 +84,7 @@ Move slide up|Folie nach oben|上移幻灯片
 Move slide down|Folie nach unten|下移幻灯片
 Search web|Im Web suchen|搜索网页
 Search with|Suchen mit|搜索引擎
-Search the web and Aster resources|Web und Aster durchsuchen|搜索网页和 Aster 资源
+Search the web and Learnify resources|Web und Learnify durchsuchen|搜索网页和 Learnify 资源
 All resources|Alle Ressourcen|全部资源
 Papers & solutions|Prüfungen & Lösungen|试卷与答案
 Topic videos|Lernvideos|专题视频
@@ -140,7 +140,7 @@ Terms & conditions|Nutzungsbedingungen|条款与条件
 Privacy notice|Datenschutzhinweise|隐私声明
 Cookie preferences|Cookie-Einstellungen|Cookie 偏好
 Your data|Deine Daten|你的数据
-About Aster|Über Aster|关于 Aster
+About Learnify|Über Learnify|关于 Learnify
 Contact|Kontakt|联系
 Log in|Anmelden|登录
 Get started|Loslegen|开始使用
@@ -148,7 +148,7 @@ Local preview|Lokale Vorschau|本地预览
 Explore|Entdecken|探索
 My workspace|Mein Lernbereich|我的学习空间
 Meet your new study space.|Entdecke deinen neuen Lernbereich.|认识你的全新学习空间。
-Discover Aster Pro|Aster Pro entdecken|探索 Aster Pro
+Discover Learnify Pro|Learnify Pro entdecken|探索 Learnify Pro
 Big ambitions.|Große Ziele.|远大的目标。
 Small steps.|Kleine Schritte.|小小的步伐。
 Your kind of progress.|Dein Weg nach vorn.|属于你的进步。
@@ -194,9 +194,9 @@ month|Monat|月
 A little more clarity.|Ein bisschen mehr Klarheit.|解答你的疑问。
 Still curious?|Noch neugierig?|还有疑问？
 Your next chapter is waiting.|Dein nächstes Kapitel wartet.|你的下一篇章正在等你。
-Get started with Aster|Mit Aster loslegen|开始使用 Aster
+Get started with Learnify|Mit Learnify loslegen|开始使用 Learnify
 A little curiosity. A bigger world.|Ein wenig Neugier. Eine größere Welt.|一点好奇心，一个更广阔的世界。
-Back to Aster|Zurück zu Aster|返回 Aster
+Back to Learnify|Zurück zu Learnify|返回 Learnify
 Your pace|Dein Tempo|你的节奏
 Your possibilities|Deine Möglichkeiten|你的可能性
 Make room for your next idea.|Schaffe Raum für deine nächste Idee.|为下一个灵感留出空间。
@@ -221,7 +221,7 @@ Your space. Your privacy.|Dein Bereich. Deine Privatsphäre.|你的空间，你�
 Continue with essential only|Nur mit notwendigen Daten fortfahren|仅使用必要存储并继续
 Cookie details|Cookie-Details|Cookie 详情
 Hide details|Details ausblenden|隐藏详情
-Aster uses essential storage for sign-in and saving your work. No advertising or optional analytics cookies are active.|Aster nutzt notwendigen Speicher für Anmeldung und Lernfortschritt. Werbe- und optionale Analyse-Cookies sind nicht aktiv.|Aster 使用必要存储来登录和保存学习内容，目前未启用广告或可选分析 Cookie。
+Learnify uses essential storage for sign-in and saving your work. No advertising or optional analytics cookies are active.|Learnify nutzt notwendigen Speicher für Anmeldung und Lernfortschritt. Werbe- und optionale Analyse-Cookies sind nicht aktiv.|Learnify 使用必要存储来登录和保存学习内容，目前未启用广告或可选分析 Cookie。
 Read the privacy notice|Datenschutzhinweise lesen|阅读隐私声明
 A little focus.|Ein wenig Fokus.|一点专注。
 A lot of possibility.|Viele Möglichkeiten.|无限可能。

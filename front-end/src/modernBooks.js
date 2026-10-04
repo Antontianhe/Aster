@@ -1,6 +1,6 @@
 // Bibliographic details checked against the linked publisher/author sources, 20 September 2026.
-// Descriptions are original reading prompts. These licensed works are not copied into Aster.
-const edition=(title,author,url,description,topics,stages=['Grade 8','IGCSE'])=>({id:'modern-'+title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-$/,''),title,author,url,source:url,description,topics,stages,subject:'english',language:'English',access:'publisher',connection:'Optional wider reading',rights:'Borrow a library copy or use an authorized publisher edition. This link provides official book information; a free full text is not included in Aster.'});
+// Descriptions are original reading prompts. These licensed works are not copied into Learnify.
+const edition=(title,author,url,description,topics,stages=['Grade 8','IGCSE'])=>({id:'modern-'+title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-$/,''),title,author,url,source:url,description,topics,stages,subject:'english',language:'English',access:'publisher',connection:'Optional wider reading',rights:'Borrow a library copy or use an authorized publisher edition. This link provides official book information; a free full text is not included in Learnify.'});
 const hp='https://www.bloomsbury.com/uk/harry-potter/';
 const pj='https://rickriordan.com/series/percy-jackson-and-the-olympians/';
 const hg='https://www.scholastic.com/newsroom/online-press-kits/hunger-games-series.html';

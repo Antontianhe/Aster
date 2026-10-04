@@ -73,8 +73,8 @@ Recover without replacing.|Wiederherstellen, ohne zu ersetzen.|恢复成果，�
 Import tasks, study notes, writing projects, and study sets. Your existing work stays here.|Importiere Aufgaben, Lernnotizen, Schreibprojekte und Lernsets. Deine vorhandene Arbeit bleibt erhalten.|导入任务、学习笔记、写作项目和学习卡组，现有内容会保留。
 Working…|Wird verarbeitet…|正在处理…
 Choose a backup|Sicherung auswählen|选择备份
-Choose an Aster backup file|Aster-Sicherungsdatei auswählen|选择 Aster 备份文件
-Aster JSON · up to 5 MB. Review the contents before importing.|Aster JSON · bis 5 MB. Prüfe den Inhalt vor dem Import.|Aster JSON · 最大 5 MB，导入前可检查内容。
+Choose an Learnify backup file|Learnify-Sicherungsdatei auswählen|选择 Learnify 备份文件
+Learnify JSON · up to 5 MB. Review the contents before importing.|Learnify JSON · bis 5 MB. Prüfe den Inhalt vor dem Import.|Learnify JSON · 最大 5 MB，导入前可检查内容。
 Import restores these four kinds of work only. Progress, coins, membership, passwords, school connections, and privacy choices are not imported.|Der Import stellt nur diese vier Arten von Arbeit wieder her. Fortschritt, Münzen, Mitgliedschaft, Passwörter, Schulverbindungen und Datenschutzeinstellungen werden nicht importiert.|导入仅恢复这四类内容，不导入进度、金币、会员、密码、学校连接或隐私设置。
 Review your import|Import prüfen|检查导入内容
 Tasks|Aufgaben|任务
@@ -101,9 +101,9 @@ edited items kept|bearbeitete Einträge behalten|项已编辑内容已保留
 Undo the last import|Letzten Import rückgängig machen|撤销上次导入
 Only unchanged items from the last import will be removed. Anything you edited will stay.|Nur unveränderte Einträge des letzten Imports werden entfernt. Bearbeitete Einträge bleiben erhalten.|仅移除上次导入后未修改的内容，你编辑过的内容会保留。
 Undo last import|Letzten Import rückgängig machen|撤销上次导入
-Choose an Aster backup smaller than 5 MB.|Wähle eine Aster-Sicherung unter 5 MB.|请选择小于 5 MB 的 Aster 备份。
-This file is not valid JSON. Choose an Aster backup.|Diese Datei ist kein gültiges JSON. Wähle eine Aster-Sicherung.|文件不是有效 JSON，请选择 Aster 备份。
-Choose a supported Aster workspace backup (version 4 or 5).|Wähle eine unterstützte Aster-Sicherung (Version 4 oder 5).|请选择支持的 Aster 工作区备份（版本 4 或 5）。
+Choose an Learnify backup smaller than 5 MB.|Wähle eine Learnify-Sicherung unter 5 MB.|请选择小于 5 MB 的 Learnify 备份。
+This file is not valid JSON. Choose an Learnify backup.|Diese Datei ist kein gültiges JSON. Wähle eine Learnify-Sicherung.|文件不是有效 JSON，请选择 Learnify 备份。
+Choose a supported Learnify workspace backup (version 4 or 5).|Wähle eine unterstützte Learnify-Sicherung (Version 4 oder 5).|请选择支持的 Learnify 工作区备份（版本 4 或 5）。
 A backup section has an invalid format.|Ein Sicherungsbereich hat ein ungültiges Format.|备份中的某个部分格式无效。
 The import could not be saved. Export your current work and check browser storage space.|Der Import konnte nicht gespeichert werden. Exportiere deine Arbeit und prüfe den Browserspeicher.|无法保存导入内容，请先导出现有成果并检查浏览器存储空间。`;
 export const essentialsTranslations = { de: {}, zh: {} };

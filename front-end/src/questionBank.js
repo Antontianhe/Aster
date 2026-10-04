@@ -1,7 +1,7 @@
 import {CONCEPTS} from './questionConcepts.js';
 import {APPLICATIONS} from './questionApplications.js';
 
-const sourceLabel='Original Aster practice';
+const sourceLabel='Original Learnify practice';
 function pack(subject, key, topic, level, q, answer, distractors, why, concept=key){
  const options=[answer,...distractors].map(String);
  return {id:`aster-${subject}-${key}`,concept:`${subject}-${concept}`,topic,level,q,options,a:0,why,sourceLabel};

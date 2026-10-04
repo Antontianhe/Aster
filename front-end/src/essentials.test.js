@@ -7,6 +7,9 @@ import { SAMPLE_SET } from './studySets.js';
 
 const task = (id = 'local-a', patch = {}) => ({ ...quickTask({ title: 'Check expanding brackets', course: 'maths', due: '2026-09-24', estimateMinutes: 25 }, id), ...patch });
 const backup = patch => JSON.stringify({ app: 'Aster', version: 4, ...patch });
+test('Learnify backups and existing Aster backups remain importable after the rename',()=>{
+ assert.deepEqual(parseBackup(backup({app:'Learnify'})).sections,parseBackup(backup({})).sections);
+});
 const note = (id = 'note-a', patch = {}) => ({ id, subject: 'maths', title: 'Factorising', cue: 'What is the common factor?', notes: 'Look at every term.', summary: 'Factor all terms.', updatedAt: '2026-09-24T09:00:00Z', ...patch });
 
 test('task status remains shared with homework completion and does not mutate input', () => {

@@ -4,7 +4,7 @@ import { ART_CONTENT, SUBJECT_META } from './schoolExtras.js';
 import { EXTRA_QUESTIONS,selectPractice } from './questionBank.js';
 
 const CLASS_COURSES={...BASE_COURSES,art:{...BASE_COURSES.art,...ART_CONTENT}};
-export const COURSES=Object.fromEntries(Object.entries(CLASS_COURSES).map(([id,course])=>[id,{...course,questions:[...course.questions.map((q,i)=>({...q,id:`class-${id}-${i}`,topic:'Classroom review',level:'foundation',sourceLabel:'Aster classroom review',source:course.unitSource||course.source})),...(EXTRA_QUESTIONS[id]||[]).filter(q=>!course.questions.some(original=>original.q===q.q))]}]));
+export const COURSES=Object.fromEntries(Object.entries(CLASS_COURSES).map(([id,course])=>[id,{...course,questions:[...course.questions.map((q,i)=>({...q,id:`class-${id}-${i}`,topic:'Classroom review',level:'foundation',sourceLabel:'Learnify classroom review',source:course.unitSource||course.source})),...(EXTRA_QUESTIONS[id]||[]).filter(q=>!course.questions.some(original=>original.q===q.q))]}]));
 export { SUBJECT_META };
 export const SUBJECT_ORDER = ['maths','science','english','music','computing','german','spanish','social','art','drama','pe','advising','homeroom'];
 export const PROGRESS_KEY='dinostudy-progress-v2';
