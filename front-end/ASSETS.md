@@ -63,3 +63,9 @@ Legacy modern-book metadata references Bloomsbury, Rick Riordan, Scholastic, and
 ## Complete-edition import (3 October 2026)
 
 The collection was expanded from Project Gutenberg’s [officially listed mirror](https://www.gutenberg.org/MIRRORS.ALL), using its machine-readable edition metadata and complete UTF-8 files. The manual importer rejects missing edition boundaries, unavailable files, and records whose contributor dates or reuse status could not be verified. Texts retain their original licences and credits. Book files load only when their reader opens.
+
+## Learnify logo and science cards (4 October 2026)
+
+The Learnify open-book / ascending-pages mark, wordmark composition and favicon are original vector identity artwork in `src/components/BrandLogo.jsx` and `public/favicon.svg`. Its animations and the experiment cards reuse [Motion for React](https://motion.dev/docs/react-animation) (MIT, already installed); gesture and spring APIs animate the existing elements. All science-card pictograms and controls come from [Lucide](https://lucide.dev/license) (ISC). No external gallery images, proprietary animation assets or third-party website designs were copied. Package licence notices remain in their dependencies.
+
+The in-app school-document and competition-paper reader reuses [Mozilla PDF.js](https://mozilla.github.io/pdf.js/) (Apache-2.0), including its bundled worker, to render original PDFs without depending on a native browser PDF plugin. Original documents retain their own notices.
