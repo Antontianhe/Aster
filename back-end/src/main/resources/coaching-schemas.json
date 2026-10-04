@@ -1,1 +1,179 @@
-{"read":{"type":"object","properties":{"readable":{"type":"boolean"},"summary":{"type":"string"},"transcription":{"type":"string"},"strengths":{"type":"array","items":{"type":"string"},"maxItems":3},"limitations":{"type":"string"},"weaknesses":{"type":"array","items":{"type":"object","properties":{"topic":{"type":"string"},"evidence":{"type":"string"},"recommendation":{"type":"string"},"confidence":{"type":"string","enum":["low","medium","high"]}},"required":["topic","evidence","recommendation","confidence"],"additionalProperties":false},"maxItems":4}},"required":["readable","summary","transcription","strengths","limitations","weaknesses"],"additionalProperties":false},"practice":{"type":"object","properties":{"questions":{"type":"array","items":{"type":"object","properties":{"topic":{"type":"string"},"question":{"type":"string"},"choices":{"type":"array","items":{"type":"string"},"minItems":4,"maxItems":4},"answerIndex":{"type":"integer","minimum":0,"maximum":3},"explanation":{"type":"string"}},"required":["topic","question","choices","answerIndex","explanation"],"additionalProperties":false},"minItems":3,"maxItems":4}},"required":["questions"],"additionalProperties":false}}
+{
+  "read": {
+    "type": "object",
+    "properties": {
+      "readable": {
+        "type": "boolean"
+      },
+      "summary": {
+        "type": "string"
+      },
+      "transcription": {
+        "type": "string"
+      },
+      "strengths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 3
+      },
+      "limitations": {
+        "type": "string"
+      },
+      "weaknesses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "topic": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "string"
+            },
+            "recommendation": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          },
+          "required": [
+            "topic",
+            "evidence",
+            "recommendation",
+            "confidence"
+          ],
+          "additionalProperties": false
+        },
+        "maxItems": 4
+      },
+      "mistakes": {
+        "type": "array",
+        "maxItems": 6,
+        "items": {
+          "type": "object",
+          "properties": {
+            "questionNumber": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            },
+            "originalAnswer": {
+              "type": "string"
+            },
+            "teacherFeedback": {
+              "type": "string"
+            },
+            "topic": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "questionNumber",
+            "question",
+            "originalAnswer",
+            "teacherFeedback",
+            "topic"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "readable",
+      "summary",
+      "transcription",
+      "strengths",
+      "limitations",
+      "weaknesses",
+      "mistakes"
+    ],
+    "additionalProperties": false
+  },
+  "practice": {
+    "type": "object",
+    "properties": {
+      "questions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "topic": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            },
+            "choices": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "answerIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "explanation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "topic",
+            "question",
+            "choices",
+            "answerIndex",
+            "explanation"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 3,
+        "maxItems": 4
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "additionalProperties": false
+  },
+  "repair": {
+    "type": "object",
+    "properties": {
+      "verdict": {
+        "type": "string",
+        "enum": [
+          "improved",
+          "revisit",
+          "unclear"
+        ]
+      },
+      "feedback": {
+        "type": "string"
+      },
+      "nextStep": {
+        "type": "string"
+      },
+      "suggestedAnswer": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "verdict",
+      "feedback",
+      "nextStep",
+      "suggestedAnswer"
+    ],
+    "additionalProperties": false
+  }
+}
