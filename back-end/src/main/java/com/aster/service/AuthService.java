@@ -8,6 +8,8 @@ import com.aster.security.Passwords;
 import jakarta.servlet.http.*;
 import java.security.SecureRandom;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -84,6 +86,7 @@ public class AuthService {
   public Map<String, Object> register(Map<String, Object> b) {
     validateCredentials(b);
     var consent = consent(b);
+    String birthday = validateBirthday(b.get("dateOfBirth"));
     String id = UUID.randomUUID().toString(),
         username = str(b.get("username")).trim().toLowerCase(Locale.ROOT);
     String name = text(b.get("name"), 30);
@@ -95,8 +98,25 @@ public class AuthService {
           db.insert(new UserEntity(id, str(user.get("name"))));
           db.credentials(id, username, hash);
           db.preferences(id, str(consent.get("contact")), str(consent.get("channel")));
+          db.initialWorkspace(id, write(map("dinostudy-preferences-v3", write(map(
+              "name", user.get("name"), "birthday", birthday.substring(5),
+              "profile", map("fullName", text(b.get("fullName"), 100), "dateOfBirth", birthday,
+                  "email", "email".equals(consent.get("channel")) ? consent.get("contact") : "",
+                  "phone", "phone".equals(consent.get("channel")) ? consent.get("contact") : ""))))));
           return challenge(user);
         });
+  }
+
+  public static String validateBirthday(Object value) {
+    String birthday = str(value);
+    try {
+      LocalDate date = LocalDate.parse(birthday);
+      if (date.isBefore(LocalDate.of(1900, 1, 1)) || date.isAfter(LocalDate.now(ZoneId.of("Europe/Berlin"))))
+        throw new IllegalArgumentException();
+      return date.toString();
+    } catch (Exception e) {
+      throw ApiException.bad("Enter a valid birthday that is not in the future.");
+    }
   }
 
   public Map<String, Object> login(Map<String, Object> b, HttpServletResponse response) {
