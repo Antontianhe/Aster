@@ -51,6 +51,6 @@ export default function StudyWorld({ day, pending, due, onSpark }) {
       {places.map(([kind,label,path,position])=><button key={kind} className={`${s.place} ${s[position]}`} onClick={()=>path?navigate(path):onSpark()}><PlaceArt kind={kind}/><span>{tr(label)}<ArrowUpRight size={12}/></span>{kind==='plan'&&<small>{pending} {tr('open tasks')}</small>}{kind==='spark'&&<small>{tr('One question, every day')}</small>}</button>)}
       <div className={s.home}><button className={s.duoButton} onClick={()=>navigate('buddy')} aria-label={tr('Customize you and your buddy')}><CompanionDuo character={prefs.character} buddy={normalizeBuddy(prefs.buddy)} name={prefs.name} motion={motion}/></button><div className={s.homeLabel}><span>{prefs.name} <i>&</i> {normalizeBuddy(prefs.buddy).name}</span><button onClick={animate} aria-label={tr('High five with your buddy')} title={tr('High five with your buddy')}><Hand size={15}/></button></div></div>
     </div>
-    <div className={s.worldDock}><a href="#/revision?tab=review"><Layers3 size={16}/><b>{due}</b>{tr('ready to revisit')}</a><span className={s.coordinate}>{tr(scene)} <i/> ASTER</span><a href="#/buddy"><Sparkles size={15}/>{tr('Create your avatar')}<ArrowUpRight size={13}/></a></div>
+    <div className={s.worldDock}><a href="#/revision?tab=review"><Layers3 size={16}/><b>{due}</b>{tr('ready to revisit')}</a><span className={s.coordinate}>{tr(scene)} <i/> LEARNIFY</span><a href="#/buddy"><Sparkles size={15}/>{tr('Create your avatar')}<ArrowUpRight size={13}/></a></div>
   </section>;
 }
