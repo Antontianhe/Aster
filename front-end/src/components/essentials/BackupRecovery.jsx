@@ -29,7 +29,7 @@ export default function BackupRecovery() {
     const file = e.target.files?.[0]; e.target.value = ''; if (!file || lock.current) return;
     lock.current = true; setBusy(true); setError(''); setParsed(null); setResult(null);
     try {
-      if (file.size > 5000000) throw new Error('Choose an Aster backup smaller than 5 MB.');
+      if (file.size > 5000000) throw new Error('Choose an Learnify backup smaller than 5 MB.');
       const data = parseBackup(await file.text());
       data.sections.writing = data.sections.writing.map(doc => ({ ...doc, html: cleanHTML(doc.html) }));
       setParsed(data); setName(file.name); setSelected(BACKUP_SECTIONS.filter(section => data.sections[section.id].length).map(section => section.id));
@@ -59,7 +59,7 @@ export default function BackupRecovery() {
     <div className={s.storageStatus}><ShieldCheck size={21}/><span><strong>{tr(user ? 'Account workspace' : 'Browser workspace')}</strong><small>{tr(user ? sync === 'saved' ? 'Your account is up to date.' : sync === 'error' ? 'Account sync needs attention. Download a backup.' : 'Changes are syncing to your local account.' : 'Guest work lives in this browser. Keep a backup before clearing browser data.')}</small></span></div>
     <div className={s.recoveryGrid}>
       <section className={s.recoveryCard}><span className={s.featureIcon}><Download size={24}/></span><span className={s.kicker}>{tr('01 · KEEP A COPY')}</span><h2>{tr('Take your work with you.')}</h2><p>{tr('Download your study workspace, including progress, preferences, tasks, notes, and writing.')}</p><Button disabled={busy} onClick={exportBackup}><Download size={17}/>{tr('Download a backup')}</Button><small>{tr('Keep the file private. It can contain personal school information.')}</small></section>
-      <section className={s.recoveryCard}><span className={s.featureIcon}><ArchiveRestore size={24}/></span><span className={s.kicker}>{tr('02 · BRING WORK BACK')}</span><h2>{tr('Recover without replacing.')} </h2><p>{tr('Import tasks, study notes, writing projects, and study sets. Your existing work stays here.')}</p><label className={s.upload}><Upload size={17}/>{tr(busy ? 'Working…' : 'Choose a backup')}<input type="file" accept=".json,application/json" onChange={choose} disabled={busy} aria-label={tr('Choose an Aster backup file')}/></label><small>{tr('Aster JSON · up to 5 MB. Review the contents before importing.')}</small></section>
+      <section className={s.recoveryCard}><span className={s.featureIcon}><ArchiveRestore size={24}/></span><span className={s.kicker}>{tr('02 · BRING WORK BACK')}</span><h2>{tr('Recover without replacing.')} </h2><p>{tr('Import tasks, study notes, writing projects, and study sets. Your existing work stays here.')}</p><label className={s.upload}><Upload size={17}/>{tr(busy ? 'Working…' : 'Choose a backup')}<input type="file" accept=".json,application/json" onChange={choose} disabled={busy} aria-label={tr('Choose an Learnify backup file')}/></label><small>{tr('Learnify JSON · up to 5 MB. Review the contents before importing.')}</small></section>
     </div>
     <p className={s.footnote}>{tr('Import restores these four kinds of work only. Progress, coins, membership, passwords, school connections, and privacy choices are not imported.')}</p>
     {error && <p className={s.error} role="alert">{tr(error)}</p>}
