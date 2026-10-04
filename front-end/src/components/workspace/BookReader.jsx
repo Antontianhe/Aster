@@ -152,7 +152,7 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
   return <Modal title={`${book.title} · ${tr('reading room')}`} size="large" className={`${s.dialog} ${s.expanded} ${s['dialog-'+prefs.theme]}`} onClose={onClose}>
     <section className={s.reader} data-reader-theme={prefs.theme} aria-label={tr('Book reader')}>
       <div className={s.toolbar}>
-        <div className={s.author}><BookOpen size={18} /><span>{book.author}<small>{tr('Complete edition · read inside Aster')}</small></span></div>
+        <div className={s.author}><BookOpen size={18} /><span>{book.author}<small>{tr('Complete edition · read inside Learnify')}</small></span></div>
         <div className={s.tools}>
           <button aria-label={tr('Reading settings')} aria-pressed={panel === 'settings'} onClick={() => togglePanel('settings')}><Settings2 size={18} /><span>{tr('Appearance')}</span></button>
           <button aria-label={tr('Contents and bookmarks')} aria-pressed={panel === 'contents'} onClick={() => togglePanel('contents')}><List size={18} /><span>{tr('Contents')}</span></button>

@@ -138,7 +138,7 @@ function BookDetails({ book, state, update, onRead, onClose }) {
       <span className={s.kicker}>{tr(COURSES[book.subject]?.name || book.subject)} · {tr(book.language)}</span><h2>{book.title}</h2>
       {book.subtitle && <h3>{book.subtitle}</h3>}<p className={b.detailAuthor}>{book.author}</p><p>{tr(book.description)}</p>
       <div className={b.topicPills}>{book.topics.map(topic => <span className={s.pill} key={topic}>{tr(topic)}</span>)}</div>
-      <div className={b.accessNote}><strong>{tr('The complete book, inside Aster.')}</strong><p>{book.words ? `${book.words.toLocaleString()} ${tr('words')} · ` : ''}{tr('Adjust the text, highlight passages, and save your notes as you read.')}</p></div>
+      <div className={b.accessNote}><strong>{tr('The complete book, inside Learnify.')}</strong><p>{book.words ? `${book.words.toLocaleString()} ${tr('words')} · ` : ''}{tr('Adjust the text, highlight passages, and save your notes as you read.')}</p></div>
       <Button onClick={onRead}><BookOpen size={16} />{tr('Read full book here')}</Button>
       <p className={s.sourceLine}><a href={book.source} target="_blank" rel="noopener noreferrer">{tr('Source & edition credits')}</a> · {book.stages.join(' / ')}</p>
       <div className={b.readingControls}>
