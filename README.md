@@ -1,8 +1,8 @@
 [English](README.md) | [Deutsch](README.de.md) | [简体中文](README.zh-CN.md) | [Español](README.es.md) | [Français](README.fr.md) | [Português](README.pt.md) | [Italiano](README.it.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [العربية](README.ar.md)
 
-# Aster
+# Learnify
 
-Aster is a local learning workspace for secondary-school, Cambridge IGCSE, and IB students. It brings revision, planning, reading, writing, school information, and an optional AI study companion into one interface.
+Learnify (formerly Aster) is a local learning workspace for secondary-school, Cambridge IGCSE, and IB students. It brings revision, planning, reading, writing, school information, and an optional AI study companion into one interface.
 
 The project is organized into **`front-end`**, **`back-end`**, and **`database`**. The frontend remains React + JavaScript + HTML + CSS. The API is implemented in **Java + Spring Boot + Maven + MyBatis Plus**, backed by **MySQL**.
 
@@ -240,7 +240,7 @@ These resources are not a claim of complete coverage of every syllabus, examinat
 
 ### School information and accounts
 
-- Username/password accounts, expiring sessions, account-separated workspace synchronization, and optional owner insights.
+- Username/password accounts, expiring sessions, account-separated workspace synchronization, and optional owner insights. Five consecutive wrong passwords lock that username for five minutes, with a countdown on the sign-in page. A correct password resets the failure count; refreshing or restarting the app does not clear an active lockout.
 - Grade entries/CSV imports with comparisons within compatible grading scales.
 - A private local Schoolbox timetable, enrolled-course resource catalogue, Veracross calendar and assessment snapshot. Today shows actual dated classes; Planner combines lessons, events, exams and dated revision plans. Confirmed school closures suppress regular lessons.
 - Private Schoolbox news RSS connections encrypted in MySQL and checked every 60 seconds while the service runs. Only posts included in that feed update automatically.
@@ -393,3 +393,13 @@ Assessments are separated into upcoming and past using the Berlin school date. P
 Opening a local book fills the app viewport with an independent paper, sepia or night reading room. Layered paper, a spine shadow, and reversible 3D page turns replace the old dashboard backdrop. Use **Left/Right arrows** to turn pages, **Home/End** to reach the first/last page, **F** for browser fullscreen, or swipe horizontally on touch screens. **Escape** closes the reader (the browser may first exit native fullscreen). Native fullscreen requires a user gesture and may be restricted by an embedded browser; the reader still fills the app viewport.
 
 Shortcuts do not interrupt typing or text selections. Existing chapter navigation, bookmarks, highlights, notes, and reading progress are preserved. System/app reduced-motion preferences disable page-turn motion. The reader's pages are digital reading chunks, not printed edition page numbers.
+
+### Learnify identity and experiment gallery
+
+The website uses Learnify throughout its visible interface, translations, page titles, exports and account screens. Its original vector logo is a folded open book with ascending pages and a rising spark. Motion powers its opening sequence and hover replay; the welcome page has an explicit replay control. The favicon uses the same mark. Storage identifiers, local service names and API headers keep their existing names for compatibility, and both Aster and Learnify backups remain readable.
+
+Science Lab opens a responsive gallery of thirteen compact cards, each with a title, description and subject. Motion supplies spring tilt, raised layers, hover/focus motion and press feedback, and Lucide supplies all experiment icons. Keyboard focus and touch work without hover; reduced motion disables the tilt and movement. Each card opens a dedicated, directly linkable experiment view, such as `/#/science?experiment=refraction`, with a back link that preserves the category filter.
+
+Science resources are separated into Chemistry, Physics and Biology in both **Science Lab → School resources** and **My subjects → Science → Resources**. Teacher unit labels take priority over title keywords. Shared or unclassified files stay in General Science. Branch counts respect search, format and grade filters; Science initially includes previous-year resources and labels each file’s grade. Branch selection is preserved in the URL.
+
+School PDFs and official competition papers render through the lazy-loaded Mozilla PDF.js reader, with page selection, zoom and copyable page text. The local server caches only catalogue-approved official paper URLs under ignored `.work/paper-cache/`; a connection is needed for the first open. This avoids reliance on the embedded browser’s native PDF plugin.
