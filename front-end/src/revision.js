@@ -62,7 +62,12 @@ export function revisionQueue(schedule, { subject = 'all', filter = 'due', query
   }).sort((a, b) => Number(b.due) - Number(a.due) || Number(a.correct) - Number(b.correct) || Date.parse(a.dueAt) - Date.parse(b.dueAt));
 }
 
-export function revisionAnalytics(attempts = [], sessions = [], schedule = {}, now = new Date()) {
+export function revisionAnalytics(attempts = [], sessions = [], schedule = {}, now = new Date(), subject) {
+  if (subject) {
+    attempts = attempts.filter(a => a.subject === subject);
+    sessions = sessions.filter(s => s.subject === subject);
+    schedule = Object.fromEntries(Object.entries(schedule).filter(([key]) => QUESTION_INDEX[key]?.subject === subject));
+  }
   const today = dayKey(now), start = shiftDay(today, -27), priorStart = shiftDay(today, -13), weekStart = shiftDay(today, -6);
   const days = Array.from({ length: 28 }, (_, index) => ({ day: shiftDay(start, index), attempts: 0, correct: 0, minutes: 0 }));
   const byDay = new Map(days.map(day => [day.day, day]));
@@ -78,7 +83,7 @@ export function revisionAnalytics(attempts = [], sessions = [], schedule = {}, n
   }
   const week = days.filter(d => d.day >= weekStart), previous = days.filter(d => d.day >= priorStart && d.day < weekStart);
   const summarise = rows => { const total = rows.reduce((n, d) => n + d.attempts, 0), correct = rows.reduce((n, d) => n + d.correct, 0); return { total, correct, accuracy: total ? Math.round(100 * correct / total) : null, minutes: rows.reduce((n, d) => n + d.minutes, 0), activeDays: rows.filter(d => d.attempts || d.minutes).length }; };
-  const subjects = SUBJECT_ORDER.map(subject => {
+  const subjects = SUBJECT_ORDER.filter(id => !subject || id === subject).map(subject => {
     const answers = valid.filter(a => a.subject === subject), seen = Object.keys(schedule).filter(key => QUESTION_INDEX[key]?.subject === subject).length;
     return { subject, total: answers.length, correct: answers.filter(a => a.correct).length, seen, bank: COURSES[subject].questions.length, accuracy: answers.length ? Math.round(100 * answers.filter(a => a.correct).length / answers.length) : null };
   });

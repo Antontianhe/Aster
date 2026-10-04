@@ -1,8 +1,11 @@
+import {learningMultiplier} from './activityRewards.js';
+import {ProfilePortrait} from './components/buddy/CharacterAvatar.jsx';
 import PublicPages from './components/home/PublicPages.jsx';
 import { changeTaskStatus, taskStatus } from './taskBoard.js';
 import { REVISION_KEY, NOTEBOOK_KEY, normalizeSchedule, seedSchedule, scheduleAttempt } from './revision.js';
 import {useEconomy} from './hooks/useEconomy.js';
 import Dashboard from './components/home/Dashboard.jsx';
+import CelebrationBackground from './components/home/CelebrationBackground.jsx';
 import Landing,{PublicHeader,PublicFooter} from './components/home/Landing.jsx';
 import {NAV_GROUPS,groupFor,SectionTabs} from './components/home/Navigation.jsx';
 import Membership,{ProGate,FREE_ROUTES} from './components/account/Membership.jsx';
@@ -20,7 +23,10 @@ import { AppContext } from './context.jsx';
 import { COURSES, SUBJECT_ORDER, RESOURCES, SUBJECT_META, PROGRESS_KEY, PREFS_KEY, SESSIONS_KEY, BOOKMARKS_KEY, DEFAULT_PREFS, loadProgress, readStored, finishReview, dayKey, minutesLabel } from './study.js';
 import { HOMEWORK_KEY, loadHomework, sortHomework, dueLabel, dueTimestamp, reminderLabel, isReminderDue, reminderKey, downloadCalendar } from './homework.js';
 import { SCHOOL } from './schoolData.js';
-import { Overview, Subjects, SubjectPage, Homework, Planner, Library, Practice } from './components/Pages.jsx';
+import { Overview, Homework, Practice } from './components/Pages.jsx';
+import {ConnectedSubjects as Subjects,ConnectedSubject as SubjectPage} from './components/school/SubjectWorkspace.jsx';
+import Planner from './components/school/ConnectedPlanner.jsx';
+import {SchoolResources as Library} from './components/school/SchoolConnection.jsx';
 import { Quiz, Flashcards, FocusRoom } from './components/StudyTools.jsx';
 import { Blue, Button, Modal, PageHeading, ColorIcon, SubjectTag, External, TaskEditor, Progress, Empty } from './components/UI.jsx';
 import { useApp } from './context.jsx';
@@ -31,8 +37,10 @@ import { RewardBurst } from './components/neon/RewardBurst.jsx';
 import { progressReducer, completePathStage, lessonUnlocked, tierFor } from './progression.js';
 import { STUDY_SETS_KEY, loadStudySets } from './studySets.js';
 import { useStudyAudio } from './hooks/useStudyAudio.js';
-const SchoolHub=lazy(()=>import('./components/school/SchoolHub.jsx'));
-const Competitions=lazy(()=>import('./components/school/Competitions.jsx'));
+const SchoolHub=lazy(()=>import('./components/school/ConnectedSchoolHub.jsx'));
+const Competitions=lazy(()=>import('./components/school/CompetitionHub.jsx'));
+const Celebrations=lazy(()=>import('./components/home/Celebrations.jsx'));
+const Profile=lazy(()=>import('./components/account/Profile.jsx'));
 const BuddyGarden=lazy(()=>import('./components/buddy/BuddyGarden.jsx'));
 const BuddyHelper=lazy(()=>import('./components/buddy/BuddyGarden.jsx').then(m=>({default:m.BuddyHelper})));
 const StudyLab = lazy(() => import('./components/lab/StudyLab.jsx'));
@@ -40,7 +48,11 @@ const Books = lazy(() => import('./components/workspace/Books.jsx'));
 const Headlines = lazy(() => import('./components/workspace/Headlines.jsx'));
 const Roadmap = lazy(() => import('./components/workspace/Roadmap.jsx'));
 const Arcade = lazy(() => import('./components/workspace/Arcade.jsx'));
-const MockExams=lazy(()=>import('./components/curriculum/MockExams.jsx'));
+const Exams=lazy(()=>import('./components/curriculum/Exams.jsx'));
+const ConversationRoom=lazy(()=>import('./components/activities/ConversationRoom.jsx'));
+const DailyClaw=lazy(()=>import('./components/activities/DailyClaw.jsx'));
+const MathSprint=lazy(()=>import('./components/activities/MathSprint.jsx'));
+const Science=lazy(()=>import('./components/workspace/Science.jsx'));
 const Community=lazy(()=>import('./components/community/Community.jsx'));
 const ResearchDesk=lazy(()=>import('./components/workspace/ResearchDesk.jsx'));
 const TaskBoard=lazy(()=>import('./components/essentials/TaskBoard.jsx'));
@@ -48,15 +60,21 @@ const BackupRecovery=lazy(()=>import('./components/essentials/BackupRecovery.jsx
 const RevisionCentre=lazy(()=>import('./components/revision/RevisionCentre.jsx'));
 const Comprehension=lazy(()=>import('./components/curriculum/Comprehension.jsx'));
 const WritingStudio=lazy(()=>import('./components/workspace/WritingStudio.jsx'));
-const ExamCoach=lazy(()=>import('./components/curriculum/ExamCoach.jsx'));
+
 const Curriculum=lazy(()=>import('./components/curriculum/Curriculum.jsx'));
-const nav = [['board','Task board',CalendarDays],['backup','Backup & recovery',Download],['overview','Today',Home],['path','Learning path',Route],['subjects','My subjects',LayoutGrid],['curriculum','IGCSE & IB',GraduationCap],['exams','Mock exams',FileText],['exam-coach','Exam Coach',FileText],['writing','Writing studio',FileText],['research','Research desk',Search],['comprehension','English reading room',BookOpen],['homework','Homework',CalendarDays],['planner','My planner',CalendarDays],['school','School hub',School],['practice','Quick review',Layers3],['revision','Revision centre',Target],['lab','Study lab',FlaskConical],['helper','Ask your buddy',Sparkles],['community','Student lounge',MessagesSquare],['competitions','Competitions',Target],['resources','Resource shelf',BookOpen],['books','Book library',LibraryBig],['roadmap','Road to IGCSE & IB',Route],['buddy','Buddy garden',Heart],['headlines','Headlines & weather',Globe2],['arcade','Study arcade',Gamepad2]];
+const nav = [['board','Task board',CalendarDays],['backup','Backup & recovery',Download],['overview','Today',Home],['path','Learning path',Route],['subjects','My subjects',LayoutGrid],['curriculum','IGCSE & IB',GraduationCap],['exams','Exams',FileText],['science','Science',FlaskConical],['oral','Speaking room',MessagesSquare],['debate','Speaking room · Debate',MessagesSquare],['claw','Daily claw',Sparkles],['math-game','Number stage',Gamepad2],['writing','Writing studio',FileText],['research','Research desk',Search],['comprehension','English reading room',BookOpen],['homework','Homework',CalendarDays],['planner','My planner',CalendarDays],['school','School hub',School],['practice','Quick review',Layers3],['revision','Revision centre',Target],['lab','Study lab',FlaskConical],['helper','Ask your buddy',Sparkles],['community','Student lounge',MessagesSquare],['competitions','Competitions',Target],['resources','Resource shelf',BookOpen],['books','Book library',LibraryBig],['roadmap','Road to IGCSE & IB',Route],['buddy','Buddy garden',Heart],['headlines','Headlines & weather',Globe2],['arcade','Study arcade',Gamepad2]];
 function getRoute() {
   const raw = window.location.hash.slice(2) || 'overview';
-  const [path, query = ''] = raw.split('?');
+  let [path, query = ''] = raw.split('?');
+  const params=new URLSearchParams(query);
+  if(path==='path'){path='subjects';params.set('view','path');}
+  if(path==='comprehension'){path='subjects/english';params.set('tab','english');}
+  if(path==='practice'){path='subjects/'+(COURSES[params.get('subject')]?params.get('subject'):'maths');params.set('tab','practice');}
+  if(path==='revision'){path='subjects/'+(COURSES[params.get('subject')]?params.get('subject'):'maths');if(params.has('tab'))params.set('reviewtab',params.get('tab'));params.set('tab','revision');}
+  if(path==='exams'||path==='exam-coach'){params.set('view',path==='exam-coach'||params.get('tab')==='corrections'?'photos':'exams');path='planner';}
   return {
     path,
-    query: new URLSearchParams(query)
+    query: params
   };
 }
 function safePrefs() {
@@ -201,7 +219,7 @@ export default function App() {
   useEffect(() => {
     document.title = `${nav.find(n => route.path.startsWith(n[0]))?.[1] || {
       focus: 'Focus room',
-      research:'Research desk',writing:'Writing studio',comprehension:'English reading room','exam-coach':'Exam Coach',about:'About Aster',features:'Features',contact:'Contact',welcome:'Welcome',pro:'Membership',data:'Privacy & your data',owner:'Owner insights',terms:'Terms & conditions',privacy:'Privacy notice',settings: 'Preferences', signup: 'Create account', login: 'Sign in', account: 'Your account'
+      research:'Research desk',writing:'Writing studio',comprehension:'English reading room','exam-coach':'Exam Coach',about:'About Aster',features:'Features',contact:'Contact',welcome:'Welcome',pro:'Membership',data:'Privacy & your data',owner:'Owner insights',terms:'Terms & conditions',privacy:'Privacy notice',profile:'Your profile',science:'Science',celebrations:'Celebrations',exams:'Exams',settings: 'Preferences', signup: 'Create account', login: 'Sign in', account: 'Your account'
     }[route.path] || 'My study space'} · Aster`;
   }, [route.path]);
   useEffect(() => {
@@ -347,6 +365,7 @@ export default function App() {
         ...p,
         course: id
       }, id, score, total);
+      if(learningMultiplier(prefs,dayKey())===2) next.gems += Math.max(0,score)*2;
       if (mode !== 'review') next.bestScores = p.bestScores;
       if (activity?.subject === id && score / total >= .6 && (mode === 'match' && activity.stage === 2 || mode === 'review' && [1, 4].includes(activity.stage))) next = completePathStage(next, id, activity.stage);
       return next;
@@ -526,19 +545,19 @@ export default function App() {
   if(publicPage||authEntry||(!user&&!demo&&section==='pro'))return <AppContext.Provider value={context}>{route.path==='welcome'||(!user&&!demo&&section==='overview')?<Landing/>:<><PublicHeader/>{authEntry?<AuthPage key={section} signup={section==='signup'} onGuest={startDemo}/>:section==='pro'?<Membership/>:['about','features','contact'].includes(section)?<PublicPages page={section}/>:<LegalPage kind={section}/>}<PublicFooter/></>}<CookieConsent/></AppContext.Provider>;
   return <AppContext.Provider value={context}><CookieConsent/><a className="skip-link" href="#main-content">{tr("Skip to main content")}</a><div onClickCapture={e => {
       if (e.target.closest('button:not(:disabled),a')) playSound('click');
-    }} className={`app ${mobileMenu ? 'menu-open' : ''}`}><aside className="sidebar"><a className="brand" href="#/overview" aria-label={tr("Aster overview")}><span className="brand-mark aster-mark"><svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true"><path d="m16 2 3.8 10.2L30 16l-10.2 3.8L16 30l-3.8-10.2L2 16l10.2-3.8z" fill="currentColor" /><circle cx="25.5" cy="6.5" r="2" fill="currentColor" opacity=".5" /></svg></span><span>{tr("aster")}<small>{tr("STUDY, WITH INTENTION")}</small></span></a><span className="nav-caption">{tr("MY STUDY SPACE")}</span><nav aria-label={tr("Main navigation")}>{NAV_GROUPS.map(({home:path,title:label,icon:Icon})=><a key={path} aria-label={tr(label)} title={tr(label)} href={`#/${path}`} onClick={()=>setMobileMenu(false)} className={`nav-link ${['overview','subjects','planner','buddy'].includes(path)?'mobile-primary':'mobile-secondary'} ${groupFor(section)?.home===path?'active':''}`} aria-current={groupFor(section)?.home===path?'page':undefined}><Icon size={20}/><span data-mobile={tr({overview:'Today',subjects:'Learn',planner:'Plan',buddy:'Buddy'}[path]||label)}>{tr(label)}</span></a>)}<button className={`nav-link mobile-more ${!['overview', 'subjects', 'planner', 'buddy'].includes(section) ? 'active' : ''}`} aria-label={tr("More sections")} onClick={() => setDialog({
+    }} className={`app has-celebration-background ${mobileMenu ? 'menu-open' : ''}`}><CelebrationBackground/><aside className="sidebar"><a className="brand" href="#/overview" aria-label={tr("Aster overview")}><span className="brand-mark aster-mark"><svg width="29" height="29" viewBox="0 0 32 32" aria-hidden="true"><path d="m16 2 3.8 10.2L30 16l-10.2 3.8L16 30l-3.8-10.2L2 16l10.2-3.8z" fill="currentColor" /><circle cx="25.5" cy="6.5" r="2" fill="currentColor" opacity=".5" /></svg></span><span>{tr("aster")}<small>{tr("STUDY, WITH INTENTION")}</small></span></a><span className="nav-caption">{tr("MY STUDY SPACE")}</span><nav aria-label={tr("Main navigation")}>{NAV_GROUPS.map(({home:path,title:label,icon:Icon})=><a key={path} aria-label={tr(label)} title={tr(label)} href={`#/${path}`} onClick={()=>setMobileMenu(false)} className={`nav-link ${['overview','subjects','planner','buddy'].includes(path)?'mobile-primary':'mobile-secondary'} ${groupFor(section)?.home===path?'active':''}`} aria-current={groupFor(section)?.home===path?'page':undefined}><Icon size={20}/><span data-mobile={tr({overview:'Today',subjects:'Learn',planner:'Plan',buddy:'Buddy'}[path]||label)}>{tr(label)}</span></a>)}<button className={`nav-link mobile-more ${!['overview', 'subjects', 'planner', 'buddy'].includes(section) ? 'active' : ''}`} aria-label={tr("More sections")} onClick={() => setDialog({
             type: 'navigation'
           })}><MoreHorizontal size={22} /><span data-mobile={tr("More")}>{tr("More")}</span></button></nav><a href="#/pro" className="sidebar-pro"><Sparkles size={18}/><span><strong>Aster Pro</strong><small>{prefs.proPreview?tr('Preview active'):'€4.99 / '+tr('month')}</small></span><ChevronRight size={17}/></a><div className="sidebar-focus"><span><Timer size={19} />{tr("Focus session")}</span><p>{tr(focus.running ? 'Your focus session is running.' : 'Time set aside for what matters.')}</p><button onClick={() => navigate('focus')}>{tr(focus.running ? `${String(Math.floor(Math.max(0, (focus.endsAt - now) / 1000) / 60)).padStart(2, '0')} min remaining` : 'Enter focus room')}<ArrowUpRight size={15} /></button><span className="sidebar-spark" aria-hidden="true">{tr("✳")}</span></div><div className="sidebar-bottom"><button className="nav-link" aria-label={tr("Preferences")} onClick={() => navigate('settings')}><Settings size={19} /><span>{tr("Preferences")}</span></button><button className="nav-link" aria-label={tr("Help & information")} onClick={() => setDialog({
             type: 'help'
           })}><HelpCircle size={19} /><span>{tr("Help & information")}</span></button><div className="school-account"><span className="school-account-icon"><School size={20} /></span><span><strong>{tr("ISR School")}</strong><small>{tr("Grade 8 · Term 1")}</small></span><External href={SCHOOL.url} aria-label={tr("Open ISR Schoolbox")} /></div></div></aside>{tr(mobileMenu && <button className="sidebar-scrim" aria-label={tr("Close navigation")} onClick={() => setMobileMenu(false)} />)}
  <div className="main-shell"><header className="topbar"><div className="topbar-left"><button className="icon-button mobile-menu-button" aria-label={tr("Open navigation")} aria-expanded={mobileMenu} onClick={() => setMobileMenu(v => !v)}><Menu size={22} /></button><span className="topbar-home"><Home size={15} />{tr(" My space ")}<ChevronRight size={13} /><strong>{tr(nav.find(n => n[0] === section)?.[1] || {
-                  research:'Research desk',writing:'Writing studio',comprehension:'English reading room','exam-coach':'Exam Coach',about:'About Aster',features:'Features',contact:'Contact',welcome:'Welcome',pro:'Membership',data:'Privacy & your data',owner:'Owner insights',terms:'Terms & conditions',privacy:'Privacy notice',settings: 'Preferences', signup: 'Create account', login: 'Sign in', account: 'Your account',
+                  research:'Research desk',writing:'Writing studio',comprehension:'English reading room','exam-coach':'Exam Coach',about:'About Aster',features:'Features',contact:'Contact',welcome:'Welcome',pro:'Membership',data:'Privacy & your data',owner:'Owner insights',terms:'Terms & conditions',privacy:'Privacy notice',profile:'Your profile',science:'Science',celebrations:'Celebrations',exams:'Exams',settings: 'Preferences', signup: 'Create account', login: 'Sign in', account: 'Your account',
                   focus: 'Focus room'
                 }[section] || 'Overview')}</strong></span></div><div className="topbar-actions"><ExperienceSwitch/><LanguageSelector/><button className="icon-button theme-toggle" aria-label={tr(prefs.theme==='dark'?'Switch to light mode':'Switch to dark mode')} onClick={()=>setPrefs(p=>({...p,theme:p.theme==='dark'?'light':'dark'}))}>{prefs.theme==='dark'?<Sun size={18}/>:<Moon size={18}/>}</button><AccountStatus/><button aria-label={tr("Search your workspace")} className="global-search" onClick={() => setDialog({
               type: 'search'
             })}><Search size={17} /><span>{tr("Search your workspace…")}</span><kbd>{tr("Ctrl K")}</kbd></button><button className="notification-button icon-button" aria-label={tr("Open reminders")} onClick={() => setDialog({
               type: 'notifications'
-            })}><Bell size={20} />{tr(dueSoon.length > 0 && <i />)}</button><span className="topbar-divider" /><button className="user-menu" onClick={() => navigate('settings')} aria-label={tr("Open profile preferences")}><span className="avatar">{tr(prefs.name[0].toUpperCase())}</span><span><strong>{tr(prefs.name)}</strong><small>{tr("Grade 8 · ISR")}</small></span></button></div></header><main className="page-container" id="main-content" tabIndex={-1}><SectionTabs section={section}/><div className="page-enter" key={route.path}><Suspense fallback={<div className="route-loading" role="status" aria-label={tr("Loading your workspace")}><span /><span /><span /></div>}>{tr(route.path==='pro'?<Membership/>:route.path==='data'?<DataPrivacy/>:route.path==='owner'?<OwnerInsights/>:!prefs.proPreview&&!FREE_ROUTES.has(section)?<ProGate/>:['login','signup','account'].includes(route.path)?<AuthPage key={route.path} signup={route.path==='signup'}/>:route.path==='board'?<TaskBoard/>:route.path==='backup'?<BackupRecovery/>:route.path==='revision'?<ReviewBoundary onClose={()=>navigate('overview')}><RevisionCentre/></ReviewBoundary>:route.path==='research'?<ResearchDesk/>:route.path==='comprehension'?<Comprehension/>:route.path==='writing'?<WritingStudio/>:route.path==='exam-coach'?<ExamCoach/>:route.path==='exams'?<MockExams/>:route.path==='community'?<Community/>:route.path==='curriculum'?<Curriculum/>:route.path==='school'?<SchoolHub/>:route.path==='competitions'?<Competitions/>:route.path==='buddy'?<BuddyGarden/>:route.path==='helper'?<BuddyHelper/>:route.path === 'overview' ? <Dashboard /> : route.path === 'path' ? <NeonOverview /> : route.path === 'subjects' ? <Subjects /> : route.path.startsWith('subjects/') ? <SubjectPage id={route.path.split('/')[1]} /> : route.path === 'homework' ? <Homework /> : route.path === 'planner' ? <Planner /> : route.path === 'practice' ? <Practice /> : route.path === 'resources' ? <Library /> : route.path === 'lab' ? <StudyLab /> : route.path === 'books' ? <Books /> : route.path === 'headlines' ? <Headlines /> : route.path === 'roadmap' ? <Roadmap /> : route.path === 'arcade' ? <Arcade /> : route.path === 'focus' ? <FocusRoom /> : route.path === 'settings' ? <SettingsPage /> : <Empty title={tr("Let’s get you back to your space")} action={<Button onClick={() => navigate('overview')}>{tr("Go to overview")}</Button>}>{tr("This page doesn’t exist.")}</Empty>)}</Suspense></div><footer className="page-footer"><span><a href="#/about">{tr("About Aster")}</a> · <a href="#/terms">{tr("Terms")}</a> · <a href="#/privacy">{tr("Privacy")}</a> · <a href="#/data">{tr("Your data")}</a> · <button onClick={()=>window.dispatchEvent(new Event('aster-cookie-settings'))}>{tr("Cookies")}</button></span><span>{tr("Aster ")}<i />{tr("Your study workspace")}</span></footer></main></div></div>
+            })}><Bell size={20} />{tr(dueSoon.length > 0 && <i />)}</button><span className="topbar-divider" /><button className="user-menu" onClick={() => navigate('profile')} aria-label={tr("Open profile preferences")}><span className="avatar" aria-hidden="true"><ProfilePortrait prefs={prefs}/></span><span><strong>{tr(prefs.name)}</strong><small>{tr("Grade 8 · ISR")}</small></span></button></div></header><main className="page-container" id="main-content" tabIndex={-1}><SectionTabs section={section}/><div className="page-enter" key={route.path}><Suspense fallback={<div className="route-loading" role="status" aria-label={tr("Loading your workspace")}><span /><span /><span /></div>}>{tr(route.path==='celebrations'?<Celebrations/>:route.path==='profile'?<Profile settings={<SettingsPage embedded/>}/>:route.path==='pro'?<Membership/>:route.path==='data'?<DataPrivacy/>:route.path==='owner'?<OwnerInsights/>:!prefs.proPreview&&!FREE_ROUTES.has(section)?<ProGate/>:['login','signup','account'].includes(route.path)?<AuthPage key={route.path} signup={route.path==='signup'}/>:route.path==='board'?<TaskBoard/>:route.path==='backup'?<BackupRecovery/>:route.path==='revision'?<ReviewBoundary onClose={()=>navigate('overview')}><RevisionCentre/></ReviewBoundary>:route.path==='research'?<ResearchDesk/>:route.path==='comprehension'?<Comprehension/>:route.path==='writing'?<WritingStudio/>:route.path==='oral'||route.path==='debate'?<ReviewBoundary onClose={()=>navigate('subjects')}><ConversationRoom key={route.path} kind={route.path}/></ReviewBoundary>:route.path==='claw'?<DailyClaw/>:route.path==='math-game'?<ReviewBoundary onClose={()=>navigate('arcade')}><MathSprint/></ReviewBoundary>:route.path==='science'?<Science/>:['exam-coach','exams'].includes(route.path)?<Exams/>:route.path==='community'?<Community/>:route.path==='curriculum'?<Curriculum/>:route.path==='school'?<SchoolHub/>:route.path==='competitions'?<Competitions/>:route.path==='buddy'?<BuddyGarden/>:route.path==='helper'?<BuddyHelper/>:route.path === 'overview' ? <Dashboard /> : route.path === 'path' ? <NeonOverview /> : route.path === 'subjects' ? <Subjects /> : route.path.startsWith('subjects/') ? <SubjectPage id={route.path.split('/')[1]} /> : route.path === 'homework' ? <Homework /> : route.path === 'planner' ? <Planner /> : route.path === 'practice' ? <Practice /> : route.path === 'resources' ? <Library /> : route.path === 'lab' ? <StudyLab /> : route.path === 'books' ? <Books /> : route.path === 'headlines' ? <Headlines /> : route.path === 'roadmap' ? <Roadmap /> : route.path === 'arcade' ? <Arcade /> : route.path === 'focus' ? <FocusRoom /> : route.path === 'settings' ? <SettingsPage /> : <Empty title={tr("Let’s get you back to your space")} action={<Button onClick={() => navigate('overview')}>{tr("Go to overview")}</Button>}>{tr("This page doesn’t exist.")}</Empty>)}</Suspense></div><footer className="page-footer"><span><a href="#/about">{tr("About Aster")}</a> · <a href="#/terms">{tr("Terms")}</a> · <a href="#/privacy">{tr("Privacy")}</a> · <a href="#/data">{tr("Your data")}</a> · <button onClick={()=>window.dispatchEvent(new Event('aster-cookie-settings'))}>{tr("Cookies")}</button></span><span>{tr("Aster ")}<i />{tr("Your study workspace")}</span></footer></main></div></div>
  {tr(review && <ReviewBoundary key={'quiz-' + review} onClose={() => {
       setReviewBatch(null);
       setReview(null);
@@ -571,7 +590,7 @@ export default function App() {
     } : undefined)} defaultDate={dialog.date} onClose={() => setDialog(null)} />)}
  {tr(dialog?.type === 'task-detail' && <TaskDetail id={dialog.id} />)}
  {tr(dialog?.type === 'search' && <SearchDialog />)}
- {tr(dialog?.type === 'navigation' && <Modal title={tr("Explore your workspace")} onClose={() => setDialog(null)}><div className="more-navigation">{tr([...nav, ['focus', 'Focus room', Timer], ['settings', 'Preferences', Settings]].map(([path, label, Icon]) => <button key={path} onClick={() => {
+ {tr(dialog?.type === 'navigation' && <Modal title={tr("Explore your workspace")} onClose={() => setDialog(null)}><div className="more-navigation">{tr([...nav, ['profile', 'Your profile', Settings], ['focus', 'Focus room', Timer], ['settings', 'Preferences', Settings]].map(([path, label, Icon]) => <button key={path} onClick={() => {
           navigate(path);
           setDialog(null);
         }}><Icon size={21} /><span>{tr(label)}</span><ChevronRight size={17} /></button>))}</div></Modal>)}
@@ -648,7 +667,7 @@ function SearchDialog() {
           id: t.id
         })}><span className="command-symbol"><CalendarDays size={19} /></span><span><strong>{tr(t.title)}</strong><small>{tr(COURSES[t.course].name)}</small></span><ChevronRight size={17} /></button>))}</>)}{tr(resources.length > 0 && <><span className="eyebrow">{tr("SCHOOL RESOURCES")}</span>{tr(resources.map(r => <a href={r.url} target="_blank" rel="noreferrer" key={r.id}><span className="command-symbol"><BookOpen size={19} /></span><span><strong>{tr(r.title)}</strong><small>{tr(COURSES[r.subject].name)}</small></span><ArrowUpRight size={17} /></a>))}</>)}{tr(!sections.length && !subjects.length && !tasks.length && !resources.length && <Empty title={tr("No matching results")} icon={Search}>{tr("Try a subject name or a few words from a task.")}</Empty>)}</div><div className="command-footer"><span><Command size={12} />{tr(" Ctrl K to find your way")}</span><span>{tr("School resources open in a new tab")}</span></div></Modal>;
 }
-function SettingsPage() {
+function SettingsPage({embedded=false}) {
   const tr = useT();
   const {
     prefs,
@@ -661,7 +680,7 @@ function SettingsPage() {
     exportBackup,
     exportCalendar
   } = useApp();
-  return <><PageHeading eyebrow={tr("YOUR WORKSPACE, YOUR PREFERENCES.")} title={tr("Personalise your workspace.")} description={tr("Adjust appearance, sound, focus goals, and reminders.")} /><div className="settings-layout"><section className="settings-panel panel"><div className="profile-setting"><span className="avatar large">{tr(prefs.name[0])}</span><div><h2>{tr(prefs.name)}{tr("’s study space")}</h2><p>{tr("ISR · Grade 8 · Term 1, 2026–2027")}</p></div></div><label className="setting-label">{tr("Your display name")}<input value={prefs.name} maxLength={30} onChange={e => setPrefs(p => ({
+  return <>{!embedded&&<PageHeading eyebrow={tr("YOUR WORKSPACE, YOUR PREFERENCES.")} title={tr("Personalise your workspace.")} description={tr("Adjust appearance, sound, focus goals, and reminders.")} />}<div className="settings-layout"><section className="settings-panel panel"><div className="profile-setting"><span className="avatar large" aria-hidden="true"><ProfilePortrait prefs={prefs}/></span><div><h2>{tr(prefs.name)}{tr("’s study space")}</h2><p>{tr("ISR · Grade 8 · Term 1, 2026–2027")}</p></div></div><label className="setting-label">{tr("Your display name")}<input value={prefs.name} maxLength={30} onChange={e => setPrefs(p => ({
             ...p,
             name: e.target.value || 'Anton'
           }))} /></label><div className="settings-divider" /><h3>{tr("Appearance & interaction")}</h3><LanguageSelector full/><ExperienceSettings/><AppearanceSettings/><div className="theme-options">{tr([['light', 'Light mode', Sun], ['dark', 'Dark mode', Moon]].map(([id, label, Icon]) => <button className={prefs.theme === id ? 'selected' : ''} aria-pressed={prefs.theme === id} onClick={() => setPrefs(p => ({
@@ -678,3 +697,6 @@ function SettingsPage() {
             dailyGoal: Number(e.target.value)
           }))}>{tr([15, 25, 50, 90].map(v => <option key={v} value={v}>{tr(v)}{tr(" minutes")}</option>))}</select></div><div className="settings-divider" /><h3>{tr("Homework notifications")}</h3><p className="settings-copy">{tr("Homework reminders show here while Aster is open. For reminders when it’s closed, import an exported calendar into your calendar app.")}</p><div className="settings-actions"><Button variant="secondary" onClick={enableNotifications} disabled={notificationPermission === 'granted' || notificationPermission === 'denied'}><Bell size={16} />{tr(notificationPermission === 'granted' ? 'Alerts enabled' : notificationPermission === 'denied' ? 'Alerts blocked by browser' : 'Enable browser alerts')}</Button><Button variant="secondary" onClick={exportCalendar}><Download size={16} />{tr("Export calendar")}</Button></div></section><aside><div className="settings-blue-card"><Blue interactive className="settings-blue" /><h3>{tr("Your study companion.")}</h3><p>{tr("Progress on your own terms.")}<br />{tr("That’s what we’re here for.")}</p><span>{tr("Tap Blue for a wave.")}</span></div><div className="panel privacy-panel"><span className="color-icon tone-mint"><School size={23} /></span><h3>{tr("Your space stays yours.")}</h3><p>{tr("Guests save in this browser. Signed-in accounts also save to your local MySQL database. School connections show their current sync status on the school hub.")}</p><Button variant="secondary" className="full" onClick={exportBackup}><Download size={16} />{tr("Download a backup")}</Button><p><a href="#/backup">{tr("Backup & recovery")} <ArrowRight size={13}/></a></p><small>{tr("Keep your JSON backup somewhere safe. Clearing browser storage removes local changes.")}</small></div><div className="personal-totals"><div><strong>{tr(progress.sessions)}</strong><span>{tr("Reviews completed")}</span></div><div><strong>{tr(minutesLabel(progress.focusMinutes))}</strong><span>{tr("Focused so far")}</span></div></div></aside></div></>;
 }
+
+
+

@@ -4,6 +4,8 @@ import {TRANSLATIONS} from './translations.js';
 import {revisionTranslations} from './revisionTranslations.js';
 import {essentialsTranslations} from './essentialsTranslations.js';
 import {todayTranslations} from './todayTranslations.js';
+import {examProfileTranslations} from './examProfileTranslations.js';
+import {activityTranslations} from './activityTranslations.js';
 
 export const LANGUAGES=[{id:'en',name:'English',locale:'en-GB'},{id:'de',name:'Deutsch',locale:'de-DE'},{id:'zh',name:'简体中文',locale:'zh-CN'}];
 const LanguageContext=createContext({language:'en',setLanguage:()=>{}});
@@ -12,7 +14,7 @@ export function translate(value,language='en'){
  if(Array.isArray(value))return value.map(item=>translate(item,language));
  if(typeof value!=='string'||language==='en')return value;
  const words=TRANSLATIONS[language]||{};
- const trimmed=value.trim(),found=todayTranslations[language]?.[trimmed]||essentialsTranslations[language]?.[trimmed]||revisionTranslations[language]?.[trimmed]||words[trimmed];
+ const trimmed=value.trim(),found=activityTranslations[language]?.[trimmed]||examProfileTranslations[language]?.[trimmed]||todayTranslations[language]?.[trimmed]||essentialsTranslations[language]?.[trimmed]||revisionTranslations[language]?.[trimmed]||words[trimmed];
  if(found)return value.replace(trimmed,found);
  const count=/^(Saved|Reading) \((\d+)\)$/.exec(trimmed);if(count)return (words[count[1]]||count[1])+' ('+count[2]+')';
  return value;

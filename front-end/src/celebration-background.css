@@ -1,0 +1,8 @@
+.app.has-celebration-background{position:relative;isolation:isolate;min-height:100vh;min-height:100dvh}
+html .app.has-celebration-background,
+html .app.has-celebration-background :is(.main-shell,.page-container){background:transparent!important}
+html .app.has-celebration-background :is(.sidebar,.topbar){background:color-mix(in srgb,var(--surface) 72%,transparent)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.has-celebration-background .page-footer{background:color-mix(in srgb,var(--surface) 72%,transparent);padding:16px;border-radius:12px}
+html[data-theme=dark] .has-celebration-background .page-footer{background:color-mix(in srgb,var(--surface) 82%,transparent)}
+@media(prefers-reduced-transparency:reduce){html .app.has-celebration-background :is(.sidebar,.topbar){background:var(--surface)!important}}
+@media print{.has-celebration-background>div[aria-hidden=true]{display:none}}

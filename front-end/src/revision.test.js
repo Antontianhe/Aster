@@ -100,3 +100,10 @@ test('report exports actual counts and every current question has a unique sched
   const report = reportCsv(revisionAnalytics([attempt()], [], seedSchedule([attempt()]), new Date('2026-09-24T12:00:00Z')));
   assert.equal(report.split('\r\n').length, 14); assert.match(report, /"1","1","100","1","267"/);
 });
+test('subject revision insights exclude other subjects and unassigned focus sessions', () => {
+  const science=COURSES.science.questions[0],answers=[attempt({correct:false}),attempt({subject:'science',question:science.q,questionId:science.id,correct:false})];
+  const sessions=[{kind:'focus',minutes:20,finishedAt:'2026-09-01T10:00:00Z'},{kind:'focus',subject:'maths',minutes:12,finishedAt:'2026-09-01T10:00:00Z'}];
+  const result=revisionAnalytics(answers,sessions,seedSchedule(answers),new Date('2026-09-03T12:00:00Z'),'maths');
+  assert.equal(result.week.total,1);assert.equal(result.week.minutes,12);assert.equal(result.due,1);
+  assert.deepEqual(result.subjects.map(s=>s.subject),['maths']);assert.ok(result.topics.every(t=>t.subject==='maths'));
+});

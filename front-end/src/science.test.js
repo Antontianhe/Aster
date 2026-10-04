@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{neutralization,circuitValues,pendulumPeriod}from'./science.js';
+test('equal strong acid/base moles neutralize at pH seven',()=>{const r=neutralization(50,50);assert.equal(r.ph,7);assert.equal(r.state,'neutral');assert.ok(Math.abs(r.reacted-.005)<1e-9);assert.ok(r.heat>0)});
+test('excess acid and base use moles, dilution and water equilibrium',()=>{assert.ok(neutralization(100,50).ph<2);assert.ok(neutralization(50,100).ph>12);assert.equal(neutralization(20,100,.5,.1).ph,7);assert.ok(Number.isFinite(neutralization(10,100,.001,1).ph));assert.equal(neutralization(0,10),null)});
+test('Ohm’s law and open circuit',()=>{assert.deepEqual(circuitValues(6,20),{current:.3,power:1.8});assert.deepEqual(circuitValues(6,20,false),{current:0,power:0})});
+test('pendulum period depends on square root of length and inverse gravity',()=>{assert.ok(Math.abs(pendulumPeriod(1,9.81)-2.006)<.001);assert.equal(pendulumPeriod(4,9.81),pendulumPeriod(1,9.81)*2);assert.ok(pendulumPeriod(1,1.62)>pendulumPeriod(1,9.81))});

@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { seasonFor, validBirthday, festivalsForYear, upcomingCelebrations, sceneFor, daysUntil } from './celebrations.js';
+test('seasons work in both hemispheres',()=>{assert.equal(seasonFor('2026-03-01'),'spring');assert.equal(seasonFor('2026-06-01'),'summer');assert.equal(seasonFor('2026-10-03'),'autumn');assert.equal(seasonFor('2026-12-01'),'winter');assert.equal(seasonFor('2026-12-01',true),'summer')});
+test('lunar dates are computed rather than repeated on Gregorian dates',()=>{for(const [year,date]of [[2026,'2026-02-17'],[2027,'2027-02-06'],[2028,'2028-01-26']])assert.equal(festivalsForYear(year).find(e=>e.id==='lunar').date,date);assert.equal(festivalsForYear(2027).find(e=>e.id==='easter').date,'2027-03-28')});
+test('birthday overrides festivals and leap-day birthdays have a defined fallback',()=>{assert.ok(validBirthday('02-29'));assert.equal(validBirthday('02-30'),false);assert.equal(validBirthday('13-01'),false);assert.equal(sceneFor('2026-12-25',{birthday:'12-25'}).scene,'birthday');assert.equal(sceneFor('2027-02-28',{birthday:'02-29'}).scene,'birthday');assert.equal(sceneFor('2026-10-31').scene,'halloween')});
+test('countdowns roll forward and ignore invalid custom dates',()=>{assert.equal(daysUntil('2026-10-24','2026-10-26'),2);const next=upcomingCelebrations('2026-12-26',null,[{id:'bad',name:'Bad',date:'2027-02-31'}]);assert.equal(next.find(e=>e.id==='christmas').date,'2027-12-25');assert.ok(!next.some(e=>e.id==='bad'));assert.ok(next.every(e=>e.days>=0))});

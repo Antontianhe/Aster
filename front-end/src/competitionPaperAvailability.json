@@ -1,0 +1,933 @@
+[
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025BCCContest5_6.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:08.670Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025BCCContestSolutions5_6.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:08.761Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025BCCContest7_8.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:08.859Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025BCCContestSolutions7_8.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:08.979Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025BCCContest9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:09.658Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025BCCContestSolutions9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:09.762Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024BCCContest7_8.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:09.813Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024BCCContestSolutions7_8.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:09.941Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024BCCContest9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:10.660Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024BCCContest5_6.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:10.680Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2024BCCContestSolutions9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:10.855Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024BCCContestSolutions5_6.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:11.333Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023BCCContest9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:11.676Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023BCCContest7_8.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:11.829Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023BCCContestSolutions9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:11.903Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023BCCContestSolutions7_8.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:12.376Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023BCCContest5_6.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:12.649Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023BCCContestSolutions5_6.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:12.958Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022BCCContest9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:12.972Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026Euclid%28E%29FINAL.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:13.324Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026EuclidSoln%28E%29.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:13.666Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022BCCContestSolutions9_10.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:13.667Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:13.768Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:13.983Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:14.399Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:14.466Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:14.475Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:14.737Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:15.096Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:15.217Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:15.276Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:15.545Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:15.835Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:16.024Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2020EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:16.061Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:16.235Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:16.653Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:16.884Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:16.912Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:17.052Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2016/2016EuclidSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:17.134Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2016/2016EuclidContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:17.410Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026Gauss8%28E%29.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:17.840Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026GaussSoln%28E%29.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:17.962Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026Gauss7%28E%29.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:18.128Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:18.337Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:18.635Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025GaussSolutions.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:18.672Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:18.930Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:19.151Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:19.429Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:19.513Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:19.690Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:19.977Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:20.074Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:20.302Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:20.493Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:20.565Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:20.911Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:21.058Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:21.394Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:21.405Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:21.823Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:21.871Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:22.079Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:22.221Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:22.572Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:22.730Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:22.814Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:22.826Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:23.360Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:23.524Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2016/2016GaussSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:23.645Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2016/2016Gauss7Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:23.851Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026Fryer%28E%29FINAL.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.194Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2016/2016Gauss8Contest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.197Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026Galois%28E%29FINAL.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.311Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026FryerSoln%28E%29FINAL.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.414Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026GaloisSoln%28E%29FINAL.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.508Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026HypatiaSoln%28E%29FINAL.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.522Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.951Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2026/2026Hypatia%28E%29FINAL.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:24.952Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:25.197Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:25.281Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:25.580Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:25.634Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2025/2025HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:25.782Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.069Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.331Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.408Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.523Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.630Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.774Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2024/2024FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.799Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:26.879Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:27.093Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:27.203Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:27.392Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2023/2023FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:27.505Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:27.670Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:27.802Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:28.096Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:28.118Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:28.271Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:28.300Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:28.651Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:28.751Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:29.048Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:29.121Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:29.297Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:29.466Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:29.746Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:29.804Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:29.987Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:30.209Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:30.358Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:30.484Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:30.496Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:30.799Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:31.141Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:31.316Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:31.317Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:31.570Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:31.623Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:31.632Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:31.928Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:32.009Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017FryerSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:32.217Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017FryerContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:32.324Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017GaloisContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:32.747Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017GaloisSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:32.799Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017HypatiaSolution.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:32.804Z"
+  },
+  {
+    "url": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017HypatiaContest.pdf",
+    "available": true,
+    "status": 200,
+    "frame": "",
+    "checkedAt": "2026-10-04T10:47:32.901Z"
+  }
+]

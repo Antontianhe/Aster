@@ -1,4 +1,5 @@
 export const CHARACTER_EXTRAS = [
+  { id: 'starlight', name: 'Starlight skin', slot: 'effect', price: 55, color: '#9bbfef' },
   { id: 'headphones', name: 'Studio headphones', slot: 'accessory', price: 20, color: '#8574ef' },
   { id: 'crown', name: 'Crystal crown', slot: 'accessory', price: 45, color: '#e6b750' },
   { id: 'wings', name: 'Holographic wings', slot: 'effect', price: 70, color: '#6bcbd1' },
