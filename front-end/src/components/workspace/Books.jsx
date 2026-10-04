@@ -99,7 +99,7 @@ export default function Books() {
       <div className="segmented-tabs">{[['all', 'All books'], ['saved', `Saved (${saved})`], ['reading', `Reading (${started})`], ['finished', 'Finished']].map(([key, label]) => <button key={key} aria-pressed={shelf === key} className={shelf === key ? 'active' : ''} onClick={() => setShelf(key)}>{tr(label)}</button>)}</div>
       <span className={s.fine}>{filtered.length} {tr(filtered.length === 1 ? 'book' : 'books')}</span>
     </div>
-    <div className={s.filters}>
+    <div className={`${s.filters} ${b.libraryFilters}`}>
       <input aria-label={tr('Search books')} value={search} onChange={event => setSearch(event.target.value)} placeholder={tr('Search books, authors, or topics…')} />
       <select aria-label={tr('Book subject')} value={subject} onChange={event => setSubject(event.target.value)}><option value="all">{tr('All subjects')}</option>{SUBJECTS.map(id => <option key={id} value={id}>{tr(COURSES[id]?.name || id)}</option>)}</select>
       <select aria-label={tr('Study stage')} value={stage} onChange={event => setStage(event.target.value)}><option value="all">{tr('All stages')}</option>{['Grade 8', 'IGCSE', 'IB'].map(value => <option key={value} value={value}>{value}</option>)}</select>

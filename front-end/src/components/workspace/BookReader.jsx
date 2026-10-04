@@ -3,6 +3,7 @@ import { Bookmark, BookOpen, Check, ChevronLeft, ChevronRight, Download, Highlig
 import { Modal } from '../UI.jsx';
 import { storage } from '../../storage.js';
 import { useT } from '../../i18n.jsx';
+import { useApp } from '../../context.jsx';
 import { createReaderDocument, HIGHLIGHT_COLORS, markedPassage, normalizeReaderPreferences, normalizeReaderState, READER_PREFERENCES_KEY, readerKey } from '../../bookReader.js';
 import s from './BookReader.module.css';
 
@@ -11,11 +12,14 @@ const read = key => { try { return JSON.parse(storage.getItem(key) || 'null'); }
 
 export default function BookReader({ book, state, onUpdate, onClose }) {
   const tr = useT();
+  const {prefs:appPrefs}=useApp();
   const [document, setDocument] = useState(null);
   const [reading, setReading] = useState(null);
   const [prefs, setPrefs] = useState(() => normalizeReaderPreferences(read(READER_PREFERENCES_KEY)));
   const [panel, setPanel] = useState('');
   const [expanded, setExpanded] = useState(false);
+  const [turn,setTurn]=useState(null);
+  const turning=useRef(false),turnTimer=useRef(),touch=useRef(null),ownsFullscreen=useRef(false);
   const [error, setError] = useState('');
   const [saveError, setSaveError] = useState('');
   const [draft, setDraft] = useState(null);
@@ -24,6 +28,24 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
   const pendingParagraph = useRef(null);
   const saveRef = useRef(onUpdate);
   saveRef.current = onUpdate;
+
+  useEffect(()=>{
+    const changed=()=>setExpanded(!!window.document.fullscreenElement);
+    window.document.addEventListener('fullscreenchange',changed);
+    return()=>{clearTimeout(turnTimer.current);window.document.removeEventListener('fullscreenchange',changed);if(ownsFullscreen.current&&window.document.fullscreenElement)window.document.exitFullscreen?.().catch(()=>{})};
+  },[]);
+  async function fullScreen(){
+    try{if(window.document.fullscreenElement)await window.document.exitFullscreen();else{await window.document.documentElement.requestFullscreen();ownsFullscreen.current=true}}
+    catch{setMessage('Browser fullscreen is unavailable here. The reading room still fills this window.')}
+  }
+  useEffect(()=>{
+    function shortcuts(e){
+      if(e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||e.target.closest('input,textarea,select,[contenteditable=true]')||!window.getSelection()?.isCollapsed)return;
+      if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)&&document&&!draft){e.preventDefault();navigate(e.key==='ArrowRight'?page+1:e.key==='ArrowLeft'?page-1:e.key==='Home'?0:document.pages.length-1)}
+      if(e.key.toLowerCase()==='f'){e.preventDefault();fullScreen()}
+    }
+    window.addEventListener('keydown',shortcuts);return()=>window.removeEventListener('keydown',shortcuts);
+  });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -66,8 +88,12 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
 
   function updatePrefs(changes) { setPrefs(v => normalizeReaderPreferences({ ...v, ...changes })); }
   function navigate(next, paragraph = null) {
-    if (!document) return;
+    if (!document||turning.current) return;
     const target = Math.max(0, Math.min(document.pages.length - 1, next));
+    if(target!==page&&!appPrefs.reduceMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      turning.current=true;setTurn({page,scroll:content.current?.scrollTop||0,direction:target>page?'next':'previous'});
+      turnTimer.current=setTimeout(()=>{setTurn(null);turning.current=false},580);
+    }
     setReading(v => ({ ...v, page: target }));
     setDraft(null);
     setMessage('');
@@ -123,7 +149,7 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
   }
   function togglePanel(next) { setPanel(current => current === next ? '' : next); }
 
-  return <Modal title={`${book.title} · ${tr('reading room')}`} size="large" className={`${s.dialog} ${expanded ? s.expanded : ''}`} onClose={onClose}>
+  return <Modal title={`${book.title} · ${tr('reading room')}`} size="large" className={`${s.dialog} ${s.expanded} ${s['dialog-'+prefs.theme]}`} onClose={onClose}>
     <section className={s.reader} data-reader-theme={prefs.theme} aria-label={tr('Book reader')}>
       <div className={s.toolbar}>
         <div className={s.author}><BookOpen size={18} /><span>{book.author}<small>{tr('Complete edition · read inside Aster')}</small></span></div>
@@ -131,7 +157,7 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
           <button aria-label={tr('Reading settings')} aria-pressed={panel === 'settings'} onClick={() => togglePanel('settings')}><Settings2 size={18} /><span>{tr('Appearance')}</span></button>
           <button aria-label={tr('Contents and bookmarks')} aria-pressed={panel === 'contents'} onClick={() => togglePanel('contents')}><List size={18} /><span>{tr('Contents')}</span></button>
           <button aria-label={tr('Highlights and notes')} aria-pressed={panel === 'notes'} onClick={() => togglePanel('notes')}><Highlighter size={18} /><span>{tr('Notes')} {annotations.length || ''}</span></button>
-          <button aria-label={tr(expanded ? 'Exit expanded reader' : 'Expand reader')} aria-pressed={expanded} onClick={() => setExpanded(v => !v)}>{expanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}</button>
+          <button aria-label={tr(expanded ? 'Exit browser fullscreen' : 'Enter browser fullscreen')} title={tr('Fullscreen · F')} aria-pressed={expanded} onClick={fullScreen}>{expanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}</button>
         </div>
       </div>
       {saveError && <p className={s.error} role="alert">{tr(saveError)}</p>}
@@ -139,7 +165,8 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
         <div className={s.readingArea}>
           {error ? <div className={s.empty} role="alert"><p>{tr(error)}</p><a href={book.url} target="_blank" rel="noreferrer">{tr('Open original edition')}</a></div> : !document ? <div className={s.empty} role="status">{tr('Loading complete book…')}</div> : <>
             <div className={s.pageCaption}><span>{currentChapter || book.title}</span><button onClick={toggleBookmark} aria-label={tr(bookmarked ? 'Remove page bookmark' : 'Bookmark this page')} aria-pressed={bookmarked}><Bookmark size={17} fill={bookmarked ? 'currentColor' : 'none'} /></button></div>
-            <div className={s.scroll} ref={content} tabIndex={0} aria-label={`${tr('Book text, page')} ${page + 1} ${tr('of')} ${document.pages.length}`} onMouseUp={captureSelection} onTouchEnd={captureSelection} onKeyUp={captureSelection}>
+            <div className={s.bookStage} style={{'--book-width':prefs.width+'px'}}>
+            <div className={s.scroll} ref={content} tabIndex={0} aria-label={`${tr('Book text, page')} ${page + 1} ${tr('of')} ${document.pages.length}`} onMouseUp={captureSelection} onTouchStart={e=>{const p=e.touches[0];touch.current={x:p.clientX,y:p.clientY}}} onTouchEnd={e=>{const p=e.changedTouches[0],start=touch.current;touch.current=null;if(start&&Math.abs(p.clientX-start.x)>80&&Math.abs(p.clientY-start.y)<35&&window.getSelection()?.isCollapsed&&!draft){navigate(page+(p.clientX<start.x?1:-1))}else captureSelection()}} onKeyUp={captureSelection}>
               <article className={s.prose} style={{ fontFamily: FONTS[prefs.font], fontSize: prefs.fontSize, lineHeight: prefs.lineHeight, maxWidth: prefs.width }}>
                 {document.pages[page].map(paragraph => <div className={s.paragraph} key={paragraph.id}>
                   <p data-paragraph={paragraph.id}>{markedPassage(paragraph.text, paragraph.id, pageAnnotations).map((part, index) => part.annotation ? <mark key={index} data-color={part.annotation.color} title={part.annotation.note || tr('Highlighted passage')} onClick={() => { if (window.getSelection()?.isCollapsed) editAnnotation(part.annotation); }}>{part.text}</mark> : part.text)}</p>
@@ -148,10 +175,12 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
                 {page === document.pages.length - 1 && <div className={s.end}><Check size={24} /><h3>{tr('End of the book.')}</h3><button onClick={() => { saveRef.current({ status: 'finished', progress: 100 }); setMessage('Book marked as finished.'); }}>{tr('Mark as finished')}</button></div>}
               </article>
             </div>
+            {turn&&<div className={s.flipSheet} data-direction={turn.direction} aria-hidden="true"><div style={{fontFamily:FONTS[prefs.font],fontSize:prefs.fontSize,lineHeight:prefs.lineHeight,transform:`translateY(-${turn.scroll}px)`}}>{document.pages[turn.page].map(p=><p key={p.id}>{p.text}</p>)}</div></div>}
+            </div>
             <nav className={s.pagination} aria-label={tr('Reading pages')}>
-              <button aria-label={tr('Previous reading page')} disabled={page === 0} onClick={() => navigate(page - 1)}><ChevronLeft size={18} /><span>{tr('Previous')}</span></button>
+              <button aria-label={tr('Previous reading page')} title={tr('Previous page · Left arrow')} disabled={page === 0||!!turn} onClick={() => navigate(page - 1)}><ChevronLeft size={18} /><span>{tr('Previous')}</span></button>
               <label>{tr('Page')} <select aria-label={tr('Reading page')} value={page} onChange={event => navigate(Number(event.target.value))}>{document.pages.map((_, index) => <option value={index} key={index}>{index + 1}</option>)}</select> {tr('of')} {document.pages.length}</label>
-              <button aria-label={tr('Next reading page')} disabled={page === document.pages.length - 1} onClick={() => navigate(page + 1)}><span>{tr('Next')}</span><ChevronRight size={18} /></button>
+              <button aria-label={tr('Next reading page')} title={tr('Next page · Right arrow')} disabled={page === document.pages.length - 1||!!turn} onClick={() => navigate(page + 1)}><span>{tr('Next')}</span><ChevronRight size={18} /></button>
             </nav>
           </>}
         </div>
@@ -193,7 +222,7 @@ export default function BookReader({ book, state, onUpdate, onClose }) {
           </div>}
         </aside>}
       </div>
-      <footer className={s.footer}><span role="status">{tr(message || 'Reading position and notes saved in this browser.')}</span><a href={book.local} download><Download size={13} />{tr('Full text & credits')}</a></footer>
+      <footer className={s.footer}><span role="status">{tr(message || 'Saved in this browser · ← → Turn pages · F Fullscreen · Esc Close')}</span><a href={book.local} download><Download size={13} />{tr('Full text & credits')}</a></footer>
     </section>
   </Modal>;
 }
