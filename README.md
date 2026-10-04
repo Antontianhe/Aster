@@ -242,7 +242,7 @@ These resources are not a claim of complete coverage of every syllabus, examinat
 
 - Username/password accounts, expiring sessions, account-separated workspace synchronization, and optional owner insights.
 - Grade entries/CSV imports with comparisons within compatible grading scales.
-- School schedule/event links and dated snapshots; these are not a live Veracross integration.
+- A private local Schoolbox timetable, enrolled-course resource catalogue, Veracross calendar and assessment snapshot. Today shows actual dated classes; Planner combines lessons, events, exams and dated revision plans. Confirmed school closures suppress regular lessons.
 - Private Schoolbox news RSS connections encrypted in MySQL and checked every 60 seconds while the service runs. Only posts included in that feed update automatically.
 
 ## Backend API
@@ -332,7 +332,7 @@ Local service logs are written under `%LOCALAPPDATA%\Aster`, including `frontend
 - Verification is a local preview, not proof of email/phone ownership. There is no password-recovery delivery service.
 - Pro is a UI preview, not a billed subscription or secure commercial entitlement. Coins and imported grades are not a fraud-resistant payment system.
 - The site is not hosted publicly. HTTPS, production authentication/cookies, deployment configuration, moderation operations, and payment/email providers require separate production work.
-- School snapshots are dated. Veracross grades and events are imported/manual records; private RSS does not synchronize every kind of Schoolbox change.
+- School resources and assessment topics refresh through a scheduled, signed-in browser import, not a continuous Veracross API. Permission-denied pages and unpublished guides remain unavailable. RSS updates only its news feed; grades remain separate imported/manual records.
 - The small local AI model does not reproduce ChatGPT's full capabilities. Optional cloud requests require separate API access, billing, and consent.
 - Book availability and reuse rights vary by edition. Preserve source notices and distinguish full in-app editions from external resources.
 - Existing terms/privacy pages describe a development preview. Operator details, retention, age/guardian handling, and launch-country requirements need finalization before a public student service.
@@ -344,3 +344,52 @@ Course, competition, paper and book entries link to their sources. See [front-en
 Project contact: [anton.zhang@icloud.com](mailto:anton.zhang@icloud.com)
 
 Useful technical references: [Spring Boot](https://docs.spring.io/spring-boot/3.5/index.html), [MyBatis Plus](https://baomidou.com/en/getting-started/install/), [Apache Maven](https://maven.apache.org/download.cgi), [Eclipse Temurin](https://adoptium.net/), and [MySQL](https://dev.mysql.com/doc/refman/8.4/en/).
+
+### Exam photos and corrections
+
+Open **School & planner → Planner → Exam photos**, or **School → Exam photos**. The legacy `/#/exams?tab=corrections` link remains supported. Upload up to four JPG, PNG, or WebP pages (12 MB per original), use the camera, or paste exam text. The browser resizes images before analysis. Check the transcription and extracted questions against the original page before asking for feedback.
+
+The correction notebook keeps the original answer and teacher comments beside a fresh written attempt. Students can request structured AI feedback, compare a suggested solution, write a reflection, and save their corrections. Changing the source question or new answer clears obsolete feedback. Manual correction and self-review remain available when AI is offline. Saved reviews retain text and working, **not photos**; original photos are available only during the open session. AI feedback is advisory and never changes an official grade or awards an exam-grade bonus.
+
+`POST /api/exam-coach/repair` uses the existing local/cloud provider selection and requires a checked source question plus a new attempt. Optional cloud processing remains off until configured and explicitly selected. The local model is small and can misread handwriting or reasoning; teacher feedback and mark schemes remain the reference. The legacy `/#/exam-coach` link opens the same correction area.
+
+### Profile and avatar
+
+The top-right profile portrait shows the student character and Buddy together. **Customize & settings** contains visual person/monster options, Buddy customization, and existing workspace preferences. **Information** contains private contact, school, and birthday fields; it is not part of the game navigation. Basic character choices are free, and optional extras use the existing shared learning-coin balance.
+
+### Science preview
+
+**Science lab** contains thirteen original interactive experiments, grouped into Chemistry, Biology, Physics and All labs: neutralization, DC circuits, pendulums, osmosis, inheritance, photosynthesis, enzymes, reaction rates, diffusion, buoyancy, refraction, waves and gas compression. Sliders expose assumptions and quantities; the eight newest labs include trial recording and saved investigation notes. Relative biological/kinetic models are explicitly labelled teaching illustrations rather than measured datasets. Animation respects reduced motion. No third-party simulation assets are copied.
+
+Celebration scenery fills the workspace background on every study route, without the former floating island. **Today → Celebrations** can apply any scene across Aster or restore automatic seasonal/festival selection. Festival dates for 2026–2028 use [Hong Kong Observatory calendar tables](https://www.hko.gov.hk/en/gts/time/conversion.htm) to avoid platform-specific lunar calendar differences.
+
+Supported, explicitly worded single-variable linear equations also have a deterministic final-value check. Its feedback is labelled “Value checked” and explicitly does not certify all written reasoning. More complex questions use advisory model feedback. Validation includes the frontend test suite, backend rules, transactional MySQL tests, and a live photo → extracted question → rewritten answer → saved review browser check.
+
+### Speaking, debate and daily activities
+
+- **Speaking room → Speaking practice** (`/#/oral`): choose English, German, French, Spanish or Mandarin, a level and a topic, including IGCSE speaking and IB Theory of Knowledge discussion. Alex, an animated AI partner, reads actual model replies aloud with selectable device voices and speed. Speech events drive mouth movement and listening/thinking states. Have a two-to-six-turn conversation, then receive transcript-based feedback. Opt-in dictation provides an editable transcript; optional conversation mode sends words after a pause and listens again after the reply. Recording stops after 60 seconds and cleans up on navigation. Unsupported browsers retain typing and text replies. Browser speech recognition/playback can use a provider service independently of local AI; see [MDN Web Speech](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
+- **Speaking room → Debate** (`/#/debate`): choose a motion and a side, answer the animated AI opponent across three rounds, then write a closing summary. The model evaluates reasoning, evidence, rebuttal and clarity out of five each. Coins equal half the total score, rounded down, capped at **10**; daily boosts do not alter this cap. Feedback summaries are saved, while the live transcript is not persisted.
+- **Daily claw** (`/#/claw`): one free daily claim at Europe/Berlin midnight. Four equally likely rewards: a day-long learning-coin multiplier, Starlight skin, headphones, or a crown. An owned cosmetic becomes the multiplier. The reward is saved before the animation runs, preventing a refresh from awarding a second prize. Claw position is cosmetic and the odds are displayed.
+- **Number stage** (`/#/math-game`): original multiplication/division game for tables 2–12, ten questions, with an optional 60-second sprint. Keyboard and touch keypad work; results show missed facts for review. Each correct answer earns a coin, up to ten, doubled only if the daily boost is active. No entry fee, purchased chance, cash-out or real-money reward is involved.
+
+`POST /api/conversation/turn` and `/api/conversation/evaluate` use the existing `AiProvider`. They validate supported language, side, turn limits and structured scoring; there are no canned AI fallback replies. Cloud requests still require configuration and explicit sharing consent. The local model is small: claims and feedback remain advisory. Current coin transactions follow Aster's existing local workspace economy, not a tamper-resistant public competition ledger.
+
+The avatar editor remains available free through **Profile → Customize & settings**: body, person/monster type, eyes, hair, clothes and colors, plus coin accessories. Both the avatar and Buddy appear together and can wave, dance and high-five.
+
+### Private school refresh
+
+The local Codex heartbeat **Update school resources and exam practice** runs daily at 07:00, 16:00 and 20:00 Europe/Berlin. The computer and Codex must be running, and the school browser sessions must remain signed in. Failures preserve the last successful snapshot; the site shows check times and missing guides. The private calendar feed refreshes at most every 15 minutes while the local Vite service is running. The UI checks for a new local snapshot every minute and on focus. This private local endpoint is not included in a public build or served to LAN clients.
+
+Browser captures live only in ignored `.work/school-sync/`: `pages.json` contains source text/links; `veracross-assessments.json` includes the observed integer calendar `year`; `veracross-events.json` includes each calendar event's `title`, `url`, `year` and detail `text`. Capture current and upcoming calendar months, including closures. `schoolbox-assessments.json` stores confirmed `assessmentId`, `subject`, `date`, optional `time`, `sourceUrl` and `checkedAt`. Never copy marks or submitted answers into the resource catalogue. Private feed URLs and signed download URLs stay in this ignored directory.
+
+`assessment-guides.json` binds each topic guide to an exact `assessmentId`, or an explicit date/year plus title; a title alone must never carry a guide into the next year's assignment. `documents.json` lists locally downloaded readable originals and source links. Rebuild with `node scripts/import-school-snapshot.mjs`. The importer writes `snapshot.json` atomically; retain existing captures for sources that are temporarily unavailable. The local plugin serves only manifest-listed document files.
+
+Assessments are separated into upcoming and past using the Berlin school date. Practice contains original questions or clearly marked source-guided prompts, and never substitutes an older guide for an unpublished future assessment. Revision plans end before the earliest conflicting deadline. Conflicts between Schoolbox and Veracross show both dates and a teacher-confirmation notice; neither source is silently discarded.
+
+**Learn** contains My subjects, IGCSE & IB, and Study roadmap. Each subject contains its learning path, quick review, revision tools, resources, topic maps and assessment practice; English practice belongs to English. Competitions combines training with an internal reader for 133 verified official past-paper PDFs, while the book library lists only full readable local editions.
+
+### Immersive book reader
+
+Opening a local book fills the app viewport with an independent paper, sepia or night reading room. Layered paper, a spine shadow, and reversible 3D page turns replace the old dashboard backdrop. Use **Left/Right arrows** to turn pages, **Home/End** to reach the first/last page, **F** for browser fullscreen, or swipe horizontally on touch screens. **Escape** closes the reader (the browser may first exit native fullscreen). Native fullscreen requires a user gesture and may be restricted by an embedded browser; the reader still fills the app viewport.
+
+Shortcuts do not interrupt typing or text selections. Existing chapter navigation, bookmarks, highlights, notes, and reading progress are preserved. System/app reduced-motion preferences disable page-turn motion. The reader's pages are digital reading chunks, not printed edition page numbers.
